@@ -66,7 +66,7 @@ frappe.query_reports["Production Order"] = {
     },
 
     onload: function(report) {
-        report.page.wrapper.on("click", ".action-btn", function () {
+        report.page.body.on("click", ".action-btn", function () {
             let action = $(this).attr("data-action");
             let order_no = $(this).attr("data-order");
 
