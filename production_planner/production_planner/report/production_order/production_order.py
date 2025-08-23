@@ -26,8 +26,8 @@ def get_data(filters=None):
         {"action": "Accept / Reject", "item_code": "BKR-IKCCR-1-PCS", "item_name": "IKAN CENCARU", "order_qty": 40, "produced_qty": 0, "status": "Ready for QC", "order_number": "MFG-WO-2025-00013"},
         {"action": "Finish", "item_code": "BKR-IKCCRSBT-1-PCS", "item_name": "IKAN CENCARU SUMBAT", "order_qty": 30, "produced_qty": 0, "status": "QC Approved", "order_number": "MFG-WO-2025-00014"},
         {"action": "", "item_code": "BKR-IKPRI-1-PCS", "item_name": "IKAN PARI", "order_qty": 60, "produced_qty": 60, "status": "Completed", "order_number": "MFG-WO-2025-00015"},
-        {"action": "Start", "item_code": "BKR-KRGSBL-1-HDG", "item_name": "KERANG SAMBAL", "order_qty": 100, "produced_qty": 0, "status": "In Progress", "order_number": "MFG-WO-2025-00016"},
-        {"action": "", "item_code": "BKR-KPGSBL-1-HDG", "item_name": "KUPANG SAMBAL", "order_qty": 20, "produced_qty": 0, "status": "Completed", "order_number": "MFG-WO-2025-00017"},
+        {"action": "Prepared", "item_code": "BKR-KRGSBL-1-HDG", "item_name": "KERANG SAMBAL", "order_qty": 100, "produced_qty": 0, "status": "In Progress", "order_number": "MFG-WO-2025-00016"},
+        {"action": "", "item_code": "BKR-KPGSBL-1-HDG", "item_name": "KUPANG SAMBAL", "order_qty": 20, "produced_qty": 20, "status": "Completed", "order_number": "MFG-WO-2025-00017"},
         {"action": "Finish", "item_code": "BKR-STYAY-1-HDG", "item_name": "SATAY AYAM", "order_qty": 30, "produced_qty": 0, "status": "QC Approved", "order_number": "MFG-WO-2025-00018"},
         {"action": "Prepared", "item_code": "BKR-STYDG-1-HDG", "item_name": "SATAY DAGING", "order_qty": 40, "produced_qty": 0, "status": "In Progress", "order_number": "MFG-WO-2025-00019"},
         {"action": "Start", "item_code": "BKR-SIASBLPT-1-PCS", "item_name": "SIAKAP SAMBAL PETAI", "order_qty": 50, "produced_qty": 0, "status": "Pending", "order_number": "MFG-WO-2025-00020"}
