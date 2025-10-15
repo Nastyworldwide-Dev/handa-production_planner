@@ -18,7 +18,6 @@ def on_submit(doc, method):
 			if doc.get('custom__skip_material_transfer_to_wip_warehouse'):
 				wo_doc.skip_transfer = 1
 				wo_doc.save()
-			wo_doc.submit()
 
 	except Exception as e:
 		frappe.throw(_("Failed to create or submit Work Orders: {0}").format(e))

@@ -1,41 +1,177 @@
 # Copyright (c) 2025, Invento Software Limited and contributors
 # For license information, please see license.txt
 
+import frappe
+from frappe import _
+
+
 def execute(filters=None):
-    columns = get_columns()
-    data = get_data(filters)
-    return columns, data
+	columns = get_columns()
+	data = get_data(filters)
+	return columns, data
 
 
 def get_columns():
-    return [
-        {"label": "Action", "fieldname": "action", "fieldtype": "Data", "width": 200},
-        {"label": "Item Code", "fieldname": "item_code", "fieldtype": "Data", "width": 180},
-        {"label": "Item Name", "fieldname": "item_name", "fieldtype": "Data", "width": 180},
-        {"label": "Order Qty", "fieldname": "order_qty", "fieldtype": "Int", "width": 100},
-        {"label": "Produced Qty", "fieldname": "produced_qty", "fieldtype": "Int", "width": 120},
-        {"label": "Status", "fieldname": "status", "fieldtype": "Data", "width": 120},
-        {"label": "Order Number", "fieldname": "order_number", "fieldtype": "Data", "width": 200},
-    ]
+	return [
+		{"label": "Action", "fieldname": "action", "fieldtype": "Data", "width": 200},
+		{"label": "Item Code", "fieldname": "item_code", "fieldtype": "Data", "width": 220},
+		{"label": "Item Name", "fieldname": "item_name", "fieldtype": "Data", "width": 220},
+		{"label": "Order Qty", "fieldname": "order_qty", "fieldtype": "Float", "width": 100},
+		{"label": "Produced Qty", "fieldname": "produced_qty", "fieldtype": "Float", "width": 120},
+		{"label": "Status", "fieldname": "status", "fieldtype": "Data", "width": 120},
+		{"label": "Work Order", "fieldname": "work_order", "fieldtype": "Link",
+		 "options": "Work Order", "width": 200}
+	]
 
 
 def get_data(filters=None):
-    demo_data = [
-        {"action": "Start", "item_code": "BKR-AYPCK-1-PCS", "item_name": "AYAM PERCIK", "order_qty": 100, "produced_qty": 0, "status": "Pending", "order_number": "MFG-WO-2025-00011"},
-        {"action": "Prepared", "item_code": "BKR-IKBWL-1-PCS", "item_name": "IKAN BAWAL", "order_qty": 20, "produced_qty": 0, "status": "In Progress", "order_number": "MFG-WO-2025-00012"},
-        {"action": "Accept / Reject", "item_code": "BKR-IKCCR-1-PCS", "item_name": "IKAN CENCARU", "order_qty": 40, "produced_qty": 0, "status": "Ready for QC", "order_number": "MFG-WO-2025-00013"},
-        {"action": "Finish", "item_code": "BKR-IKCCRSBT-1-PCS", "item_name": "IKAN CENCARU SUMBAT", "order_qty": 30, "produced_qty": 0, "status": "QC Approved", "order_number": "MFG-WO-2025-00014"},
-        {"action": "", "item_code": "BKR-IKPRI-1-PCS", "item_name": "IKAN PARI", "order_qty": 60, "produced_qty": 60, "status": "Completed", "order_number": "MFG-WO-2025-00015"},
-        {"action": "Prepared", "item_code": "BKR-KRGSBL-1-HDG", "item_name": "KERANG SAMBAL", "order_qty": 100, "produced_qty": 0, "status": "In Progress", "order_number": "MFG-WO-2025-00016"},
-        {"action": "", "item_code": "BKR-KPGSBL-1-HDG", "item_name": "KUPANG SAMBAL", "order_qty": 20, "produced_qty": 20, "status": "Completed", "order_number": "MFG-WO-2025-00017"},
-        {"action": "Finish", "item_code": "BKR-STYAY-1-HDG", "item_name": "SATAY AYAM", "order_qty": 30, "produced_qty": 0, "status": "QC Approved", "order_number": "MFG-WO-2025-00018"},
-        {"action": "Prepared", "item_code": "BKR-STYDG-1-HDG", "item_name": "SATAY DAGING", "order_qty": 40, "produced_qty": 0, "status": "In Progress", "order_number": "MFG-WO-2025-00019"},
-        {"action": "Start", "item_code": "BKR-SIASBLPT-1-PCS", "item_name": "SIAKAP SAMBAL PETAI", "order_qty": 50, "produced_qty": 0, "status": "Pending", "order_number": "MFG-WO-2025-00020"}
-    ]
+	conditions = get_conditions(filters)
 
-    # Apply filters if provided (demo version)
-    if filters:
-        if filters.get("status"):
-            demo_data = [d for d in demo_data if d["status"] == filters["status"]]
+	# Build the query safely
+	query = """
+			SELECT wo.name            as work_order, \
+				   wo.production_item as item_code, \
+				   wo.item_name       as item_name, \
+				   wo.qty             as order_qty, \
+				   wo.produced_qty    as produced_qty, \
+				   wo.status          as status, \
+				   wo.name            as order_number, \
+				   wo.production_item as production_item
+			FROM `tabWork Order` wo
+			WHERE wo.docstatus != 2 \
+			"""
 
-    return demo_data
+	# Add conditions if they exist
+	if conditions:
+		query += f" AND {conditions}"
+
+	query += " ORDER BY wo.creation DESC"
+
+	work_order_data = frappe.db.sql(query, filters, as_dict=1)
+
+	# Add action buttons based on status
+	for row in work_order_data:
+		row['action'] = get_action_button(row['status'])
+
+	return work_order_data
+
+
+def get_conditions(filters):
+	conditions = []
+
+	if filters and filters.get("status"):
+		conditions.append("wo.status = %(status)s")
+
+	if filters and filters.get("work_order"):
+		conditions.append("wo.name = %(work_order)s")
+
+	if filters and filters.get("item_code"):
+		conditions.append("wo.production_item = %(item_code)s")
+
+	if filters and filters.get("from_date"):
+		conditions.append("DATE(wo.creation) >= %(from_date)s")
+
+	if filters and filters.get("to_date"):
+		conditions.append("DATE(wo.creation) <= %(to_date)s")
+
+	if filters and filters.get("company"):
+		conditions.append("wo.company = %(company)s")
+
+	return " AND ".join(conditions) if conditions else ""
+
+
+def get_action_button(status):
+	"""Determine what action button to show based on work order status"""
+	action_mapping = {
+		"Draft": "Start",
+		"Not Started": "Start",
+		"In Process": "Prepared",
+		"Completed": "Accept / Reject",
+		"Submitted": "Finish",
+		"Stopped": "Resume",
+		"Closed": "View"
+	}
+
+	return action_mapping.get(status, "")
+
+
+# Alternative safer approach using parameterized queries
+def get_data_safe(filters=None):
+	"""Alternative implementation with safer parameter handling"""
+
+	query = """
+			SELECT wo.name            as work_order, \
+				   wo.production_item as item_code, \
+				   wo.item_name       as item_name, \
+				   wo.qty             as order_qty, \
+				   wo.produced_qty    as produced_qty, \
+				   wo.status          as status, \
+				   wo.name            as order_number, \
+				   wo.production_item as production_item
+			FROM `tabWork Order` wo
+			WHERE wo.docstatus = 1 \
+			"""
+
+	# Build conditions and parameters safely
+	conditions = []
+	query_params = {}
+
+	if filters:
+		if filters.get("status"):
+			conditions.append("wo.status = %(status)s")
+			query_params["status"] = filters["status"]
+
+		if filters.get("work_order"):
+			conditions.append("wo.name = %(work_order)s")
+			query_params["work_order"] = filters["work_order"]
+
+		if filters.get("item_code"):
+			conditions.append("wo.production_item = %(item_code)s")
+			query_params["item_code"] = filters["item_code"]
+
+		if filters.get("from_date"):
+			conditions.append("DATE(wo.creation) >= %(from_date)s")
+			query_params["from_date"] = filters["from_date"]
+
+		if filters.get("to_date"):
+			conditions.append("DATE(wo.creation) <= %(to_date)s")
+			query_params["to_date"] = filters["to_date"]
+
+		if filters.get("company"):
+			conditions.append("wo.company = %(company)s")
+			query_params["company"] = filters["company"]
+
+	if conditions:
+		query += " AND " + " AND ".join(conditions)
+
+	query += " ORDER BY wo.creation DESC"
+
+	# Use query_params instead of filters directly
+	work_order_data = frappe.db.sql(query, query_params, as_dict=1)
+
+	# Add action buttons based on status
+	for row in work_order_data:
+		row['action'] = get_action_button(row['status'])
+
+	return work_order_data
+
+
+@frappe.whitelist()
+def handle_action(action, order_no):
+	if action == "Start":
+		response = start_order(order_no)
+
+	return response
+
+
+def start_order(order_no):
+	wo_doc = frappe.get_doc("Work Order", order_no)
+	wo_doc.submit()
+	return {
+		"message": "Order Started",
+		"data": {
+			'order_no': wo_doc.name,
+			'skip_transfer': wo_doc.skip_transfer,
+			'qty': wo_doc.qty,
+		}
+	}
