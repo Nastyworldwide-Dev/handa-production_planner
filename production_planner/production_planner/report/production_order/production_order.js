@@ -16,10 +16,24 @@ frappe.query_reports["Production Order"] = {
 			"default": frappe.datetime.get_today()
 		},
 		{
+            "fieldname": "company",
+            "label": __("Company"),
+            "fieldtype": "Link",
+            "options": "Company",
+            "default": frappe.defaults.get_user_default("Company"),
+            "reqd": 1
+        },
+        {
+            "fieldname": "item_code",
+            "label": __("Item"),
+            "fieldtype": "Link",
+            "options": "Item"
+        },
+		{
 			"fieldname": "status",
 			"label": __("Status"),
 			"fieldtype": "Select",
-			"options": "\nPending\nIn Progress\nReady for QC\nQC Approved\nCompleted",
+			"options": "\nPending\nIn Progress\nReady For QC\nQC Rejected\nCompleted",
 			"default": ""
 		}
 	],
@@ -55,7 +69,7 @@ frappe.query_reports["Production Order"] = {
 			const colorMap = {
 				"Start": "btn-primary",     // Blue
 				"Prepared": "btn-info",     // Light Blue
-				"Reprepare": "btn-warning"     // Yellow/Orange
+				"Reprepared": "btn-warning"     // Yellow/Orange
 			};
 
 			let btnClass = colorMap[value] || "btn-secondary";

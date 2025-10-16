@@ -9,9 +9,14 @@ from erpnext.manufacturing.doctype.work_order.work_order import make_stock_entry
 
 
 def execute(filters=None):
-	columns = get_columns()
-	data = get_data(filters)
-	return columns, data
+	if not filters:
+		filters = {}
+
+	columns, data = get_columns(), get_data(filters)
+	charts = get_charts(filters, data)
+	summary = get_report_summary(filters, data)
+	return columns, data, None, charts, summary
+
 
 
 def get_columns():
@@ -51,15 +56,15 @@ def get_data(filters=None):
 	work_order_data = frappe.db.sql(query, filters, as_dict=1)
 
 	for row in work_order_data:
-		custom_status = "Not Started"
+		custom_status = "Pending"
 
 		docstatus = frappe.db.get_value("Work Order", row.work_order, "docstatus")
 
 		if docstatus == 1:
-			custom_status = "Preparing"
+			custom_status = "In Progress"
 
 			se = frappe.db.sql("""
-							   SELECT name, inspection_required
+							   SELECT name, inspection_required, docstatus
 							   FROM `tabStock Entry`
 							   WHERE work_order = %s
 								 AND purpose = 'Manufacture'
@@ -68,9 +73,11 @@ def get_data(filters=None):
 
 			if se:
 				se_name = se[0].name
+				docstatus = se[0].docstatus
 				inspection_required = se[0].inspection_required
-
-				if inspection_required:
+				if docstatus == 1:
+					custom_status = "Completed"
+				elif docstatus == 0 and inspection_required:
 					finished_item = frappe.db.sql("""
 												  SELECT quality_inspection, docstatus
 												  FROM `tabStock Entry Detail`
@@ -89,23 +96,24 @@ def get_data(filters=None):
 						elif qc_status == "Rejected" and qc_docstatus == 1:
 							custom_status = "QC Rejected"
 						else:
-							custom_status = "Prepared"
+							custom_status = "Ready For QC"
 					else:
-						custom_status = "Prepared"
+						custom_status = "Ready For QC"
 				else:
-					custom_status = "Prepared"
+					custom_status = "Ready For QC"
 
 		row["status"] = custom_status
 		row["action"] = get_action_button(row["status"])
+
+	if filters and filters.get("status"):
+		filtered_data = [row for row in work_order_data if row["status"] == filters.get("status")]
+		return filtered_data
 
 	return work_order_data
 
 
 def get_conditions(filters):
 	conditions = []
-
-	if filters and filters.get("status"):
-		conditions.append("wo.status = %(status)s")
 
 	if filters and filters.get("work_order"):
 		conditions.append("wo.name = %(work_order)s")
@@ -128,76 +136,142 @@ def get_conditions(filters):
 def get_action_button(status):
 	"""Determine what action button to show based on work order status"""
 	action_mapping = {
-		"Not Started": "Start",
-		"Preparing": "Prepared",
-		"Prepared": "Accept / Reject",
-		"QC Rejected": "Reprepare",
-		"Stopped": "Resume",
-		"Closed": "View"
+		"Pending": "Start",
+		"In Progress": "Prepared",
+		"Ready For QC": "Accept / Reject",
+		"QC Rejected": "Reprepared"
 	}
 
 	return action_mapping.get(status, "")
 
 
-# Alternative safer approach using parameterized queries
-def get_data_safe(filters=None):
-	"""Alternative implementation with safer parameter handling"""
+def get_report_summary(filters, data):
+	"""Generate number cards for the report"""
+	if not data:
+		return []
+
+	# Calculate summary statistics
+	total_orders = len(data)
+	total_order_qty = sum(flt(row.get('order_qty', 0)) for row in data)
+	total_produced_qty = sum(flt(row.get('produced_qty', 0)) for row in data)
+
+	# Count orders by status
+	status_count = {}
+	for row in data:
+		status = row.get('status', 'Unknown')
+		status_count[status] = status_count.get(status, 0) + 1
+
+	# Calculate completion rate
+	completion_rate = 0
+	if total_order_qty > 0:
+		completion_rate = (total_produced_qty / total_order_qty) * 100
+
+	report_summary = []
+
+	for status, count in status_count.items():
+		indicator_color = get_status_indicator(status)
+		report_summary.append({
+			"value": count,
+			"indicator": indicator_color,
+			"label": _(status),
+			"datatype": "Int",
+		})
+
+	# Add totals after status counts
+	report_summary.extend([
+		{
+			"value": total_orders,
+			"indicator": "Blue",
+			"label": _("Total Work Orders"),
+			"datatype": "Int",
+		},
+		{
+			"value": total_order_qty,
+			"indicator": "Green" if completion_rate > 50 else "Orange",
+			"label": _("Total Order Qty"),
+			"datatype": "Float",
+		},
+		{
+			"value": f"{completion_rate:.1f}%",
+			"indicator": "Green" if completion_rate > 75 else "Orange" if completion_rate > 50 else "Red",
+			"label": _("Completion Rate"),
+			"datatype": "Percent",
+		}
+	])
+
+	return report_summary
+
+
+def get_status_indicator(status):
+	"""Get indicator color based on status"""
+	color_map = {
+		"Completed": "Green",
+		"In Progress": "Blue",
+		"Ready For QC": "Orange",
+		"QC Rejected": "Red",
+		"Pending": "Gray"
+	}
+	return color_map.get(status, "Gray")
+
+
+def get_charts(filters, data):
+	"""Generate charts for the report"""
+	if not data:
+		return []
+
+	# Production Efficiency (Bar Chart)
+	if len(data) > 0:
+		sorted_data = sorted(data, key=lambda x: flt(x.get('order_qty', 0)), reverse=True)
+
+		if sorted_data:
+			efficiency_chart = {
+				"title": _("Top Work Orders by Order Quantity"),
+				"data": {
+					"labels": [row.get('work_order', '') for row in sorted_data],
+					"datasets": [
+						{
+							"name": _("Order Qty"),
+							"values": [flt(row.get('order_qty', 0)) for row in sorted_data]
+						},
+						{
+							"name": _("Produced Qty"),
+							"values": [flt(row.get('produced_qty', 0)) for row in sorted_data]
+						}
+					]
+				},
+				"type": "bar",
+				"height": 300,
+			}
+			return efficiency_chart
+	return None
+
+
+def get_monthly_trend_data(filters):
+	"""Get monthly work order creation trend data"""
+	conditions = get_conditions(filters)
 
 	query = """
-			SELECT wo.name            as work_order, \
-				   wo.production_item as item_code, \
-				   wo.item_name       as item_name, \
-				   wo.qty             as order_qty, \
-				   wo.produced_qty    as produced_qty, \
-				   wo.status          as status, \
-				   wo.name            as order_number, \
-				   wo.production_item as production_item
-			FROM `tabWork Order` wo
-			WHERE wo.docstatus = 1 \
+			SELECT DATE_FORMAT(creation, '%%Y-%%m') as month,
+               COUNT(*) as count
+			FROM `tabWork Order`
+			WHERE docstatus != 2 \
 			"""
 
-	# Build conditions and parameters safely
-	conditions = []
-	query_params = {}
-
-	if filters:
-		if filters.get("status"):
-			conditions.append("wo.status = %(status)s")
-			query_params["status"] = filters["status"]
-
-		if filters.get("work_order"):
-			conditions.append("wo.name = %(work_order)s")
-			query_params["work_order"] = filters["work_order"]
-
-		if filters.get("item_code"):
-			conditions.append("wo.production_item = %(item_code)s")
-			query_params["item_code"] = filters["item_code"]
-
-		if filters.get("from_date"):
-			conditions.append("DATE(wo.creation) >= %(from_date)s")
-			query_params["from_date"] = filters["from_date"]
-
-		if filters.get("to_date"):
-			conditions.append("DATE(wo.creation) <= %(to_date)s")
-			query_params["to_date"] = filters["to_date"]
-
-		if filters.get("company"):
-			conditions.append("wo.company = %(company)s")
-			query_params["company"] = filters["company"]
-
 	if conditions:
-		query += " AND " + " AND ".join(conditions)
+		query += f" AND {conditions}"
 
-	query += " ORDER BY wo.creation DESC"
+	query += """
+        GROUP BY DATE_FORMAT(creation, '%Y-%m')
+        ORDER BY month
+    """
 
-	# Use query_params instead of filters directly
-	work_order_data = frappe.db.sql(query, query_params, as_dict=1)
+	result = frappe.db.sql(query, filters, as_dict=True)
 
-	# Add action buttons based on status
-	for row in work_order_data:
-		row['action'] = get_action_button(row['status'])
+	monthly_data = {}
+	for row in result:
+		monthly_data[row.month] = row.count
 
-	return work_order_data
+	return monthly_data
 
 
 @frappe.whitelist()
@@ -206,7 +280,8 @@ def handle_action(action, order_no):
 		response = start_order(order_no)
 	elif action == "Prepared":
 		response = prepare_order(order_no)
-
+	elif action == "Reprepared":
+		response = reprepare_oder(order_no)
 	return response
 
 
@@ -317,4 +392,32 @@ def create_quality_inspection(order_no, data):
 
 	return {
 		"message": f"Quality Inspection {data.get('status')}.",
+	}
+
+
+def reprepare_oder(order_no):
+	stock_entries = frappe.get_all(
+		"Stock Entry",
+		filters={"work_order": order_no},
+		fields=["name"]
+	)
+
+	if not stock_entries:
+		frappe.throw(f"No Stock Entry found for Work Order {order_no}")
+
+	se_doc = frappe.get_doc("Stock Entry", stock_entries[0].name)
+	finished_items = [d for d in se_doc.items if d.is_finished_item]
+
+	if not finished_items:
+		frappe.throw(f"No finished item found in Stock Entry {se_doc.name}")
+
+	if len(finished_items) > 1:
+		frappe.throw(f"Multiple finished items found in Stock Entry {se_doc.name}")
+
+	finished_item = finished_items[0]
+	finished_item.quality_inspection = ""
+	se_doc.save(ignore_permissions=True)
+
+	return {
+		'message': "Order Reprepared",
 	}
