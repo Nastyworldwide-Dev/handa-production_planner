@@ -80,12 +80,27 @@ frappe.query_reports["Production Order"] = {
 				args: {action, order_no},
 				callback: function (r) {
 					if (r.message) {
-						frappe.msgprint(r.message.message);
+						frappe.show_alert({
+							message: __(r.message.message),
+							indicator: 'green'
+						}, 5);
 
-						if (!r.message.data.skip_transfer) {
+						if (action === "Start" && !r.message.data.skip_transfer) {
 							frappe.xcall("erpnext.manufacturing.doctype.work_order.work_order.make_stock_entry", {
 								work_order_id: order_no,
 								purpose: "Material Transfer for Manufacture",
+								qty: r.message.data.qty,
+							}).then((stock_entry) => {
+								frappe.model.sync(stock_entry);
+								frappe.set_route("Form", stock_entry.doctype, stock_entry.name);
+							}).catch((err) => {
+								frappe.msgprint("Failed to create Stock Entry: " + err.message);
+							});
+						}
+						if (action === "Prepared" && r.message.data.qty) {
+							frappe.xcall("erpnext.manufacturing.doctype.work_order.work_order.make_stock_entry", {
+								work_order_id: order_no,
+								purpose: "Manufacture",
 								qty: r.message.data.qty,
 							}).then((stock_entry) => {
 								frappe.model.sync(stock_entry);

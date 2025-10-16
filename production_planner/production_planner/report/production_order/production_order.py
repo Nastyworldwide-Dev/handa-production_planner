@@ -27,21 +27,19 @@ def get_columns():
 def get_data(filters=None):
 	conditions = get_conditions(filters)
 
-	# Build the query safely
 	query = """
-			SELECT wo.name            as work_order, \
-				   wo.production_item as item_code, \
-				   wo.item_name       as item_name, \
-				   wo.qty             as order_qty, \
-				   wo.produced_qty    as produced_qty, \
-				   wo.status          as status, \
-				   wo.name            as order_number, \
-				   wo.production_item as production_item
+			SELECT wo.name            AS work_order,
+				   wo.production_item AS item_code,
+				   wo.item_name       AS item_name,
+				   wo.qty             AS order_qty,
+				   wo.produced_qty    AS produced_qty,
+				   wo.status          AS status,
+				   wo.name            AS order_number,
+				   wo.production_item AS production_item
 			FROM `tabWork Order` wo
 			WHERE wo.docstatus != 2 \
 			"""
 
-	# Add conditions if they exist
 	if conditions:
 		query += f" AND {conditions}"
 
@@ -49,9 +47,52 @@ def get_data(filters=None):
 
 	work_order_data = frappe.db.sql(query, filters, as_dict=1)
 
-	# Add action buttons based on status
 	for row in work_order_data:
-		row['action'] = get_action_button(row['status'])
+		custom_status = "Not Started"
+
+		docstatus = frappe.db.get_value("Work Order", row.work_order, "docstatus")
+
+		if docstatus == 1:
+			custom_status = "Preparing"
+
+			se = frappe.db.sql("""
+							   SELECT name, inspection_required
+							   FROM `tabStock Entry`
+							   WHERE work_order = %s
+								 AND purpose = 'Manufacture'
+							   ORDER BY creation DESC LIMIT 1
+							   """, row.work_order, as_dict=1)
+
+			if se:
+				se_name = se[0].name
+				inspection_required = se[0].inspection_required
+
+				if inspection_required:
+					finished_item = frappe.db.sql("""
+												  SELECT quality_inspection, docstatus
+												  FROM `tabStock Entry Detail`
+												  WHERE parent = %s
+													AND item_code = %s LIMIT 1
+												  """, (se_name, row.item_code), as_dict=1)
+
+					if finished_item and finished_item[0].quality_inspection and finished_item[
+						0].docstatus == 1:
+						qc_name = finished_item[0].quality_inspection
+						qc_status = frappe.db.get_value("Quality Inspection", qc_name, "status")
+
+						if qc_status == "Accepted":
+							custom_status = "QC Accepted"
+						elif qc_status == "Rejected":
+							custom_status = "QC Rejected"
+						else:
+							custom_status = "Prepared"
+					else:
+						custom_status = "Prepared"
+				else:
+					custom_status = "Prepared"
+
+		row["status"] = custom_status
+		row["action"] = get_action_button(row["status"])
 
 	return work_order_data
 
@@ -83,11 +124,10 @@ def get_conditions(filters):
 def get_action_button(status):
 	"""Determine what action button to show based on work order status"""
 	action_mapping = {
-		"Draft": "Start",
 		"Not Started": "Start",
-		"In Process": "Prepared",
-		"Completed": "Accept / Reject",
-		"Submitted": "Finish",
+		"Preparing": "Prepared",
+		"Prepared": "Accept / Reject",
+		"QC Accepted": "Finish",
 		"Stopped": "Resume",
 		"Closed": "View"
 	}
@@ -160,6 +200,10 @@ def get_data_safe(filters=None):
 def handle_action(action, order_no):
 	if action == "Start":
 		response = start_order(order_no)
+	elif action == "Prepared":
+		response = prepare_order(order_no)
+	# elif action == "Accept":
+	# 	response =
 
 	return response
 
@@ -172,6 +216,17 @@ def start_order(order_no):
 		"data": {
 			'order_no': wo_doc.name,
 			'skip_transfer': wo_doc.skip_transfer,
+			'qty': wo_doc.qty,
+		}
+	}
+
+
+def prepare_order(order_no):
+	wo_doc = frappe.get_doc("Work Order", order_no)
+	return {
+		"message": "Food Prepared Ready For QC",
+		"data": {
+			'order_no': wo_doc.name,
 			'qty': wo_doc.qty,
 		}
 	}
