@@ -34,24 +34,28 @@ frappe.query_reports["Production Order"] = {
 	},
 	formatter: function (value, row, column, data, default_formatter) {
 		if (column.fieldname === "action" && value) {
-			// Handle special case for Accept / Reject
 			if (value === "Accept / Reject") {
 				return `
-                    <button class="btn btn-xs btn-success action-btn"
-                        data-action="Accept" data-order="${data.order_number}">
-                        Accept
-                    </button>
-                    <button class="btn btn-xs btn-danger action-btn"
-                        data-action="Reject" data-order="${data.order_number}">
-                        Reject
-                    </button>`;
+                <button class="btn btn-xs btn-success action-btn"
+                    data-action="Accept"
+                    data-order="${data.order_number}"
+                    data-item="${data.item_code}">
+                    Accept
+                </button>
+                <button class="btn btn-xs btn-danger action-btn"
+                    data-action="Reject"
+                    data-order="${data.order_number}"
+                    data-item="${data.item_code}">
+                    Reject
+                </button>`;
 			}
+
 
 			// Color map for other single-action buttons
 			const colorMap = {
 				"Start": "btn-primary",     // Blue
 				"Prepared": "btn-info",     // Light Blue
-				"Finish": "btn-warning"     // Yellow/Orange
+				"Reprepare": "btn-warning"     // Yellow/Orange
 			};
 
 			let btnClass = colorMap[value] || "btn-secondary";
@@ -69,9 +73,16 @@ frappe.query_reports["Production Order"] = {
 		report.page.body.on("click", ".action-btn", function () {
 			const action = $(this).attr("data-action");
 			const order_no = $(this).attr("data-order");
+			const item = $(this).attr("data-item");
 
 			if (!action || !order_no) {
 				frappe.msgprint("Action or Order number missing");
+				return;
+			}
+
+			if (action === "Accept" || action === "Reject") {
+				let status = action === "Accept" ? "Accepted" : "Rejected";
+				qualityDialog(order_no, report, item || "", status);
 				return;
 			}
 
@@ -84,32 +95,6 @@ frappe.query_reports["Production Order"] = {
 							message: __(r.message.message),
 							indicator: 'green'
 						}, 5);
-
-						if (action === "Start" && !r.message.data.skip_transfer) {
-							frappe.xcall("erpnext.manufacturing.doctype.work_order.work_order.make_stock_entry", {
-								work_order_id: order_no,
-								purpose: "Material Transfer for Manufacture",
-								qty: r.message.data.qty,
-							}).then((stock_entry) => {
-								frappe.model.sync(stock_entry);
-								frappe.set_route("Form", stock_entry.doctype, stock_entry.name);
-							}).catch((err) => {
-								frappe.msgprint("Failed to create Stock Entry: " + err.message);
-							});
-						}
-						if (action === "Prepared" && r.message.data.qty) {
-							frappe.xcall("erpnext.manufacturing.doctype.work_order.work_order.make_stock_entry", {
-								work_order_id: order_no,
-								purpose: "Manufacture",
-								qty: r.message.data.qty,
-							}).then((stock_entry) => {
-								frappe.model.sync(stock_entry);
-								frappe.set_route("Form", stock_entry.doctype, stock_entry.name);
-							}).catch((err) => {
-								frappe.msgprint("Failed to create Stock Entry: " + err.message);
-							});
-						}
-
 						report.refresh();
 					}
 				}
@@ -118,3 +103,85 @@ frappe.query_reports["Production Order"] = {
 	}
 
 };
+
+function qualityDialog(order_no, report, item, status) {
+	const dialog = new frappe.ui.Dialog({
+		title: "New Quality Inspection",
+		fields: [
+			{
+				label: "Checking Date",
+				fieldname: "report_date",
+				fieldtype: "Date",
+				default: frappe.datetime.get_today(),
+				reqd: 1
+			},
+			{
+				label: "Status",
+				fieldname: "status",
+				fieldtype: "Select",
+				options: ["Accepted", "Rejected"],
+				default: status,
+				reqd: 1,
+				read_only: 1,
+			},
+			{
+				label: "Item Code",
+				fieldname: "item_code",
+				fieldtype: "Link",
+				options: "Item",
+				default: item,
+				reqd: 1,
+				read_only: 1,
+			},
+			{
+				label: "Sample Size",
+				fieldname: "sample_size",
+				fieldtype: "Float",
+				default: 0,
+				reqd: 1
+			},
+			{
+				label: "Inspected By",
+				fieldname: "inspected_by",
+				fieldtype: "Data",
+				default: frappe.session.user,
+				reqd: 1,
+				read_only: 1,
+			},
+			{
+				label: "Remarks",
+				fieldname: "remarks",
+				fieldtype: "Small Text"
+			}
+		],
+		primary_action_label: "Save",
+		primary_action: function (values) {
+			frappe.call({
+				method: "production_planner.production_planner.report.production_order.production_order.create_quality_inspection",
+				args: {
+					order_no: order_no,
+					data: values
+				},
+				callback: function (r) {
+					let indicator = ""
+					if (values.status === "Accepted") {
+						indicator = "green"
+					} else if (values.status === "Rejected") {
+						indicator = "red"
+					} else {
+						indicator = "yellow"
+					}
+					if (r.message) {
+						frappe.show_alert({
+							message: __(r.message.message),
+							indicator: indicator
+						}, 5);
+						report.refresh();
+						dialog.hide();
+					}
+				}
+			});
+		}
+	});
+	dialog.show();
+}
