@@ -160,7 +160,6 @@ function qualityDialog(order_no, report, item, status) {
 				fieldtype: "Data",
 				default: frappe.session.user,
 				reqd: 1,
-				read_only: 1,
 			},
 			{
 				label: "Remarks",

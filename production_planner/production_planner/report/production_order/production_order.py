@@ -216,33 +216,33 @@ def get_status_indicator(status):
 
 def get_charts(filters, data):
 	"""Generate charts for the report"""
-	if not data:
-		return []
-
-	# Production Efficiency (Bar Chart)
-	if len(data) > 0:
-		sorted_data = sorted(data, key=lambda x: flt(x.get('order_qty', 0)), reverse=True)
-
-		if sorted_data:
-			efficiency_chart = {
-				"title": _("Top Work Orders by Order Quantity"),
-				"data": {
-					"labels": [row.get('work_order', '') for row in sorted_data],
-					"datasets": [
-						{
-							"name": _("Order Qty"),
-							"values": [flt(row.get('order_qty', 0)) for row in sorted_data]
-						},
-						{
-							"name": _("Produced Qty"),
-							"values": [flt(row.get('produced_qty', 0)) for row in sorted_data]
-						}
-					]
-				},
-				"type": "bar",
-				"height": 300,
-			}
-			return efficiency_chart
+	# if not data:
+	# 	return []
+	#
+	# # Production Efficiency (Bar Chart)
+	# if len(data) > 0:
+	# 	sorted_data = sorted(data, key=lambda x: flt(x.get('order_qty', 0)), reverse=True)
+	#
+	# 	if sorted_data:
+	# 		efficiency_chart = {
+	# 			"title": _("Top Work Orders by Order Quantity"),
+	# 			"data": {
+	# 				"labels": [row.get('work_order', '') for row in sorted_data],
+	# 				"datasets": [
+	# 					{
+	# 						"name": _("Order Qty"),
+	# 						"values": [flt(row.get('order_qty', 0)) for row in sorted_data]
+	# 					},
+	# 					{
+	# 						"name": _("Produced Qty"),
+	# 						"values": [flt(row.get('produced_qty', 0)) for row in sorted_data]
+	# 					}
+	# 				]
+	# 			},
+	# 			"type": "bar",
+	# 			"height": 300,
+	# 		}
+	# 		return efficiency_chart
 	return None
 
 
@@ -287,6 +287,8 @@ def handle_action(action, order_no):
 
 def start_order(order_no):
 	wo_doc = frappe.get_doc("Work Order", order_no)
+	wo_doc.workflow_state = "In Progress"
+	wo_doc.save(ignore_permissions=True)
 	wo_doc.submit()
 
 	if not wo_doc.skip_transfer:
@@ -313,6 +315,9 @@ def start_order(order_no):
 
 def prepare_order(order_no):
 	wo_doc = frappe.get_doc("Work Order", order_no)
+	wo_doc.workflow_state = "Ready For QC"
+	wo_doc.save(ignore_permissions=True)
+	wo_doc.submit()
 	se_doc = frappe.get_doc(make_stock_entry(
 		work_order_id=wo_doc.name,
 		purpose="Manufacture",
@@ -386,9 +391,18 @@ def create_quality_inspection(order_no, data):
 	)
 	quality_inspection.insert(ignore_permissions=True)
 	quality_inspection.submit()
+
+
 	if data.get("status") == "Accepted":
 		se_doc = frappe.get_doc("Stock Entry", se_doc.name)
 		se_doc.submit()
+		wo_doc = frappe.get_doc("Work Order", order_no)
+		wo_doc.workflow_state = "Completed"
+	else:
+		wo_doc = frappe.get_doc("Work Order", order_no)
+		wo_doc.workflow_state = "QC Rejected"
+	wo_doc.save(ignore_permissions=True)
+	wo_doc.submit()
 
 	return {
 		"message": f"Quality Inspection {data.get('status')}.",
@@ -396,6 +410,11 @@ def create_quality_inspection(order_no, data):
 
 
 def reprepare_oder(order_no):
+	wo_doc = frappe.get_doc("Work Order", order_no)
+	wo_doc.workflow_state = "Ready For QC"
+	wo_doc.save(ignore_permissions=True)
+	wo_doc.submit()
+
 	stock_entries = frappe.get_all(
 		"Stock Entry",
 		filters={"work_order": order_no},
