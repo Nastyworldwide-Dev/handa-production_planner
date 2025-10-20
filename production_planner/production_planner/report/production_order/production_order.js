@@ -157,7 +157,8 @@ function qualityDialog(order_no, report, item, status) {
 			{
 				label: "Inspected By",
 				fieldname: "inspected_by",
-				fieldtype: "Data",
+				fieldtype: "Link",
+				options: "User",
 				default: frappe.session.user,
 				reqd: 1,
 			},
