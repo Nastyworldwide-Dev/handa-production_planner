@@ -241,4 +241,9 @@ doc_events = {
 # }
 
 
-fixtures = ["Workflow", "Workflow State", "Workflow Action"]
+fixtures = [
+    {"dt": "Workspace", "filters": [["name", "in", ["Chef's Panel", "QC Panel", "Production Panel"]]]},
+    {"dt": "Workflow"},
+    {"dt": "Workflow State"},
+    {"dt": "Workflow Action"},
+]
