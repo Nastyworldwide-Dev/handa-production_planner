@@ -1,15 +1,18 @@
 {
  "add_total_row": 0,
+ "add_translate_data": 0,
+ "columns": [],
  "creation": "2020-04-26 18:23:53.475110",
- "disable_prepared_report": 0,
  "disabled": 0,
  "docstatus": 0,
  "doctype": "Report",
- "idx": 0,
+ "filters": [],
+ "idx": 1,
  "is_standard": "Yes",
  "json": "{}",
  "letter_head": "",
- "modified": "2020-04-26 18:24:50.529940",
+ "letterhead": null,
+ "modified": "2025-10-20 14:26:28.760643",
  "modified_by": "Administrator",
  "module": "Production Planner",
  "name": "Production Quality Summary",
@@ -27,6 +30,13 @@
   },
   {
    "role": "Stock Manager"
+  },
+  {
+   "role": "QC"
+  },
+  {
+   "role": "Production"
   }
- ]
+ ],
+ "timeout": 0
 }

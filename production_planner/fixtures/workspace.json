@@ -20,7 +20,7 @@
   "is_hidden": 0,
   "label": "Chef's Panel",
   "links": [],
-  "modified": "2025-10-20 12:00:25.333599",
+  "modified": "2025-10-20 13:32:45.246076",
   "module": null,
   "name": "Chef's Panel",
   "number_cards": [],
@@ -28,7 +28,14 @@
   "public": 1,
   "quick_lists": [],
   "restrict_to_domain": null,
-  "roles": [],
+  "roles": [
+   {
+    "parent": "Chef's Panel",
+    "parentfield": "roles",
+    "parenttype": "Workspace",
+    "role": "Chef"
+   }
+  ],
   "sequence_id": 32.0,
   "shortcuts": [
    {
@@ -174,7 +181,7 @@
   "is_hidden": 0,
   "label": "QC Panel",
   "links": [],
-  "modified": "2025-10-20 12:06:45.742757",
+  "modified": "2025-10-20 13:57:03.851624",
   "module": null,
   "name": "QC Panel",
   "number_cards": [],
@@ -182,7 +189,14 @@
   "public": 1,
   "quick_lists": [],
   "restrict_to_domain": null,
-  "roles": [],
+  "roles": [
+   {
+    "parent": "QC Panel",
+    "parentfield": "roles",
+    "parenttype": "Workspace",
+    "role": "QC"
+   }
+  ],
   "sequence_id": 33.0,
   "shortcuts": [
    {
@@ -277,7 +291,7 @@
   "is_hidden": 0,
   "label": "Production Panel",
   "links": [],
-  "modified": "2025-10-20 12:15:35.124441",
+  "modified": "2025-10-20 14:21:57.987632",
   "module": null,
   "name": "Production Panel",
   "number_cards": [],
@@ -285,7 +299,14 @@
   "public": 1,
   "quick_lists": [],
   "restrict_to_domain": null,
-  "roles": [],
+  "roles": [
+   {
+    "parent": "Production Panel",
+    "parentfield": "roles",
+    "parenttype": "Workspace",
+    "role": "Production"
+   }
+  ],
   "sequence_id": 34.0,
   "shortcuts": [
    {

@@ -1,0 +1,32 @@
+[
+ {
+  "docstatus": 0,
+  "doctype": "Role Profile",
+  "modified": "2025-10-20 13:41:03.102127",
+  "name": "Chef",
+  "role_profile": "Chef",
+  "roles": [
+   {
+    "parent": "Chef",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Chef"
+   }
+  ]
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Role Profile",
+  "modified": "2025-10-20 13:54:28.524696",
+  "name": "QC",
+  "role_profile": "QC",
+  "roles": [
+   {
+    "parent": "QC",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "QC"
+   }
+  ]
+ }
+]

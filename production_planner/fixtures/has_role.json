@@ -1,0 +1,262 @@
+[
+ {
+  "docstatus": 0,
+  "doctype": "Has Role",
+  "modified": "2025-10-20 13:32:45.246076",
+  "name": "nlq5lrh1e6",
+  "parent": "Chef's Panel",
+  "parentfield": "roles",
+  "parenttype": "Workspace",
+  "role": "Chef"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Has Role",
+  "modified": "2025-10-20 13:57:03.851624",
+  "name": "il4jsf7619",
+  "parent": "QC Panel",
+  "parentfield": "roles",
+  "parenttype": "Workspace",
+  "role": "QC"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Has Role",
+  "modified": "2025-10-20 14:21:57.987632",
+  "name": "ih9dekuvcb",
+  "parent": "Production Panel",
+  "parentfield": "roles",
+  "parenttype": "Workspace",
+  "role": "Production"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Has Role",
+  "modified": "2025-10-20 14:21:08.645477",
+  "name": "raptkd7qi5",
+  "parent": "Production User",
+  "parentfield": "roles",
+  "parenttype": "Role Profile",
+  "role": "Production"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Has Role",
+  "modified": "2025-10-20 13:41:03.102127",
+  "name": "o4fqmnpmsb",
+  "parent": "Chef",
+  "parentfield": "roles",
+  "parenttype": "Role Profile",
+  "role": "Chef"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Has Role",
+  "modified": "2025-10-20 13:41:03.318080",
+  "name": "sipqu5ijcj",
+  "parent": "chef@mail.com",
+  "parentfield": "roles",
+  "parenttype": "User",
+  "role": "Chef"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Has Role",
+  "modified": "2025-10-20 13:54:28.524696",
+  "name": "4edsuc3d3u",
+  "parent": "QC",
+  "parentfield": "roles",
+  "parenttype": "Role Profile",
+  "role": "QC"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Has Role",
+  "modified": "2025-10-20 13:57:18.394321",
+  "name": "63f4b0g0b3",
+  "parent": "qc@mail.com",
+  "parentfield": "roles",
+  "parenttype": "User",
+  "role": "QC"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Has Role",
+  "modified": "2025-10-20 14:21:08.875517",
+  "name": "k2g0lnm28m",
+  "parent": "production@mail.com",
+  "parentfield": "roles",
+  "parenttype": "User",
+  "role": "Production"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Has Role",
+  "modified": "2025-10-20 14:25:47.647964",
+  "name": "tqr364dfht",
+  "parent": "Production Overview",
+  "parentfield": "roles",
+  "parenttype": "Report",
+  "role": "Chef"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Has Role",
+  "modified": "2025-10-20 14:24:29.025986",
+  "name": "stmrba5hca",
+  "parent": "Production Order",
+  "parentfield": "roles",
+  "parenttype": "Report",
+  "role": "Chef"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Has Role",
+  "modified": "2025-10-20 14:28:59.415246",
+  "name": "oli9u22ujv",
+  "parent": "v9fvqqq9c0",
+  "parentfield": "roles",
+  "parenttype": "Custom Role",
+  "role": "Chef"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Has Role",
+  "modified": "2025-10-20 14:29:05.497558",
+  "name": "onfj9t536h",
+  "parent": "vi37nujtha",
+  "parentfield": "roles",
+  "parenttype": "Custom Role",
+  "role": "Chef"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Has Role",
+  "modified": "2025-10-20 14:29:15.279408",
+  "name": "oqg2msocag",
+  "parent": "vkgb11jdms",
+  "parentfield": "roles",
+  "parenttype": "Custom Role",
+  "role": "Chef"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Has Role",
+  "modified": "2025-10-20 14:25:47.647964",
+  "name": "mpkbj8r09c",
+  "parent": "Production Overview",
+  "parentfield": "roles",
+  "parenttype": "Report",
+  "role": "Production"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Has Role",
+  "modified": "2025-10-20 14:26:11.538236",
+  "name": "tl769uh230",
+  "parent": "Production Summary",
+  "parentfield": "roles",
+  "parenttype": "Report",
+  "role": "Chef"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Has Role",
+  "modified": "2025-10-20 14:26:28.760643",
+  "name": "7cre8b6v7c",
+  "parent": "Production Quality Summary",
+  "parentfield": "roles",
+  "parenttype": "Report",
+  "role": "QC"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Has Role",
+  "modified": "2025-10-20 14:24:29.025986",
+  "name": "77acvha35m",
+  "parent": "Production Order",
+  "parentfield": "roles",
+  "parenttype": "Report",
+  "role": "QC"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Has Role",
+  "modified": "2025-10-20 14:28:59.415246",
+  "name": "olih8jqa6j",
+  "parent": "v9fvqqq9c0",
+  "parentfield": "roles",
+  "parenttype": "Custom Role",
+  "role": "Production"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Has Role",
+  "modified": "2025-10-20 14:29:05.497558",
+  "name": "onf78ud8a4",
+  "parent": "vi37nujtha",
+  "parentfield": "roles",
+  "parenttype": "Custom Role",
+  "role": "Production"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Has Role",
+  "modified": "2025-10-20 14:29:15.279408",
+  "name": "oqg9g89scg",
+  "parent": "vkgb11jdms",
+  "parentfield": "roles",
+  "parenttype": "Custom Role",
+  "role": "Production"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Has Role",
+  "modified": "2025-10-20 13:58:11.914599",
+  "name": "6k7m1hsn54",
+  "parent": "6k7uugcrgt",
+  "parentfield": "roles",
+  "parenttype": "Custom Role",
+  "role": "QC"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Has Role",
+  "modified": "2025-10-20 14:22:29.366274",
+  "name": "krl70n4ig3",
+  "parent": "krlhm4ogpg",
+  "parentfield": "roles",
+  "parenttype": "Custom Role",
+  "role": "Production"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Has Role",
+  "modified": "2025-10-20 14:26:11.538236",
+  "name": "n13c09itr0",
+  "parent": "Production Summary",
+  "parentfield": "roles",
+  "parenttype": "Report",
+  "role": "Production"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Has Role",
+  "modified": "2025-10-20 14:26:28.760643",
+  "name": "n6f22jltm4",
+  "parent": "Production Quality Summary",
+  "parentfield": "roles",
+  "parenttype": "Report",
+  "role": "Production"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Has Role",
+  "modified": "2025-10-20 14:24:29.025986",
+  "name": "m12rq9jvng",
+  "parent": "Production Order",
+  "parentfield": "roles",
+  "parenttype": "Report",
+  "role": "Production"
+ }
+]

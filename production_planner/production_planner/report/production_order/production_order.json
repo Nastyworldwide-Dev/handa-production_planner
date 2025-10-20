@@ -7,11 +7,11 @@
  "docstatus": 0,
  "doctype": "Report",
  "filters": [],
- "idx": 0,
+ "idx": 3,
  "is_standard": "Yes",
  "json": "{}",
  "letterhead": null,
- "modified": "2025-08-23 15:56:07.996450",
+ "modified": "2025-10-20 14:24:29.025986",
  "modified_by": "Administrator",
  "module": "Production Planner",
  "name": "Production Order",
@@ -26,6 +26,15 @@
   },
   {
    "role": "Stock User"
+  },
+  {
+   "role": "Chef"
+  },
+  {
+   "role": "QC"
+  },
+  {
+   "role": "Production"
   }
  ],
  "timeout": 0

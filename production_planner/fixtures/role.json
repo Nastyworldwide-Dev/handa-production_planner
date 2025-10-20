@@ -1,0 +1,41 @@
+[
+ {
+  "desk_access": 1,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Role",
+  "home_page": "/app/chef's-panel",
+  "is_custom": 0,
+  "modified": "2025-10-20 13:24:51.355488",
+  "name": "Chef",
+  "restrict_to_domain": null,
+  "role_name": "Chef",
+  "two_factor_auth": 0
+ },
+ {
+  "desk_access": 1,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Role",
+  "home_page": "/app/production-panel",
+  "is_custom": 0,
+  "modified": "2025-10-20 13:37:54.343029",
+  "name": "Production",
+  "restrict_to_domain": null,
+  "role_name": "Production",
+  "two_factor_auth": 0
+ },
+ {
+  "desk_access": 1,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Role",
+  "home_page": "/app/qc-panel",
+  "is_custom": 0,
+  "modified": "2025-10-20 13:52:53.865602",
+  "name": "QC",
+  "restrict_to_domain": null,
+  "role_name": "QC",
+  "two_factor_auth": 0
+ }
+]

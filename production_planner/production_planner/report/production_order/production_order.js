@@ -16,19 +16,19 @@ frappe.query_reports["Production Order"] = {
 			"default": frappe.datetime.get_today()
 		},
 		{
-            "fieldname": "company",
-            "label": __("Company"),
-            "fieldtype": "Link",
-            "options": "Company",
-            "default": frappe.defaults.get_user_default("Company"),
-            "reqd": 1
-        },
-        {
-            "fieldname": "item_code",
-            "label": __("Item"),
-            "fieldtype": "Link",
-            "options": "Item"
-        },
+			"fieldname": "company",
+			"label": __("Company"),
+			"fieldtype": "Link",
+			"options": "Company",
+			"default": frappe.defaults.get_user_default("Company"),
+			"reqd": 1
+		},
+		{
+			"fieldname": "item_code",
+			"label": __("Item"),
+			"fieldtype": "Link",
+			"options": "Item"
+		},
 		{
 			"fieldname": "status",
 			"label": __("Status"),
@@ -48,7 +48,7 @@ frappe.query_reports["Production Order"] = {
 	},
 	formatter: function (value, row, column, data, default_formatter) {
 		if (column.fieldname === "action" && value) {
-			if (value === "Accept / Reject") {
+			if (value === "Accept / Reject" && frappe.user.has_role("QC")) {
 				return `
                 <button class="btn btn-xs btn-success action-btn"
                     data-action="Accept"
@@ -62,22 +62,22 @@ frappe.query_reports["Production Order"] = {
                     data-item="${data.item_code}">
                     Reject
                 </button>`;
+			} else if (["Start", "Prepared", "Reprepared"].includes(value) && frappe.user.has_role("Chef")) {
+				const colorMap = {
+					"Start": "btn-primary",
+					"Prepared": "btn-info",
+					"Reprepared": "btn-warning"
+				};
+
+				let btnClass = colorMap[value] || "btn-secondary";
+
+				return `<button class="btn btn-xs ${btnClass} action-btn"
+					data-action="${value}" data-order="${data.order_number}">
+					${value}
+				</button>`;
+			} else {
+				return "";
 			}
-
-
-			// Color map for other single-action buttons
-			const colorMap = {
-				"Start": "btn-primary",     // Blue
-				"Prepared": "btn-info",     // Light Blue
-				"Reprepared": "btn-warning"     // Yellow/Orange
-			};
-
-			let btnClass = colorMap[value] || "btn-secondary";
-
-			return `<button class="btn btn-xs ${btnClass} action-btn"
-                        data-action="${value}" data-order="${data.order_number}">
-                        ${value}
-                    </button>`;
 		}
 
 		return default_formatter(value, row, column, data);

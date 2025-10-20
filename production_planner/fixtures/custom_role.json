@@ -1,0 +1,177 @@
+[
+ {
+  "docstatus": 0,
+  "doctype": "Custom Role",
+  "modified": "2025-10-20 14:28:59.415246",
+  "name": "v9fvqqq9c0",
+  "page": null,
+  "ref_doctype": "BOM",
+  "report": "BOM Search",
+  "roles": [
+   {
+    "parent": "v9fvqqq9c0",
+    "parentfield": "roles",
+    "parenttype": "Custom Role",
+    "role": "Manufacturing Manager"
+   },
+   {
+    "parent": "v9fvqqq9c0",
+    "parentfield": "roles",
+    "parenttype": "Custom Role",
+    "role": "Manufacturing User"
+   },
+   {
+    "parent": "v9fvqqq9c0",
+    "parentfield": "roles",
+    "parenttype": "Custom Role",
+    "role": "Chef"
+   },
+   {
+    "parent": "v9fvqqq9c0",
+    "parentfield": "roles",
+    "parenttype": "Custom Role",
+    "role": "Production"
+   }
+  ]
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Custom Role",
+  "modified": "2025-10-20 14:29:05.497558",
+  "name": "vi37nujtha",
+  "page": null,
+  "ref_doctype": "BOM",
+  "report": "BOM Stock Calculated",
+  "roles": [
+   {
+    "parent": "vi37nujtha",
+    "parentfield": "roles",
+    "parenttype": "Custom Role",
+    "role": "Manufacturing Manager"
+   },
+   {
+    "parent": "vi37nujtha",
+    "parentfield": "roles",
+    "parenttype": "Custom Role",
+    "role": "Manufacturing User"
+   },
+   {
+    "parent": "vi37nujtha",
+    "parentfield": "roles",
+    "parenttype": "Custom Role",
+    "role": "Chef"
+   },
+   {
+    "parent": "vi37nujtha",
+    "parentfield": "roles",
+    "parenttype": "Custom Role",
+    "role": "Production"
+   }
+  ]
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Custom Role",
+  "modified": "2025-10-20 14:29:15.279408",
+  "name": "vkgb11jdms",
+  "page": null,
+  "ref_doctype": "BOM",
+  "report": "BOM Stock Report",
+  "roles": [
+   {
+    "parent": "vkgb11jdms",
+    "parentfield": "roles",
+    "parenttype": "Custom Role",
+    "role": "Manufacturing Manager"
+   },
+   {
+    "parent": "vkgb11jdms",
+    "parentfield": "roles",
+    "parenttype": "Custom Role",
+    "role": "Manufacturing User"
+   },
+   {
+    "parent": "vkgb11jdms",
+    "parentfield": "roles",
+    "parenttype": "Custom Role",
+    "role": "Chef"
+   },
+   {
+    "parent": "vkgb11jdms",
+    "parentfield": "roles",
+    "parenttype": "Custom Role",
+    "role": "Production"
+   }
+  ]
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Custom Role",
+  "modified": "2025-10-20 13:58:11.914599",
+  "name": "6k7uugcrgt",
+  "page": null,
+  "ref_doctype": "Quality Inspection",
+  "report": "Quality Inspection Summary",
+  "roles": [
+   {
+    "parent": "6k7uugcrgt",
+    "parentfield": "roles",
+    "parenttype": "Custom Role",
+    "role": "Quality Manager"
+   },
+   {
+    "parent": "6k7uugcrgt",
+    "parentfield": "roles",
+    "parenttype": "Custom Role",
+    "role": "Stock User"
+   },
+   {
+    "parent": "6k7uugcrgt",
+    "parentfield": "roles",
+    "parenttype": "Custom Role",
+    "role": "Stock Manager"
+   },
+   {
+    "parent": "6k7uugcrgt",
+    "parentfield": "roles",
+    "parenttype": "Custom Role",
+    "role": "QC"
+   }
+  ]
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Custom Role",
+  "modified": "2025-10-20 14:22:29.366274",
+  "name": "krlhm4ogpg",
+  "page": null,
+  "ref_doctype": "Work Order",
+  "report": "Work Order Summary",
+  "roles": [
+   {
+    "parent": "krlhm4ogpg",
+    "parentfield": "roles",
+    "parenttype": "Custom Role",
+    "role": "Manufacturing User"
+   },
+   {
+    "parent": "krlhm4ogpg",
+    "parentfield": "roles",
+    "parenttype": "Custom Role",
+    "role": "Stock User"
+   },
+   {
+    "parent": "krlhm4ogpg",
+    "parentfield": "roles",
+    "parenttype": "Custom Role",
+    "role": "Manufacturing Manager"
+   },
+   {
+    "parent": "krlhm4ogpg",
+    "parentfield": "roles",
+    "parenttype": "Custom Role",
+    "role": "Production"
+   }
+  ]
+ }
+]

@@ -292,5 +292,236 @@
   "status": "Open",
   "user": null,
   "workflow_state": "Ready For QC"
+ },
+ {
+  "completed_by": "chef@mail.com",
+  "completed_by_role": "Manufacturing User",
+  "docstatus": 0,
+  "doctype": "Workflow Action",
+  "modified": "2025-10-20 13:39:31.533094",
+  "name": "rm3tpsck5g",
+  "permitted_roles": [
+   {
+    "parent": "rm3tpsck5g",
+    "parentfield": "permitted_roles",
+    "parenttype": "Workflow Action",
+    "role": "Manufacturing User"
+   }
+  ],
+  "reference_doctype": "Work Order",
+  "reference_name": "MFG-WO-2025-00022",
+  "status": "Completed",
+  "user": null,
+  "workflow_state": "Pending"
+ },
+ {
+  "completed_by": "chef@mail.com",
+  "completed_by_role": "Manufacturing User",
+  "docstatus": 0,
+  "doctype": "Workflow Action",
+  "modified": "2025-10-20 13:39:48.804782",
+  "name": "rrg77obb3t",
+  "permitted_roles": [
+   {
+    "parent": "rrg77obb3t",
+    "parentfield": "permitted_roles",
+    "parenttype": "Workflow Action",
+    "role": "Manufacturing User"
+   }
+  ],
+  "reference_doctype": "Work Order",
+  "reference_name": "MFG-WO-2025-00022",
+  "status": "Completed",
+  "user": null,
+  "workflow_state": "In Progress"
+ },
+ {
+  "completed_by": "chef@mail.com",
+  "completed_by_role": "Manufacturing User",
+  "docstatus": 0,
+  "doctype": "Workflow Action",
+  "modified": "2025-10-20 13:39:55.231488",
+  "name": "rtgv6tupei",
+  "permitted_roles": [
+   {
+    "parent": "rtgv6tupei",
+    "parentfield": "permitted_roles",
+    "parenttype": "Workflow Action",
+    "role": "Manufacturing User"
+   }
+  ],
+  "reference_doctype": "Work Order",
+  "reference_name": "MFG-WO-2025-00022",
+  "status": "Completed",
+  "user": null,
+  "workflow_state": "Ready For QC"
+ },
+ {
+  "completed_by": null,
+  "completed_by_role": null,
+  "docstatus": 0,
+  "doctype": "Workflow Action",
+  "modified": "2025-10-20 13:40:51.773736",
+  "name": "sf5jcv2prv",
+  "permitted_roles": [
+   {
+    "parent": "sf5jcv2prv",
+    "parentfield": "permitted_roles",
+    "parenttype": "Workflow Action",
+    "role": "Manufacturing User"
+   }
+  ],
+  "reference_doctype": "Work Order",
+  "reference_name": "MFG-WO-2025-00023",
+  "status": "Open",
+  "user": null,
+  "workflow_state": "Pending"
+ },
+ {
+  "completed_by": "chef@mail.com",
+  "completed_by_role": "Chef",
+  "docstatus": 0,
+  "doctype": "Workflow Action",
+  "modified": "2025-10-20 13:47:58.993722",
+  "name": "0kmgb499b0",
+  "permitted_roles": [
+   {
+    "parent": "0kmgb499b0",
+    "parentfield": "permitted_roles",
+    "parenttype": "Workflow Action",
+    "role": "Chef"
+   }
+  ],
+  "reference_doctype": "Work Order",
+  "reference_name": "MFG-WO-2025-00023",
+  "status": "Completed",
+  "user": null,
+  "workflow_state": "In Progress"
+ },
+ {
+  "completed_by": null,
+  "completed_by_role": null,
+  "docstatus": 0,
+  "doctype": "Workflow Action",
+  "modified": "2025-10-20 13:48:03.154196",
+  "name": "0lv8u8ml98",
+  "permitted_roles": [
+   {
+    "parent": "0lv8u8ml98",
+    "parentfield": "permitted_roles",
+    "parenttype": "Workflow Action",
+    "role": "Manufacturing User"
+   }
+  ],
+  "reference_doctype": "Work Order",
+  "reference_name": "MFG-WO-2025-00023",
+  "status": "Open",
+  "user": null,
+  "workflow_state": "Ready For QC"
+ },
+ {
+  "completed_by": null,
+  "completed_by_role": null,
+  "docstatus": 0,
+  "doctype": "Workflow Action",
+  "modified": "2025-10-20 14:02:19.787058",
+  "name": "91mrvrdsqh",
+  "permitted_roles": [
+   {
+    "parent": "91mrvrdsqh",
+    "parentfield": "permitted_roles",
+    "parenttype": "Workflow Action",
+    "role": "Chef"
+   }
+  ],
+  "reference_doctype": "Work Order",
+  "reference_name": "MFG-WO-2025-00018",
+  "status": "Open",
+  "user": null,
+  "workflow_state": "QC Rejected"
+ },
+ {
+  "completed_by": "qc@mail.com",
+  "completed_by_role": "QC",
+  "docstatus": 0,
+  "doctype": "Workflow Action",
+  "modified": "2025-10-20 14:04:48.778775",
+  "name": "ag7k2agleu",
+  "permitted_roles": [
+   {
+    "parent": "ag7k2agleu",
+    "parentfield": "permitted_roles",
+    "parenttype": "Workflow Action",
+    "role": "QC"
+   }
+  ],
+  "reference_doctype": "Work Order",
+  "reference_name": "MFG-WO-2025-00019",
+  "status": "Completed",
+  "user": null,
+  "workflow_state": "Ready For QC"
+ },
+ {
+  "completed_by": null,
+  "completed_by_role": null,
+  "docstatus": 0,
+  "doctype": "Workflow Action",
+  "modified": "2025-10-20 14:05:03.979456",
+  "name": "akv9tih4o8",
+  "permitted_roles": [
+   {
+    "parent": "akv9tih4o8",
+    "parentfield": "permitted_roles",
+    "parenttype": "Workflow Action",
+    "role": "QC"
+   }
+  ],
+  "reference_doctype": "Work Order",
+  "reference_name": "MFG-WO-2025-00014",
+  "status": "Open",
+  "user": null,
+  "workflow_state": "Ready For QC"
+ },
+ {
+  "completed_by": null,
+  "completed_by_role": null,
+  "docstatus": 0,
+  "doctype": "Workflow Action",
+  "modified": "2025-10-20 14:05:27.216326",
+  "name": "as8cu5u9m7",
+  "permitted_roles": [
+   {
+    "parent": "as8cu5u9m7",
+    "parentfield": "permitted_roles",
+    "parenttype": "Workflow Action",
+    "role": "Chef"
+   }
+  ],
+  "reference_doctype": "Work Order",
+  "reference_name": "MFG-WO-2025-00019",
+  "status": "Open",
+  "user": null,
+  "workflow_state": "QC Rejected"
+ },
+ {
+  "completed_by": null,
+  "completed_by_role": null,
+  "docstatus": 0,
+  "doctype": "Workflow Action",
+  "modified": "2025-10-20 14:31:17.649603",
+  "name": "q0o7bfhil4",
+  "permitted_roles": [
+   {
+    "parent": "q0o7bfhil4",
+    "parentfield": "permitted_roles",
+    "parenttype": "Workflow Action",
+    "role": "Chef"
+   }
+  ],
+  "reference_doctype": "Work Order",
+  "reference_name": "MFG-WO-2025-00024",
+  "status": "Open",
+  "user": null,
+  "workflow_state": "Pending"
  }
 ]
