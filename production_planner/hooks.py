@@ -251,6 +251,4 @@ fixtures = [
 	{"dt": "Role Profile", "filters": [["name", "in", ["Chef", "QC", "Production", "Admin"]]]},
 	{"dt": "Custom DocPerm", "filters": [["role", "in", ["Chef", "QC", "Production"]]]},
 	{"dt": "Custom Role"},
-	{"dt": "DocPerm", "filters": [["role", "in", ["Chef", "QC", "Production"]]]},
-	{"dt": "Has Role", "filters": [["role", "in", ["Chef", "QC", "Production"]]]},
 ]

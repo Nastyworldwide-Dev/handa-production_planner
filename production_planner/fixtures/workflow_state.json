@@ -21,19 +21,19 @@
   "docstatus": 0,
   "doctype": "Workflow State",
   "icon": "",
-  "modified": "2025-10-19 12:48:43.686416",
-  "name": "QC Rejected",
+  "modified": "2025-10-19 12:48:55.886212",
+  "name": "Completed",
   "style": "",
-  "workflow_state_name": "QC Rejected"
+  "workflow_state_name": "Completed"
  },
  {
   "docstatus": 0,
   "doctype": "Workflow State",
   "icon": "",
-  "modified": "2025-10-19 12:48:55.886212",
-  "name": "Completed",
+  "modified": "2025-10-19 12:48:43.686416",
+  "name": "QC Rejected",
   "style": "",
-  "workflow_state_name": "Completed"
+  "workflow_state_name": "QC Rejected"
  },
  {
   "docstatus": 0,
@@ -48,18 +48,18 @@
   "docstatus": 0,
   "doctype": "Workflow State",
   "icon": "",
-  "modified": "2025-10-19 12:47:44.894076",
-  "name": "Ready For QC",
+  "modified": "2025-10-19 12:47:13.926230",
+  "name": "In Progress",
   "style": "",
-  "workflow_state_name": "Ready For QC"
+  "workflow_state_name": "In Progress"
  },
  {
   "docstatus": 0,
   "doctype": "Workflow State",
   "icon": "",
-  "modified": "2025-10-19 12:47:13.926230",
-  "name": "In Progress",
+  "modified": "2025-10-19 12:47:44.894076",
+  "name": "Ready For QC",
   "style": "",
-  "workflow_state_name": "In Progress"
+  "workflow_state_name": "Ready For QC"
  }
 ]

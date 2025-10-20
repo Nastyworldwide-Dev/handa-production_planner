@@ -20,7 +20,7 @@
   "is_hidden": 0,
   "label": "Chef's Panel",
   "links": [],
-  "modified": "2025-10-20 13:32:45.246076",
+  "modified": "2025-10-20 16:56:02.084792",
   "module": null,
   "name": "Chef's Panel",
   "number_cards": [],
@@ -36,7 +36,7 @@
     "role": "Chef"
    }
   ],
-  "sequence_id": 32.0,
+  "sequence_id": 3.0,
   "shortcuts": [
    {
     "color": "Grey",
@@ -181,7 +181,7 @@
   "is_hidden": 0,
   "label": "QC Panel",
   "links": [],
-  "modified": "2025-10-20 13:57:03.851624",
+  "modified": "2025-10-20 16:56:02.105619",
   "module": null,
   "name": "QC Panel",
   "number_cards": [],
@@ -197,7 +197,7 @@
     "role": "QC"
    }
   ],
-  "sequence_id": 33.0,
+  "sequence_id": 4.0,
   "shortcuts": [
    {
     "color": "Grey",
@@ -291,7 +291,7 @@
   "is_hidden": 0,
   "label": "Production Panel",
   "links": [],
-  "modified": "2025-10-20 14:21:57.987632",
+  "modified": "2025-10-20 16:56:02.058450",
   "module": null,
   "name": "Production Panel",
   "number_cards": [],
@@ -307,7 +307,7 @@
     "role": "Production"
    }
   ],
-  "sequence_id": 34.0,
+  "sequence_id": 2.0,
   "shortcuts": [
    {
     "color": "Green",
@@ -1162,7 +1162,7 @@
     "type": "Link"
    }
   ],
-  "modified": "2025-10-20 16:11:41.947058",
+  "modified": "2025-10-20 16:56:01.990843",
   "module": null,
   "name": "Admin Panel",
   "number_cards": [],
@@ -1232,7 +1232,7 @@
     "role": "Quality Manager"
    }
   ],
-  "sequence_id": 35.0,
+  "sequence_id": 1.0,
   "shortcuts": [],
   "title": "Admin Panel"
  }
