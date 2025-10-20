@@ -248,7 +248,7 @@ fixtures = [
 	{"dt": "Workflow State"},
 	{"dt": "Workflow Action"},
 	{"dt": "Role", "filters": [["name", "in", ["Chef", "QC", "Production"]]]},
-	{"dt": "Role Profile", "filters": [["name", "in", ["Chef", "QC", "Production", "Admin"]]]},
+	{"dt": "Role Profile", "filters": [["name", "in", ["Chef", "QC", "Production User", "Admin"]]]},
 	{"dt": "Custom DocPerm", "filters": [["role", "in", ["Chef", "QC", "Production"]]]},
 	{"dt": "Custom Role"},
 ]

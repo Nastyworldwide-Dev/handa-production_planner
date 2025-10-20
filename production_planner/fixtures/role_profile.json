@@ -139,5 +139,20 @@
     "role": "QC"
    }
   ]
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Role Profile",
+  "modified": "2025-10-20 14:21:08.645477",
+  "name": "Production User",
+  "role_profile": "Production User",
+  "roles": [
+   {
+    "parent": "Production User",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Production"
+   }
+  ]
  }
 ]
