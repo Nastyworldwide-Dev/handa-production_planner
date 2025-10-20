@@ -243,12 +243,12 @@ doc_events = {
 
 fixtures = [
 	{"dt": "Workspace",
-	 "filters": [["name", "in", ["Chef's Panel", "QC Panel", "Production Panel"]]]},
+	 "filters": [["name", "in", ["Chef's Panel", "QC Panel", "Production Panel", "Admin Panel"]]]},
 	{"dt": "Workflow"},
 	{"dt": "Workflow State"},
 	{"dt": "Workflow Action"},
 	{"dt": "Role", "filters": [["name", "in", ["Chef", "QC", "Production"]]]},
-	{"dt": "Role Profile", "filters": [["name", "in", ["Chef", "QC", "Production"]]]},
+	{"dt": "Role Profile", "filters": [["name", "in", ["Chef", "QC", "Production", "Admin"]]]},
 	{"dt": "Custom DocPerm", "filters": [["role", "in", ["Chef", "QC", "Production"]]]},
 	{"dt": "Custom Role"},
 	{"dt": "DocPerm", "filters": [["role", "in", ["Chef", "QC", "Production"]]]},
