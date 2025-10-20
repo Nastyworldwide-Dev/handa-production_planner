@@ -32,8 +32,14 @@ frappe.query_reports["Production Order"] = {
 		{
 			"fieldname": "status",
 			"label": __("Status"),
-			"fieldtype": "Select",
-			"options": "\nPending\nIn Progress\nReady For QC\nQC Rejected\nCompleted",
+			"fieldtype": "MultiSelectList",
+			"options": [
+				{value: "Pending", description: ""},
+				{value: "In Progress", description: ""},
+				{value: "Ready For QC", description: ""},
+				{value: "QC Rejected", description: ""},
+				{value: "Completed", description: ""},
+			],
 			"default": ""
 		}
 	],

@@ -106,7 +106,7 @@ def get_data(filters=None):
 		row["action"] = get_action_button(row["status"])
 
 	if filters and filters.get("status"):
-		filtered_data = [row for row in work_order_data if row["status"] == filters.get("status")]
+		filtered_data = [row for row in work_order_data if row["status"] in filters.get("status")]
 		return filtered_data
 
 	return work_order_data
