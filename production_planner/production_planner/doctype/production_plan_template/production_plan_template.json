@@ -26,7 +26,7 @@
    "fieldtype": "Column Break"
   },
   {
-   "default": "1",
+   "default": "0",
    "description": "Check if material transfer entry is not required\n\n",
    "fieldname": "skip_material_transfer_to_wip_warehouse",
    "fieldtype": "Check",
@@ -47,7 +47,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-10-22 16:33:10.838360",
+ "modified": "2025-10-22 19:07:02.822248",
  "modified_by": "Administrator",
  "module": "Production Planner",
  "name": "Production Plan Template",
