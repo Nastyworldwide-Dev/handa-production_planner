@@ -22,7 +22,7 @@ def execute(filters=None):
 def get_columns():
 	return [
 		{"label": "Action", "fieldname": "action", "fieldtype": "Data", "width": 200},
-		{"label": "Item Code", "fieldname": "item_code", "fieldtype": "Data", "width": 220},
+		{"label": "Item Code", "fieldname": "item_code", "fieldtype": "Data", "width": 180},
 		{"label": "Item Name", "fieldname": "item_name", "fieldtype": "Data", "width": 220},
 		{"label": "Order Qty", "fieldname": "order_qty", "fieldtype": "Float", "width": 100},
 		{"label": "Produced Qty", "fieldname": "produced_qty", "fieldtype": "Float", "width": 120},

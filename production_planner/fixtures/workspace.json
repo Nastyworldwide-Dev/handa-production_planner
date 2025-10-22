@@ -9,7 +9,7 @@
     "parenttype": "Workspace"
    }
   ],
-  "content": "[{\"id\":\"9jVwpMz4qq\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Pending Produced Quantity\",\"col\":4}},{\"id\":\"taliURG5vP\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Completed Quantity\",\"col\":4}},{\"id\":\"QJOXkWK7Xo\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Needs To Reprepare\",\"col\":4}},{\"id\":\"HMbfLJlKee\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Produced Quantity\",\"col\":12}},{\"id\":\"DlkEggGp1e\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"RYsNKsn1oO\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Recipe\",\"col\":3}},{\"id\":\"WS64eXtVLi\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Production Order\",\"col\":3}},{\"id\":\"pFluYDU1ZA\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Production Summary\",\"col\":3}},{\"id\":\"ItBYaY3Fnt\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Production Overview\",\"col\":3}},{\"id\":\"bo7dKpNhmj\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Recipe Search\",\"col\":3}},{\"id\":\"cNUUO3YRay\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Recipe Stock Calculated\",\"col\":3}},{\"id\":\"UQMQdP0hPn\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Recipe Stock Report\",\"col\":3}}]",
+  "content": "[{\"id\":\"9jVwpMz4qq\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Pending Produced Quantity\",\"col\":4}},{\"id\":\"taliURG5vP\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Completed Quantity\",\"col\":4}},{\"id\":\"QJOXkWK7Xo\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Needs To Reprepare\",\"col\":4}},{\"id\":\"HMbfLJlKee\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Produced Quantity\",\"col\":12}},{\"id\":\"DlkEggGp1e\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"eo9izby9RO\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Dashboard\",\"col\":3}},{\"id\":\"RYsNKsn1oO\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Recipe\",\"col\":3}},{\"id\":\"WS64eXtVLi\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Production Order\",\"col\":3}},{\"id\":\"pFluYDU1ZA\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Production Summary\",\"col\":3}},{\"id\":\"ItBYaY3Fnt\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Production Overview\",\"col\":3}},{\"id\":\"bo7dKpNhmj\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Recipe Search\",\"col\":3}},{\"id\":\"cNUUO3YRay\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Recipe Stock Calculated\",\"col\":3}},{\"id\":\"UQMQdP0hPn\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Recipe Stock Report\",\"col\":3}}]",
   "custom_blocks": [],
   "docstatus": 0,
   "doctype": "Workspace",
@@ -20,7 +20,7 @@
   "is_hidden": 0,
   "label": "Chef's Panel",
   "links": [],
-  "modified": "2025-10-22 11:42:45.046684",
+  "modified": "2025-10-22 16:14:27.021780",
   "module": null,
   "name": "Chef's Panel",
   "number_cards": [
@@ -33,7 +33,7 @@
    },
    {
     "label": "Completed Quantity",
-    "number_card_name": "Completed Quantity Today",
+    "number_card_name": "Completed Quantity",
     "parent": "Chef's Panel",
     "parentfield": "number_cards",
     "parenttype": "Workspace"
@@ -75,6 +75,23 @@
     "restrict_to_domain": null,
     "stats_filter": null,
     "type": "Report",
+    "url": null
+   },
+   {
+    "color": "Grey",
+    "doc_view": "List",
+    "format": null,
+    "icon": null,
+    "kanban_board": null,
+    "label": "Dashboard",
+    "link_to": "Production",
+    "parent": "Chef's Panel",
+    "parentfield": "shortcuts",
+    "parenttype": "Workspace",
+    "report_ref_doctype": null,
+    "restrict_to_domain": null,
+    "stats_filter": null,
+    "type": "Dashboard",
     "url": null
    },
    {
@@ -192,7 +209,7 @@
     "parenttype": "Workspace"
    }
   ],
-  "content": "[{\"id\":\"qRj-cpYqbo\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"QC Accepted\",\"col\":4}},{\"id\":\"ExZU7Iu8RX\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"QC Rejected\",\"col\":4}},{\"id\":\"-78d5ExdqE\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Rejected Quantity\",\"col\":4}},{\"id\":\"WvTSPRWQWc\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Quality Inspection Analysis\",\"col\":12}},{\"id\":\"4cAuw474Qq\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"nai9j6y1l0\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Production Order\",\"col\":3}},{\"id\":\"lMEUG4YhWO\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Quality Inspection Accepted\",\"col\":4}},{\"id\":\"yKp9I4Qug1\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Quality Inspection Rejected\",\"col\":4}},{\"id\":\"Om54ge-vWn\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Production Quality Summary\",\"col\":3}}]",
+  "content": "[{\"id\":\"qRj-cpYqbo\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"QC Accepted\",\"col\":4}},{\"id\":\"ExZU7Iu8RX\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"QC Rejected\",\"col\":4}},{\"id\":\"-78d5ExdqE\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Rejected Quantity\",\"col\":4}},{\"id\":\"WvTSPRWQWc\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Quality Inspection Analysis\",\"col\":12}},{\"id\":\"4cAuw474Qq\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"5Wro1RYTjU\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Dashboard\",\"col\":3}},{\"id\":\"nai9j6y1l0\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Production Order\",\"col\":3}},{\"id\":\"lMEUG4YhWO\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Quality Inspection Accepted\",\"col\":4}},{\"id\":\"yKp9I4Qug1\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Quality Inspection Rejected\",\"col\":4}},{\"id\":\"Om54ge-vWn\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Production Quality Summary\",\"col\":3}}]",
   "custom_blocks": [],
   "docstatus": 0,
   "doctype": "Workspace",
@@ -203,7 +220,7 @@
   "is_hidden": 0,
   "label": "QC Panel",
   "links": [],
-  "modified": "2025-10-22 11:38:55.266468",
+  "modified": "2025-10-22 16:13:03.722463",
   "module": null,
   "name": "QC Panel",
   "number_cards": [
@@ -258,6 +275,23 @@
     "restrict_to_domain": null,
     "stats_filter": null,
     "type": "Report",
+    "url": null
+   },
+   {
+    "color": "Grey",
+    "doc_view": "List",
+    "format": null,
+    "icon": null,
+    "kanban_board": null,
+    "label": "Dashboard",
+    "link_to": "Production",
+    "parent": "QC Panel",
+    "parentfield": "shortcuts",
+    "parenttype": "Workspace",
+    "report_ref_doctype": null,
+    "restrict_to_domain": null,
+    "stats_filter": null,
+    "type": "Dashboard",
     "url": null
    },
    {
@@ -324,7 +358,7 @@
     "parenttype": "Workspace"
    }
   ],
-  "content": "[{\"id\":\"YIn1P2mGFr\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Pending Produced Quantity\",\"col\":3}},{\"id\":\"qmzNex2E0K\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Completed Quantity\",\"col\":3}},{\"id\":\"HnsFewG3ve\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Rejected Quantity\",\"col\":3}},{\"id\":\"PEm8iLtO3q\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"QC Accepted\",\"col\":3}},{\"id\":\"2bpQ3Y2ryK\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Work Order Qty Analysis\",\"col\":12}},{\"id\":\"7I29IUm7CP\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"qVkw5MMUCJ\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"New Production Plan\",\"col\":3}},{\"id\":\"gWGt-PnGtx\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Production Plan\",\"col\":3}},{\"id\":\"GVgIVvOuP3\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Production Order\",\"col\":3}},{\"id\":\"6qdMcKmFNy\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Production Overview\",\"col\":3}},{\"id\":\"tcBwbR2wCs\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Production Summary\",\"col\":3}},{\"id\":\"MOl9JGh1w7\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Production Quality Summary\",\"col\":3}},{\"id\":\"IWLMGL14qE\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Recipe\",\"col\":3}},{\"id\":\"TdP499J7OB\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Recipe Search\",\"col\":3}},{\"id\":\"EwBA_MgIuL\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Recipe Stock Calculated\",\"col\":3}},{\"id\":\"VXPOOFWJRv\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Recipe Stock Report\",\"col\":3}}]",
+  "content": "[{\"id\":\"YIn1P2mGFr\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Pending Produced Quantity\",\"col\":3}},{\"id\":\"qmzNex2E0K\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Completed Quantity\",\"col\":3}},{\"id\":\"HnsFewG3ve\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Rejected Quantity\",\"col\":3}},{\"id\":\"PEm8iLtO3q\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"QC Accepted\",\"col\":3}},{\"id\":\"2bpQ3Y2ryK\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Work Order Qty Analysis\",\"col\":12}},{\"id\":\"7I29IUm7CP\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"qVkw5MMUCJ\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Dashboard\",\"col\":3}},{\"id\":\"gWGt-PnGtx\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Production Plan\",\"col\":3}},{\"id\":\"GVgIVvOuP3\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Production Order\",\"col\":3}},{\"id\":\"6qdMcKmFNy\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Production Overview\",\"col\":3}},{\"id\":\"tcBwbR2wCs\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Production Summary\",\"col\":3}},{\"id\":\"MOl9JGh1w7\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Production Quality Summary\",\"col\":3}},{\"id\":\"IWLMGL14qE\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Recipe\",\"col\":3}},{\"id\":\"TdP499J7OB\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Recipe Search\",\"col\":3}},{\"id\":\"EwBA_MgIuL\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Recipe Stock Calculated\",\"col\":3}},{\"id\":\"VXPOOFWJRv\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Recipe Stock Report\",\"col\":3}}]",
   "custom_blocks": [],
   "docstatus": 0,
   "doctype": "Workspace",
@@ -335,7 +369,7 @@
   "is_hidden": 0,
   "label": "Production Panel",
   "links": [],
-  "modified": "2025-10-22 11:41:49.499080",
+  "modified": "2025-10-22 16:15:03.421053",
   "module": null,
   "name": "Production Panel",
   "number_cards": [
@@ -348,7 +382,7 @@
    },
    {
     "label": "Completed Quantity",
-    "number_card_name": "Completed Quantity Today",
+    "number_card_name": "Completed Quantity",
     "parent": "Production Panel",
     "parentfield": "number_cards",
     "parenttype": "Workspace"
@@ -405,15 +439,15 @@
     "format": null,
     "icon": null,
     "kanban_board": null,
-    "label": "New Production Plan",
-    "link_to": "Production Plan",
+    "label": "Dashboard",
+    "link_to": "Production",
     "parent": "Production Panel",
     "parentfield": "shortcuts",
     "parenttype": "Workspace",
     "report_ref_doctype": null,
     "restrict_to_domain": null,
     "stats_filter": "[]",
-    "type": "DocType",
+    "type": "Dashboard",
     "url": null
    },
    {
