@@ -28,7 +28,8 @@ def get_columns():
 		{"label": "Produced Qty", "fieldname": "produced_qty", "fieldtype": "Float", "width": 120},
 		{"label": "Status", "fieldname": "status", "fieldtype": "Data", "width": 120},
 		{"label": "Work Order", "fieldname": "work_order", "fieldtype": "Link",
-		 "options": "Work Order", "width": 200}
+		 "options": "Work Order", "width": 150},
+		{"label": "View Recipe", "fieldname": "view_recipe", "fieldtype": "HTML", "width": 120},
 	]
 
 
@@ -43,7 +44,8 @@ def get_data(filters=None):
 				   wo.produced_qty    AS produced_qty,
 				   wo.status          AS status,
 				   wo.name            AS order_number,
-				   wo.production_item AS production_item
+				   wo.production_item AS production_item,
+				   wo.bom_no AS bom_no
 			FROM `tabWork Order` wo
 			WHERE wo.docstatus != 2 \
 			"""
@@ -104,6 +106,13 @@ def get_data(filters=None):
 
 		row["status"] = custom_status
 		row["action"] = get_action_button(row["status"])
+		bom_no = row.get("bom_no")
+		if bom_no:
+			url = f"/printview?doctype=BOM&name={bom_no}&trigger_print=0"
+			row["view_recipe"] = f'<a class="btn btn-xs btn-secondary" href="{url}" target="_blank">View</a>'
+		else:
+			row["view_recipe"] = ""
+
 
 	if filters and filters.get("status"):
 		filtered_data = [row for row in work_order_data if row["status"] in filters.get("status")]
