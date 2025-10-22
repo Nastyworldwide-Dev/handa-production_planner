@@ -1,0 +1,56 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-10-22 16:25:38.353934",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "item",
+  "column_break_zeli",
+  "finished_goods_warehouse",
+  "planned_qty"
+ ],
+ "fields": [
+  {
+   "fieldname": "item",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Item",
+   "link_filters": "[]",
+   "options": "Item",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_zeli",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "planned_qty",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Planned Qty"
+  },
+  {
+   "fieldname": "finished_goods_warehouse",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Finished Goods Warehouse",
+   "options": "Warehouse"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2025-10-22 16:59:35.947235",
+ "modified_by": "Administrator",
+ "module": "Production Planner",
+ "name": "Production Plan Template Items",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

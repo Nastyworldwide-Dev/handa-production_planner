@@ -21,15 +21,15 @@ def execute(filters=None):
 
 def get_columns():
 	return [
-		{"label": "Action", "fieldname": "action", "fieldtype": "Data", "width": 200},
+		{"label": "Action", "fieldname": "action", "fieldtype": "Data", "width": 160},
 		{"label": "Item Code", "fieldname": "item_code", "fieldtype": "Data", "width": 180},
-		{"label": "Item Name", "fieldname": "item_name", "fieldtype": "Data", "width": 220},
+		{"label": "Item Name", "fieldname": "item_name", "fieldtype": "Data", "width": 210},
 		{"label": "Order Qty", "fieldname": "order_qty", "fieldtype": "Float", "width": 100},
 		{"label": "Produced Qty", "fieldname": "produced_qty", "fieldtype": "Float", "width": 120},
 		{"label": "Status", "fieldname": "status", "fieldtype": "Data", "width": 120},
 		{"label": "Work Order", "fieldname": "work_order", "fieldtype": "Link",
 		 "options": "Work Order", "width": 150},
-		{"label": "View Recipe", "fieldname": "view_recipe", "fieldtype": "HTML", "width": 120},
+		{"label": "View Actions", "fieldname": "view_recipe", "fieldtype": "HTML", "width": 160},
 	]
 
 
@@ -107,12 +107,19 @@ def get_data(filters=None):
 		row["status"] = custom_status
 		row["action"] = get_action_button(row["status"])
 		bom_no = row.get("bom_no")
-		if bom_no:
-			url = f"/printview?doctype=BOM&name={bom_no}&trigger_print=0"
-			row["view_recipe"] = f'<a class="btn btn-xs btn-secondary" href="{url}" target="_blank">View</a>'
+		work_order = row.get("work_order")
+
+		if bom_no and work_order:
+			bom_url = f"/printview?doctype=BOM&name={bom_no}&trigger_print=0"
+			work_order_url = f"/printview?doctype=Work Order&name={work_order}&trigger_print=0"
+			row["view_recipe"] = f'''
+		        <div style="display: flex; gap: 5px;">
+		            <a class="btn btn-xs btn-success" href="{bom_url}" target="_blank">Recipe</a>
+		            <a class="btn btn-xs btn-warning" href="{work_order_url}" target="_blank">Materials</a>
+		        </div>
+		    '''
 		else:
 			row["view_recipe"] = ""
-
 
 	if filters and filters.get("status"):
 		filtered_data = [row for row in work_order_data if row["status"] in filters.get("status")]
