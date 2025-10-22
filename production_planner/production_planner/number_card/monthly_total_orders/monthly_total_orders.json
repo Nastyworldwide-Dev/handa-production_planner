@@ -1,0 +1,23 @@
+{
+ "creation": "2025-10-22 13:10:05.334339",
+ "currency": "",
+ "docstatus": 0,
+ "doctype": "Number Card",
+ "document_type": "Work Order",
+ "dynamic_filters_json": "[[\"Work Order\",\"company\",\"=\",\"frappe.defaults.get_user_default(\\\"Company\\\")\"]]",
+ "filters_json": "[[\"Work Order\",\"docstatus\",\"=\",\"1\",false],[\"Work Order\",\"creation\",\"Timespan\",\"this month\",false]]",
+ "function": "Count",
+ "idx": 0,
+ "is_public": 1,
+ "is_standard": 1,
+ "label": "Monthly Total Orders",
+ "modified": "2025-10-22 13:10:16.148847",
+ "modified_by": "Administrator",
+ "module": "Production Planner",
+ "name": "Monthly Total Orders",
+ "owner": "Administrator",
+ "report_function": "Sum",
+ "show_percentage_stats": 1,
+ "stats_time_interval": "Weekly",
+ "type": "Document Type"
+}

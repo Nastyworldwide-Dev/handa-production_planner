@@ -1,0 +1,23 @@
+{
+ "creation": "2025-10-22 13:13:12.246110",
+ "currency": "MYR",
+ "docstatus": 0,
+ "doctype": "Number Card",
+ "document_type": "Work Order",
+ "dynamic_filters_json": "[[\"Work Order\",\"company\",\"=\",\"frappe.defaults.get_user_default(\\\"Company\\\")\"]]",
+ "filters_json": "[[\"Work Order\",\"workflow_state\",\"=\",\"Completed\",false],[\"Work Order\",\"docstatus\",\"=\",\"1\",false],[\"Work Order\",\"creation\",\"Timespan\",\"this month\",false]]",
+ "function": "Count",
+ "idx": 0,
+ "is_public": 1,
+ "is_standard": 1,
+ "label": "Monthly Completed Orders",
+ "modified": "2025-10-22 13:13:16.672076",
+ "modified_by": "Administrator",
+ "module": "Production Planner",
+ "name": "Monthly Completed Orders",
+ "owner": "Administrator",
+ "report_function": "Sum",
+ "show_percentage_stats": 1,
+ "stats_time_interval": "Weekly",
+ "type": "Document Type"
+}

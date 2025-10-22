@@ -1,0 +1,62 @@
+{
+ "cards": [
+  {
+   "card": "Pending Produced Quantity"
+  },
+  {
+   "card": "Completed Quantity"
+  },
+  {
+   "card": "Needs To Reprepare"
+  },
+  {
+   "card": "Rejected Quantity"
+  },
+  {
+   "card": "QC Accepted"
+  },
+  {
+   "card": "QC Rejected"
+  },
+  {
+   "card": "Monthly Total Orders"
+  },
+  {
+   "card": "Monthly Completed Orders"
+  }
+ ],
+ "charts": [
+  {
+   "chart": "Produced Quantity",
+   "width": "Half"
+  },
+  {
+   "chart": "Quality Inspection Analysis",
+   "width": "Half"
+  },
+  {
+   "chart": "Work Order Qty Analysis",
+   "width": "Half"
+  },
+  {
+   "chart": "Production Summary",
+   "width": "Half"
+  },
+  {
+   "chart": "Production Overview",
+   "width": "Full"
+  }
+ ],
+ "creation": "2025-10-22 12:38:52.075017",
+ "dashboard_name": "Production",
+ "docstatus": 0,
+ "doctype": "Dashboard",
+ "idx": 0,
+ "is_default": 1,
+ "is_standard": 1,
+ "modified": "2025-10-22 13:13:16.688391",
+ "modified_by": "Administrator",
+ "module": "Production Planner",
+ "name": "Production",
+ "owner": "Administrator"
+}
