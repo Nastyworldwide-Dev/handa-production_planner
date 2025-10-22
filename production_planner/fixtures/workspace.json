@@ -9,7 +9,7 @@
     "parenttype": "Workspace"
    }
   ],
-  "content": "[{\"id\":\"9jVwpMz4qq\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Pending Produced Quantity\",\"col\":4}},{\"id\":\"taliURG5vP\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Completed Quantity Today\",\"col\":4}},{\"id\":\"QJOXkWK7Xo\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Needs To Reprepare\",\"col\":4}},{\"id\":\"HMbfLJlKee\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Produced Quantity\",\"col\":12}},{\"id\":\"DlkEggGp1e\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"RYsNKsn1oO\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Recipe\",\"col\":3}},{\"id\":\"WS64eXtVLi\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Production Order\",\"col\":3}},{\"id\":\"pFluYDU1ZA\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Production Summary\",\"col\":3}},{\"id\":\"ItBYaY3Fnt\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Production Overview\",\"col\":3}},{\"id\":\"bo7dKpNhmj\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Recipe Search\",\"col\":3}},{\"id\":\"cNUUO3YRay\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Recipe Stock Calculated\",\"col\":3}},{\"id\":\"UQMQdP0hPn\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Recipe Stock Report\",\"col\":3}}]",
+  "content": "[{\"id\":\"9jVwpMz4qq\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Pending Produced Quantity\",\"col\":4}},{\"id\":\"taliURG5vP\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Completed Quantity\",\"col\":4}},{\"id\":\"QJOXkWK7Xo\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Needs To Reprepare\",\"col\":4}},{\"id\":\"HMbfLJlKee\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Produced Quantity\",\"col\":12}},{\"id\":\"DlkEggGp1e\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"RYsNKsn1oO\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Recipe\",\"col\":3}},{\"id\":\"WS64eXtVLi\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Production Order\",\"col\":3}},{\"id\":\"pFluYDU1ZA\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Production Summary\",\"col\":3}},{\"id\":\"ItBYaY3Fnt\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Production Overview\",\"col\":3}},{\"id\":\"bo7dKpNhmj\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Recipe Search\",\"col\":3}},{\"id\":\"cNUUO3YRay\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Recipe Stock Calculated\",\"col\":3}},{\"id\":\"UQMQdP0hPn\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Recipe Stock Report\",\"col\":3}}]",
   "custom_blocks": [],
   "docstatus": 0,
   "doctype": "Workspace",
@@ -20,20 +20,20 @@
   "is_hidden": 0,
   "label": "Chef's Panel",
   "links": [],
-  "modified": "2025-10-20 20:13:34.636163",
+  "modified": "2025-10-22 11:42:45.046684",
   "module": null,
   "name": "Chef's Panel",
   "number_cards": [
    {
-    "label": "Completed Quantity Today",
-    "number_card_name": "Completed Quantity Today",
+    "label": "Needs To Reprepare",
+    "number_card_name": "Needs To Reprepare",
     "parent": "Chef's Panel",
     "parentfield": "number_cards",
     "parenttype": "Workspace"
    },
    {
-    "label": "Needs To Reprepare",
-    "number_card_name": "Needs To Reprepare",
+    "label": "Completed Quantity",
+    "number_card_name": "Completed Quantity Today",
     "parent": "Chef's Panel",
     "parentfield": "number_cards",
     "parenttype": "Workspace"
@@ -192,7 +192,7 @@
     "parenttype": "Workspace"
    }
   ],
-  "content": "[{\"id\":\"WvTSPRWQWc\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Quality Inspection Analysis\",\"col\":12}},{\"id\":\"4cAuw474Qq\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"nai9j6y1l0\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Production Order\",\"col\":3}},{\"id\":\"lMEUG4YhWO\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Quality Inspection Accepted\",\"col\":4}},{\"id\":\"yKp9I4Qug1\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Quality Inspection Rejected\",\"col\":4}},{\"id\":\"Om54ge-vWn\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Production Quality Summary\",\"col\":3}}]",
+  "content": "[{\"id\":\"qRj-cpYqbo\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"QC Accepted\",\"col\":4}},{\"id\":\"ExZU7Iu8RX\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"QC Rejected\",\"col\":4}},{\"id\":\"-78d5ExdqE\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Rejected Quantity\",\"col\":4}},{\"id\":\"WvTSPRWQWc\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Quality Inspection Analysis\",\"col\":12}},{\"id\":\"4cAuw474Qq\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"nai9j6y1l0\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Production Order\",\"col\":3}},{\"id\":\"lMEUG4YhWO\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Quality Inspection Accepted\",\"col\":4}},{\"id\":\"yKp9I4Qug1\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Quality Inspection Rejected\",\"col\":4}},{\"id\":\"Om54ge-vWn\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Production Quality Summary\",\"col\":3}}]",
   "custom_blocks": [],
   "docstatus": 0,
   "doctype": "Workspace",
@@ -203,10 +203,32 @@
   "is_hidden": 0,
   "label": "QC Panel",
   "links": [],
-  "modified": "2025-10-20 16:56:02.105619",
+  "modified": "2025-10-22 11:38:55.266468",
   "module": null,
   "name": "QC Panel",
-  "number_cards": [],
+  "number_cards": [
+   {
+    "label": "QC Accepted",
+    "number_card_name": "QC Accepted",
+    "parent": "QC Panel",
+    "parentfield": "number_cards",
+    "parenttype": "Workspace"
+   },
+   {
+    "label": "QC Rejected",
+    "number_card_name": "QC Rejected",
+    "parent": "QC Panel",
+    "parentfield": "number_cards",
+    "parenttype": "Workspace"
+   },
+   {
+    "label": "Rejected Quantity",
+    "number_card_name": "Rejected Quantity",
+    "parent": "QC Panel",
+    "parentfield": "number_cards",
+    "parenttype": "Workspace"
+   }
+  ],
   "parent_page": "",
   "public": 1,
   "quick_lists": [],
@@ -302,7 +324,7 @@
     "parenttype": "Workspace"
    }
   ],
-  "content": "[{\"id\":\"2bpQ3Y2ryK\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Work Order Qty Analysis\",\"col\":12}},{\"id\":\"7I29IUm7CP\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"qVkw5MMUCJ\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"New Production Plan\",\"col\":3}},{\"id\":\"gWGt-PnGtx\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Production Plan\",\"col\":3}},{\"id\":\"GVgIVvOuP3\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Production Order\",\"col\":3}},{\"id\":\"6qdMcKmFNy\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Production Overview\",\"col\":3}},{\"id\":\"tcBwbR2wCs\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Production Summary\",\"col\":3}},{\"id\":\"MOl9JGh1w7\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Production Quality Summary\",\"col\":3}},{\"id\":\"IWLMGL14qE\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Recipe\",\"col\":3}},{\"id\":\"TdP499J7OB\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Recipe Search\",\"col\":3}},{\"id\":\"EwBA_MgIuL\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Recipe Stock Calculated\",\"col\":3}},{\"id\":\"VXPOOFWJRv\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Recipe Stock Report\",\"col\":3}}]",
+  "content": "[{\"id\":\"YIn1P2mGFr\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Pending Produced Quantity\",\"col\":3}},{\"id\":\"qmzNex2E0K\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Completed Quantity\",\"col\":3}},{\"id\":\"HnsFewG3ve\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"Rejected Quantity\",\"col\":3}},{\"id\":\"PEm8iLtO3q\",\"type\":\"number_card\",\"data\":{\"number_card_name\":\"QC Accepted\",\"col\":3}},{\"id\":\"2bpQ3Y2ryK\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Work Order Qty Analysis\",\"col\":12}},{\"id\":\"7I29IUm7CP\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"qVkw5MMUCJ\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"New Production Plan\",\"col\":3}},{\"id\":\"gWGt-PnGtx\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Production Plan\",\"col\":3}},{\"id\":\"GVgIVvOuP3\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Production Order\",\"col\":3}},{\"id\":\"6qdMcKmFNy\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Production Overview\",\"col\":3}},{\"id\":\"tcBwbR2wCs\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Production Summary\",\"col\":3}},{\"id\":\"MOl9JGh1w7\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Production Quality Summary\",\"col\":3}},{\"id\":\"IWLMGL14qE\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Recipe\",\"col\":3}},{\"id\":\"TdP499J7OB\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Recipe Search\",\"col\":3}},{\"id\":\"EwBA_MgIuL\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Recipe Stock Calculated\",\"col\":3}},{\"id\":\"VXPOOFWJRv\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Recipe Stock Report\",\"col\":3}}]",
   "custom_blocks": [],
   "docstatus": 0,
   "doctype": "Workspace",
@@ -313,10 +335,39 @@
   "is_hidden": 0,
   "label": "Production Panel",
   "links": [],
-  "modified": "2025-10-20 16:56:02.058450",
+  "modified": "2025-10-22 11:41:49.499080",
   "module": null,
   "name": "Production Panel",
-  "number_cards": [],
+  "number_cards": [
+   {
+    "label": "Pending Produced Quantity",
+    "number_card_name": "Pending Produced Quantity",
+    "parent": "Production Panel",
+    "parentfield": "number_cards",
+    "parenttype": "Workspace"
+   },
+   {
+    "label": "Completed Quantity",
+    "number_card_name": "Completed Quantity Today",
+    "parent": "Production Panel",
+    "parentfield": "number_cards",
+    "parenttype": "Workspace"
+   },
+   {
+    "label": "Rejected Quantity",
+    "number_card_name": "Rejected Quantity",
+    "parent": "Production Panel",
+    "parentfield": "number_cards",
+    "parenttype": "Workspace"
+   },
+   {
+    "label": "QC Accepted",
+    "number_card_name": "QC Accepted",
+    "parent": "Production Panel",
+    "parentfield": "number_cards",
+    "parenttype": "Workspace"
+   }
+  ],
   "parent_page": "",
   "public": 1,
   "quick_lists": [],

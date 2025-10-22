@@ -1,4 +1,6 @@
 {
+ "background_color": "#d4fada",
+ "color": "#030303",
  "creation": "2025-10-20 20:11:30.430121",
  "currency": "",
  "docstatus": 0,
@@ -10,7 +12,7 @@
  "is_public": 1,
  "is_standard": 1,
  "label": "Completed Quantity Today",
- "modified": "2025-10-22 11:28:34.512028",
+ "modified": "2025-10-22 11:43:02.959473",
  "modified_by": "Administrator",
  "module": "Production Planner",
  "name": "Completed Quantity Today",

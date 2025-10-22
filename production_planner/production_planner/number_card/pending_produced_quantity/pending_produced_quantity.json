@@ -1,4 +1,6 @@
 {
+ "background_color": "#d7eafc",
+ "color": "#000000",
  "creation": "2025-10-20 20:08:04.773338",
  "currency": "",
  "docstatus": 0,
@@ -10,7 +12,7 @@
  "is_public": 1,
  "is_standard": 1,
  "label": "Pending Produced Quantity",
- "modified": "2025-10-22 11:28:18.469479",
+ "modified": "2025-10-22 11:42:15.366671",
  "modified_by": "Administrator",
  "module": "Production Planner",
  "name": "Pending Produced Quantity",
