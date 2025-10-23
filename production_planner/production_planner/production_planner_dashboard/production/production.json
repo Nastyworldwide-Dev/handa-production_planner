@@ -45,16 +45,20 @@
   {
    "chart": "Production Overview",
    "width": "Full"
+  },
+  {
+   "chart": "Extra Consumption Reason",
+   "width": "Full"
   }
  ],
  "creation": "2025-10-22 12:38:52.075017",
  "dashboard_name": "Production",
  "docstatus": 0,
  "doctype": "Dashboard",
- "idx": 0,
+ "idx": 2,
  "is_default": 1,
  "is_standard": 1,
- "modified": "2025-10-22 13:13:16.688391",
+ "modified": "2025-10-23 14:43:57.475380",
  "modified_by": "Administrator",
  "module": "Production Planner",
  "name": "Production",

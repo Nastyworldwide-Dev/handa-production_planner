@@ -39,15 +39,6 @@
   "docstatus": 0,
   "doctype": "Workflow State",
   "icon": "",
-  "modified": "2025-10-19 12:47:44.894076",
-  "name": "Ready For QC",
-  "style": "",
-  "workflow_state_name": "Ready For QC"
- },
- {
-  "docstatus": 0,
-  "doctype": "Workflow State",
-  "icon": "",
   "modified": "2025-10-19 12:48:55.886212",
   "name": "Completed",
   "style": "",
@@ -61,5 +52,14 @@
   "name": "In Progress",
   "style": "",
   "workflow_state_name": "In Progress"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Workflow State",
+  "icon": "",
+  "modified": "2025-10-19 12:47:44.894076",
+  "name": "Ready For QC",
+  "style": "",
+  "workflow_state_name": "Ready For QC"
  }
 ]
