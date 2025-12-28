@@ -4,7 +4,7 @@
 import json
 import frappe
 from frappe import _, copy_doc
-from frappe.utils import flt
+from frappe.utils import flt, nowdate
 from erpnext.manufacturing.doctype.work_order.work_order import make_stock_entry
 
 
@@ -456,3 +456,68 @@ def reprepare_oder(order_no):
 	return {
 		'message': "Order Reprepared",
 	}
+
+
+@frappe.whitelist()
+def make_inter_company_transfer(items, target_company, source_company, price_list):
+	if isinstance(items, str):
+		items = json.loads(items)
+
+	if not source_company:
+		frappe.throw(_("Source Company is required"))
+
+	# Find Internal Customer
+	internal_customer = frappe.db.get_value("Customer", {
+		"represents_company": target_company,
+		"is_internal_customer": 1
+	}, "name")
+
+	if not internal_customer:
+		frappe.throw(_("No Internal Customer found for Company {0} in Company {1}. Please configure an Internal Customer.").format(target_company, source_company))
+
+	# Create Delivery Note
+	dn = frappe.new_doc("Delivery Note")
+	dn.company = source_company
+	dn.customer = internal_customer
+	dn.selling_price_list = price_list
+	dn.posting_date = frappe.utils.nowdate()
+
+	for item in items:
+		wo_name = item.get("work_order")
+		transfer_qty = flt(item.get("transfer_qty"))
+		
+		if transfer_qty <= 0:
+			continue
+
+		wo = frappe.get_doc("Work Order", wo_name)
+		item_details = frappe.db.get_value("Item", wo.production_item, ["stock_uom", "description", "item_name"], as_dict=1)
+
+		dn.append("items", {
+			"item_code": wo.production_item,
+			"item_name": item_details.item_name,
+			"description": item_details.description,
+			"qty": transfer_qty,
+			"uom": item_details.stock_uom,
+			"warehouse": wo.fg_warehouse,
+			"cost_center": frappe.get_cached_value("Company", source_company, "cost_center") or frappe.get_cached_value("Item", wo.production_item, "default_cost_center"),
+			"allow_zero_valuation_rate": 1
+		})
+
+	if not dn.items:
+		frappe.throw(_("No items to transfer"))
+
+	dn.set_missing_values()
+	dn.save()
+	dn.submit()
+
+	# Create Purchase Receipt
+	from erpnext.stock.doctype.delivery_note.delivery_note import make_inter_company_purchase_receipt
+	pr = make_inter_company_purchase_receipt(dn.name)
+	pr.insert(ignore_mandatory=True, ignore_permissions=True)
+
+	msg = _("Delivery Note {0} created and submitted. Purchase Receipt {1} created as Draft.").format(
+		f'<a href="/app/delivery-note/{dn.name}" target="_blank">{dn.name}</a>',
+		f'<a href="/app/purchase-receipt/{pr.name}" target="_blank">{pr.name}</a>'
+	)
+
+	return msg
