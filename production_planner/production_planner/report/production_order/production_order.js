@@ -90,111 +90,113 @@ frappe.query_reports["Production Order"] = {
 	},
 
 	onload: function (report) {
-		report.page.add_inner_button(__("Inter Company Transfer"), function () {
-			const selected_rows = report.get_checked_items();
-			if (selected_rows.length === 0) {
-				frappe.msgprint(__("Please select at least one row."));
-				return;
-			}
-
-			// Filter for Completed status
-			const non_completed = selected_rows.filter(row => row.status !== "Completed");
-			if (non_completed.length > 0) {
-				frappe.msgprint(__("Only Work Orders with status 'Completed' can be transferred."));
-				return;
-			}
-
-			// Open Dialog
-			const d = new frappe.ui.Dialog({
-				title: __('Inter Company Transfer'),
-				fields: [
-					{
-						label: __('Target Company'),
-						fieldname: 'target_company',
-						fieldtype: 'Link',
-						options: 'Company',
-						reqd: 1,
-						get_query: function () {
-							return {
-								filters: {
-									name: ['!=', report.get_filter_value('company')]
-								}
-							};
-						}
-					},
-					{
-						label: __('Price List'),
-						fieldname: 'price_list',
-						fieldtype: 'Link',
-						options: 'Price List',
-						reqd: 1
-					},
-					{
-						label: __('Items'),
-						fieldname: 'items',
-						fieldtype: 'Table',
-						fields: [
-							{
-								label: __('Work Order'),
-								fieldname: 'work_order',
-								fieldtype: 'Link',
-								options: 'Work Order',
-								in_list_view: 1,
-								read_only: 1
-							},
-							{
-								label: __('Item Code'),
-								fieldname: 'item_code',
-								fieldtype: 'Link',
-								options: 'Item',
-								in_list_view: 1,
-								read_only: 1
-							},
-							{
-								label: __('Produced Qty'),
-								fieldname: 'produced_qty',
-								fieldtype: 'Float',
-								in_list_view: 1,
-								read_only: 1
-							},
-							{
-								label: __('Transfer Qty'),
-								fieldname: 'transfer_qty',
-								fieldtype: 'Float',
-								in_list_view: 1,
-								reqd: 1
-							}
-						],
-						data: selected_rows.map(row => ({
-							work_order: row.work_order,
-							item_code: row.item_code,
-							produced_qty: row.produced_qty,
-							transfer_qty: row.produced_qty
-						}))
-					}
-				],
-				primary_action_label: __('Create Delivery Note'),
-				primary_action: function (values) {
-					frappe.call({
-						method: 'production_planner.production_planner.report.production_order.production_order.make_inter_company_transfer',
-						args: {
-							items: values.items,
-							target_company: values.target_company,
-							source_company: report.get_filter_value('company'),
-							price_list: values.price_list
-						},
-						freeze: true,
-						callback: function (r) {
-							d.hide();
-							if (r.message) {
-								frappe.msgprint(r.message);
-							}
-						}
-					});
+		if (frappe.user.has_role("Production")) {
+			report.page.add_inner_button(__("Inter Company Transfer"), function () {
+				const selected_rows = report.get_checked_items();
+				if (selected_rows.length === 0) {
+					frappe.msgprint(__("Please select at least one row."));
+					return;
 				}
+
+				// Filter for Completed status
+				const non_completed = selected_rows.filter(row => row.status !== "Completed");
+				if (non_completed.length > 0) {
+					frappe.msgprint(__("Only Work Orders with status 'Completed' can be transferred."));
+					return;
+				}
+
+				// Open Dialog
+				const d = new frappe.ui.Dialog({
+					title: __('Inter Company Transfer'),
+					fields: [
+						{
+							label: __('Target Company'),
+							fieldname: 'target_company',
+							fieldtype: 'Link',
+							options: 'Company',
+							reqd: 1,
+							get_query: function () {
+								return {
+									filters: {
+										name: ['!=', report.get_filter_value('company')]
+									}
+								};
+							}
+						},
+						{
+							label: __('Price List'),
+							fieldname: 'price_list',
+							fieldtype: 'Link',
+							options: 'Price List',
+							reqd: 1
+						},
+						{
+							label: __('Items'),
+							fieldname: 'items',
+							fieldtype: 'Table',
+							fields: [
+								{
+									label: __('Work Order'),
+									fieldname: 'work_order',
+									fieldtype: 'Link',
+									options: 'Work Order',
+									in_list_view: 1,
+									read_only: 1
+								},
+								{
+									label: __('Item Code'),
+									fieldname: 'item_code',
+									fieldtype: 'Link',
+									options: 'Item',
+									in_list_view: 1,
+									read_only: 1
+								},
+								{
+									label: __('Produced Qty'),
+									fieldname: 'produced_qty',
+									fieldtype: 'Float',
+									in_list_view: 1,
+									read_only: 1
+								},
+								{
+									label: __('Transfer Qty'),
+									fieldname: 'transfer_qty',
+									fieldtype: 'Float',
+									in_list_view: 1,
+									reqd: 1
+								}
+							],
+							data: selected_rows.map(row => ({
+								work_order: row.work_order,
+								item_code: row.item_code,
+								produced_qty: row.produced_qty,
+								transfer_qty: row.produced_qty
+							}))
+						}
+					],
+					primary_action_label: __('Create Delivery Note'),
+					primary_action: function (values) {
+						frappe.call({
+							method: 'production_planner.production_planner.report.production_order.production_order.make_inter_company_transfer',
+							args: {
+								items: values.items,
+								target_company: values.target_company,
+								source_company: report.get_filter_value('company'),
+								price_list: values.price_list
+							},
+							freeze: true,
+							callback: function (r) {
+								d.hide();
+								if (r.message) {
+									frappe.msgprint(r.message);
+								}
+							}
+						});
+					}
+				});
+				d.show();
 			});
-			d.show();
-		});
+		}
 
 		report.page.body.on("click", ".action-btn", function () {
 			const action = $(this).attr("data-action");

@@ -143,7 +143,7 @@
  {
   "docstatus": 0,
   "doctype": "Role Profile",
-  "modified": "2025-10-20 14:21:08.645477",
+  "modified": "2026-03-31 12:19:34.469981",
   "name": "Production User",
   "role_profile": "Production User",
   "roles": [
@@ -152,6 +152,12 @@
     "parentfield": "roles",
     "parenttype": "Role Profile",
     "role": "Production"
+   },
+   {
+    "parent": "Production User",
+    "parentfield": "roles",
+    "parenttype": "Role Profile",
+    "role": "Purchase Manager"
    }
   ]
  }

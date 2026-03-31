@@ -466,6 +466,34 @@ def make_inter_company_transfer(items, target_company, source_company, price_lis
 	if not source_company:
 		frappe.throw(_("Source Company is required"))
 
+	# Check for already transferred items
+	already_transferred = []
+	for item in items:
+		wo_name = item.get("work_order")
+		if not wo_name:
+			continue
+		
+		# Check if a non-cancelled Delivery Note Item already exists for this Work Order
+		# We check for custom_work_order field
+		existing_dn = frappe.db.get_value("Delivery Note Item", 
+			{"custom_work_order": wo_name, "docstatus": ["<", 2]}, 
+			"parent")
+		
+		if existing_dn:
+			already_transferred.append({
+				"work_order": wo_name,
+				"delivery_note": existing_dn
+			})
+
+	if already_transferred:
+		msg = _("The following items have already been transferred:")
+		msg += "<ul style='margin-top: 10px;'>"
+		for entry in already_transferred:
+			dn_link = f'<a href="/app/delivery-note/{entry["delivery_note"]}" target="_blank">{entry["delivery_note"]}</a>'
+			msg += f"<li>{_('Work Order')}: <b>{entry['work_order']}</b> ({_('Delivery Note')}: {dn_link})</li>"
+		msg += "</ul>"
+		return msg
+
 	# Find Internal Customer
 	internal_customer = frappe.db.get_value("Customer", {
 		"represents_company": target_company,
@@ -500,7 +528,8 @@ def make_inter_company_transfer(items, target_company, source_company, price_lis
 			"uom": item_details.stock_uom,
 			"warehouse": wo.fg_warehouse,
 			"cost_center": frappe.get_cached_value("Company", source_company, "cost_center") or frappe.get_cached_value("Item", wo.production_item, "default_cost_center"),
-			"allow_zero_valuation_rate": 1
+			"allow_zero_valuation_rate": 1,
+			"custom_work_order": wo_name
 		})
 
 	if not dn.items:
