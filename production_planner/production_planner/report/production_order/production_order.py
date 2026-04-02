@@ -539,13 +539,18 @@ def make_inter_company_transfer(items, target_company, source_company, price_lis
 	dn.save()
 	dn.submit()
 
-	# Create Purchase Receipt
-	from erpnext.stock.doctype.delivery_note.delivery_note import make_inter_company_purchase_receipt
+	from erpnext.stock.doctype.delivery_note.delivery_note import make_inter_company_purchase_receipt, make_sales_invoice
+	
+	si = make_sales_invoice(dn.name)
+	si.insert(ignore_mandatory=True, ignore_permissions=True)
+	si.submit()
+
 	pr = make_inter_company_purchase_receipt(dn.name)
 	pr.insert(ignore_mandatory=True, ignore_permissions=True)
 
-	msg = _("Delivery Note {0} created and submitted. Purchase Receipt {1} created as Draft.").format(
+	msg = _("Delivery Note {0} and Sales Invoice {1} created and submitted. Purchase Receipt {2} created as Draft.").format(
 		f'<a href="/app/delivery-note/{dn.name}" target="_blank">{dn.name}</a>',
+		f'<a href="/app/sales-invoice/{si.name}" target="_blank">{si.name}</a>',
 		f'<a href="/app/purchase-receipt/{pr.name}" target="_blank">{pr.name}</a>'
 	)
 

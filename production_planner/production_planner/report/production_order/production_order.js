@@ -174,7 +174,7 @@ frappe.query_reports["Production Order"] = {
 							}))
 						}
 					],
-					primary_action_label: __('Create Delivery Note'),
+					primary_action_label: __('Create Sales & Delivery'),
 					primary_action: function (values) {
 						frappe.call({
 							method: 'production_planner.production_planner.report.production_order.production_order.make_inter_company_transfer',
