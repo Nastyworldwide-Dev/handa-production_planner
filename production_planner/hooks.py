@@ -45,7 +45,8 @@ app_license = "mit"
 # include js in doctype views
 doctype_js = {
 	"Production Plan" : "public/js/production_plan.js",
-	"Production Plan Template" : "public/js/production_plan_template.js"
+	"Production Plan Template" : "public/js/production_plan_template.js",
+	"Stock Entry": "public/js/stock_entry.js"
 	}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
@@ -132,9 +133,9 @@ doctype_js = {
 # ---------------
 # Override standard doctype classes
 
-# override_doctype_class = {
-# 	"ToDo": "custom_app.overrides.CustomToDo"
-# }
+override_doctype_class = {
+	"Stock Entry": "production_planner.overrides.stock_entry.CustomStockEntry"
+}
 
 # Document Events
 # ---------------
@@ -254,4 +255,5 @@ fixtures = [
 	{"dt": "Role Profile", "filters": [["name", "in", ["Chef", "QC", "Production User", "Admin"]]]},
 	{"dt": "Custom DocPerm", "filters": [["role", "in", ["Chef", "QC", "Production"]]]},
 	{"dt": "Custom Role"},
+	{"dt": "Stock Entry Type", "filters": [["name", "=", "Wastage Entry"]]},
 ]
