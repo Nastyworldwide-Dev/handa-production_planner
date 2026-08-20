@@ -2,10 +2,54 @@
 # For license information, please see license.txt
 
 import json
+
 import frappe
+from erpnext.manufacturing.doctype.work_order.work_order import make_stock_entry
 from frappe import _, copy_doc
 from frappe.utils import flt, nowdate
-from erpnext.manufacturing.doctype.work_order.work_order import make_stock_entry
+
+from production_planner.hook_functions.production_plan import get_group_warehouses
+from production_planner.warehouse_rules import (
+	group_warehouse_message,
+	group_warehouse_offenders,
+	stock_entry_candidates,
+)
+
+
+def validate_stock_entry_warehouses(se_doc, order_no):
+	"""Block a Stock Entry carrying a group warehouse, naming the row that holds it.
+
+	ERPNext raises "Group node warehouse is not allowed to select for
+	transactions" only when the Stock Ledger Entry is written on submit, which
+	for this report is the QC Accept click — far from the Work Order field that
+	actually holds the wrong warehouse. Say where to fix it.
+	"""
+	candidates = stock_entry_candidates(se_doc)
+	groups = get_group_warehouses(warehouse for _label, warehouse in candidates)
+	offenders = group_warehouse_offenders(candidates, groups)
+
+	if not offenders:
+		return
+
+	frappe.logger("production_planner").warning(
+		"[production_order] %s blocked on %s, group warehouses: %s",
+		se_doc.name or "new Stock Entry",
+		order_no,
+		offenders,
+	)
+	hint = _("Fix the Source / Work-in-Progress / Finished Goods Warehouse on Work Order {0}.").format(
+		f'<a href="/app/work-order/{order_no}" target="_blank">{order_no}</a>'
+	)
+	if se_doc.name and se_doc.docstatus == 0:
+		hint += _(" Draft Stock Entry {0} can be corrected directly.").format(
+			f'<a href="/app/stock-entry/{se_doc.name}" target="_blank">{se_doc.name}</a>'
+		)
+
+	frappe.throw(
+		group_warehouse_message(offenders) + "<br><br>" + hint,
+		title=_("Invalid Warehouse"),
+	)
+
 
 
 def execute(filters=None):
@@ -316,6 +360,7 @@ def start_order(order_no):
 
 		se_doc = copy_doc(se_doc)
 		se_doc.inspection_required = False
+		validate_stock_entry_warehouses(se_doc, wo_doc.name)
 		se_doc.insert(ignore_permissions=True)
 		se_doc.submit()
 
@@ -339,6 +384,7 @@ def prepare_order(order_no):
 		purpose="Manufacture",
 		qty=wo_doc.qty
 	))
+	validate_stock_entry_warehouses(se_doc, wo_doc.name)
 	se_doc.insert(ignore_permissions=True)
 
 	return {
@@ -411,6 +457,7 @@ def create_quality_inspection(order_no, data):
 
 	if data.get("status") == "Accepted":
 		se_doc = frappe.get_doc("Stock Entry", se_doc.name)
+		validate_stock_entry_warehouses(se_doc, order_no)
 		se_doc.submit()
 		wo_doc = frappe.get_doc("Work Order", order_no)
 		wo_doc.workflow_state = "Completed"
@@ -472,13 +519,13 @@ def make_inter_company_transfer(items, target_company, source_company, price_lis
 		wo_name = item.get("work_order")
 		if not wo_name:
 			continue
-		
+
 		# Check if a non-cancelled Delivery Note Item already exists for this Work Order
 		# We check for custom_work_order field
-		existing_dn = frappe.db.get_value("Delivery Note Item", 
-			{"custom_work_order": wo_name, "docstatus": ["<", 2]}, 
+		existing_dn = frappe.db.get_value("Delivery Note Item",
+			{"custom_work_order": wo_name, "docstatus": ["<", 2]},
 			"parent")
-		
+
 		if existing_dn:
 			already_transferred.append({
 				"work_order": wo_name,
@@ -513,7 +560,7 @@ def make_inter_company_transfer(items, target_company, source_company, price_lis
 	for item in items:
 		wo_name = item.get("work_order")
 		transfer_qty = flt(item.get("transfer_qty"))
-		
+
 		if transfer_qty <= 0:
 			continue
 
@@ -539,9 +586,12 @@ def make_inter_company_transfer(items, target_company, source_company, price_lis
 	dn.save()
 	dn.submit()
 
-	from erpnext.stock.doctype.delivery_note.delivery_note import make_inter_company_purchase_receipt, make_sales_invoice
 	from erpnext.accounts.doctype.sales_invoice.sales_invoice import make_inter_company_purchase_invoice
-	
+	from erpnext.stock.doctype.delivery_note.delivery_note import (
+		make_inter_company_purchase_receipt,
+		make_sales_invoice,
+	)
+
 	si = make_sales_invoice(dn.name)
 	si.insert(ignore_mandatory=True, ignore_permissions=True)
 	si.submit()

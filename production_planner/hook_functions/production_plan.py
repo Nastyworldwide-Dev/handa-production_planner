@@ -1,8 +1,56 @@
 import frappe
 from frappe import _
 
+from production_planner.warehouse_rules import (
+	group_warehouse_message,
+	group_warehouse_offenders,
+	warehouse_candidates,
+)
+
+
+def get_group_warehouses(names):
+	"""Names among `names` that are group nodes in the Warehouse tree."""
+	names = {name for name in names if name}
+	if not names:
+		return set()
+
+	groups = frappe.get_all(
+		"Warehouse",
+		filters={"name": ("in", list(names)), "is_group": 1},
+		pluck="name",
+	)
+	frappe.logger("production_planner").debug(
+		"[production_plan] checked %s warehouses, %s are group nodes", len(names), len(groups)
+	)
+	return set(groups)
+
+
+def validate_warehouses(doc):
+	"""Reject group warehouses before they reach Work Orders and Stock Entries.
+
+	ERPNext only raises "Group node warehouse is not allowed to select for
+	transactions" when the Stock Ledger Entry is written on submit — for this
+	app that is the QC Accept click, several steps after the wrong warehouse
+	was picked. Fail here instead, naming the field.
+	"""
+	candidates = warehouse_candidates(doc)
+	groups = get_group_warehouses(warehouse for _label, warehouse in candidates)
+	offenders = group_warehouse_offenders(candidates, groups)
+
+	if offenders:
+		frappe.logger("production_planner").warning(
+			"[production_plan] %s blocked, group warehouses: %s", doc.name, offenders
+		)
+		frappe.throw(group_warehouse_message(offenders), title=_("Invalid Warehouse"))
+
+
+def validate(doc, method=None):
+	validate_warehouses(doc)
+
 
 def on_submit(doc, method):
+	validate_warehouses(doc)
+
 	try:
 		doc.make_work_order()
 

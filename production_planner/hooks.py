@@ -143,6 +143,7 @@ override_doctype_class = {
 
 doc_events = {
 	"Production Plan": {
+		"validate": "production_planner.hook_functions.production_plan.validate",
 		"on_submit": "production_planner.hook_functions.production_plan.on_submit"
 	}
 }
