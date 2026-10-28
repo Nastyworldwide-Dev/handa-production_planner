@@ -154,5 +154,28 @@ class TestProductionBranchWarehouseDocType(unittest.TestCase):
 			self.assertEqual(self.fields[fieldname]["options"], "Warehouse", fieldname)
 
 
+class TestWorkspaceLinks(unittest.TestCase):
+	"""Branch warehouse profiles must be reachable from the panels that use them."""
+
+	def setUp(self):
+		with open(APP_ROOT / "fixtures" / "workspace.json") as f:
+			self.workspaces = {w["name"]: w for w in json.load(f)}
+
+	def test_production_panel_has_branch_warehouse_shortcut(self):
+		panel = self.workspaces["Production Panel"]
+		self.assertIn("Production Branch Warehouse", [s["link_to"] for s in panel["shortcuts"]])
+		shortcut_blocks = [
+			b["data"]["shortcut_name"] for b in json.loads(panel["content"]) if b["type"] == "shortcut"
+		]
+		self.assertIn("Production Branch Warehouse", shortcut_blocks)
+
+	def test_admin_panel_production_card_links_branch_warehouse(self):
+		links = self.workspaces["Admin Panel"]["links"]
+		card = next(i for i, link in enumerate(links) if link["type"] == "Card Break" and link["label"] == "Production")
+		card_links = links[card + 1 : card + 1 + links[card]["link_count"]]
+		self.assertTrue(all(link["type"] == "Link" for link in card_links))
+		self.assertIn("Production Branch Warehouse", [link["link_to"] for link in card_links])
+
+
 if __name__ == "__main__":
 	unittest.main()
