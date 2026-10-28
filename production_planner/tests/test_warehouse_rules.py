@@ -18,6 +18,9 @@ import unittest
 from pathlib import Path
 
 from production_planner.warehouse_rules import (
+	branch_profile_candidates,
+	branch_warehouse_message,
+	branch_warehouse_offenders,
 	group_warehouse_message,
 	group_warehouse_offenders,
 	stock_entry_candidates,
@@ -100,6 +103,64 @@ class TestGroupWarehouseOffenders(unittest.TestCase):
 		self.assertEqual(group_warehouse_message([]), "")
 
 
+class TestBranchWarehouseOffenders(unittest.TestCase):
+	"""Warehouses on a branch's plan must sit under that branch's group warehouse."""
+
+	def test_returns_empty_when_all_inside_branch(self):
+		candidates = [("Source Warehouse", "Inventory CK Tampin - DHSB")]
+		self.assertEqual(
+			branch_warehouse_offenders(candidates, {"Inventory CK Tampin - DHSB"}),
+			[],
+		)
+
+	def test_flags_warehouse_from_another_branch(self):
+		candidates = [
+			("Source Warehouse", "Inventory CK Tampin - DHSB"),
+			("Finished Goods Warehouse", "Inventory CK Seremban - DHSB"),
+		]
+		self.assertEqual(
+			branch_warehouse_offenders(candidates, {"Inventory CK Tampin - DHSB"}),
+			[("Finished Goods Warehouse", "Inventory CK Seremban - DHSB")],
+		)
+
+	def test_ignores_blanks_and_deduplicates(self):
+		candidates = [("Source Warehouse", None), ("Row 1 Source Warehouse", "X - DHSB")] + [
+			("Row 2 Source Warehouse", "Y - DHSB")
+		] * 2
+		self.assertEqual(
+			branch_warehouse_offenders(candidates, {"X - DHSB"}),
+			[("Row 2 Source Warehouse", "Y - DHSB")],
+		)
+
+	def test_message_names_branch_parent_and_offender(self):
+		message = branch_warehouse_message(
+			[("Wastage Warehouse", "Wastage - CK Seremban - DHSB")], "CK Tampin", "CK Tampin - DHSB"
+		)
+		self.assertIn("CK Tampin - DHSB", message)
+		self.assertIn("Wastage Warehouse", message)
+		self.assertIn("Wastage - CK Seremban - DHSB", message)
+
+	def test_message_is_empty_without_offenders(self):
+		self.assertEqual(branch_warehouse_message([], "CK Tampin", "CK Tampin - DHSB"), "")
+
+	def test_profile_candidates_cover_all_four_warehouses(self):
+		profile = {
+			"source_warehouse": "Src - DHSB",
+			"wip_warehouse": "Wip - DHSB",
+			"fg_warehouse": "Fg - DHSB",
+			"wastage_warehouse": "Waste - DHSB",
+		}
+		self.assertEqual(
+			branch_profile_candidates(profile),
+			[
+				("Source Warehouse", "Src - DHSB"),
+				("Work-in-Progress Warehouse", "Wip - DHSB"),
+				("Finished Goods Warehouse", "Fg - DHSB"),
+				("Wastage Warehouse", "Waste - DHSB"),
+			],
+		)
+
+
 class TestCandidateBuilders(unittest.TestCase):
 	"""Where the guards look for warehouses."""
 
@@ -108,6 +169,7 @@ class TestCandidateBuilders(unittest.TestCase):
 			"custom_source_warehouse": "Src - AS",
 			"custom_wip_warehouse": "Wip - AS",
 			"custom_finished_goods_warehouse": "Fg - AS",
+			"custom_wastage_warehouse": "Waste - AS",
 			"po_items": [
 				{
 					"idx": 1,
@@ -122,6 +184,7 @@ class TestCandidateBuilders(unittest.TestCase):
 		self.assertIn(("Source Warehouse", "Src - AS"), candidates)
 		self.assertIn(("Work-in-Progress Warehouse", "Wip - AS"), candidates)
 		self.assertIn(("Finished Goods Warehouse", "Fg - AS"), candidates)
+		self.assertIn(("Wastage Warehouse", "Waste - AS"), candidates)
 		self.assertIn(("Row 1 Source Warehouse", "Row Src - AS"), candidates)
 		self.assertIn(("Row 1 Finished Goods Warehouse", "Row Fg - AS"), candidates)
 

@@ -1,6 +1,7 @@
 import frappe
 from erpnext.stock.doctype.stock_entry.stock_entry import StockEntry
 
+
 class CustomStockEntry(StockEntry):
 	@frappe.whitelist()
 	def get_item_details(self, args=None, for_update=False):

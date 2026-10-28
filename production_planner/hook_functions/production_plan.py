@@ -1,7 +1,12 @@
 import frappe
 from frappe import _
 
+from production_planner.production_planner.doctype.production_branch_warehouse.production_branch_warehouse import (
+	get_branch_warehouses,
+)
 from production_planner.warehouse_rules import (
+	branch_warehouse_message,
+	branch_warehouse_offenders,
 	group_warehouse_message,
 	group_warehouse_offenders,
 	warehouse_candidates,
@@ -44,8 +49,35 @@ def validate_warehouses(doc):
 		frappe.throw(group_warehouse_message(offenders), title=_("Invalid Warehouse"))
 
 
+def validate_branch_warehouses(doc):
+	"""Keep every warehouse on the plan inside its branch's group warehouse."""
+	if not doc.get("custom_branch"):
+		return
+
+	branch, company, parent_warehouse = frappe.db.get_value(
+		"Production Branch Warehouse", doc.custom_branch, ["branch", "company", "parent_warehouse"]
+	)
+	if company != doc.company:
+		frappe.throw(
+			_("Branch {0} belongs to {1}, not {2}.").format(branch, company, doc.company),
+			title=_("Invalid Branch"),
+		)
+
+	offenders = branch_warehouse_offenders(
+		warehouse_candidates(doc), get_branch_warehouses(parent_warehouse)
+	)
+	if offenders:
+		frappe.logger("production_planner").warning(
+			"[production_plan] %s blocked, outside branch %s: %s", doc.name, branch, offenders
+		)
+		frappe.throw(
+			branch_warehouse_message(offenders, branch, parent_warehouse), title=_("Invalid Warehouse")
+		)
+
+
 def validate(doc, method=None):
 	validate_warehouses(doc)
+	validate_branch_warehouses(doc)
 
 
 def on_submit(doc, method):
@@ -65,6 +97,8 @@ def on_submit(doc, method):
 			wo_doc.fg_warehouse = doc.custom_finished_goods_warehouse
 			wo_doc.source_warehouse = doc.custom_source_warehouse
 			wo_doc.wip_warehouse = doc.custom_wip_warehouse
+			if doc.get("custom_wastage_warehouse"):
+				wo_doc.scrap_warehouse = doc.custom_wastage_warehouse
 			if doc.custom__skip_material_transfer_to_wip_warehouse:
 				wo_doc.skip_transfer = 1
 			wo_doc.save()

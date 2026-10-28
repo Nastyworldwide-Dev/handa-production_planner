@@ -108,5 +108,74 @@ class TestCustomizations(unittest.TestCase):
 		)
 
 
+class TestProductionPlanBranchFields(unittest.TestCase):
+	"""Production Plan carries the branch that picks its warehouses."""
+
+	def setUp(self):
+		with open(CUSTOM_DIR / "production_plan.json") as f:
+			self.data = json.load(f)
+		self.fields = {field["fieldname"]: field for field in self.data["custom_fields"]}
+
+	def test_branch_and_wastage_fields_exist(self):
+		self.assertEqual(self.fields["custom_branch"]["options"], "Production Branch Warehouse")
+		self.assertEqual(self.fields["custom_branch_warehouse"]["fetch_from"], "custom_branch.parent_warehouse")
+		self.assertEqual(self.fields["custom_wastage_warehouse"]["options"], "Warehouse")
+
+	def test_field_order_places_branch_after_company(self):
+		setter = next(p for p in self.data["property_setters"] if p["property"] == "field_order")
+		order = json.loads(setter["value"])
+		self.assertEqual(order[order.index("company") + 1], "custom_branch")
+		self.assertIn("custom_wastage_warehouse", order)
+
+
+class TestProductionBranchWarehouseDocType(unittest.TestCase):
+	"""One warehouse profile per company + branch."""
+
+	def setUp(self):
+		path = DOCTYPE_DIR / "production_branch_warehouse" / "production_branch_warehouse.json"
+		with open(path) as f:
+			self.data = json.load(f)
+		self.fields = {field["fieldname"]: field for field in self.data["fields"]}
+
+	def test_shows_branch_name_in_links(self):
+		self.assertEqual(self.data["title_field"], "branch")
+		self.assertTrue(self.data.get("show_title_field_in_link"))
+
+	def test_name_is_unique_per_company_and_branch(self):
+		self.assertIn("{branch}", self.data["autoname"])
+		self.assertIn("{company}", self.data["autoname"])
+
+	def test_keys_and_parent_are_required(self):
+		for fieldname in ("company", "branch", "parent_warehouse"):
+			self.assertTrue(self.fields[fieldname].get("reqd"), fieldname)
+
+	def test_holds_all_four_warehouses(self):
+		for fieldname in ("source_warehouse", "wip_warehouse", "fg_warehouse", "wastage_warehouse"):
+			self.assertEqual(self.fields[fieldname]["options"], "Warehouse", fieldname)
+
+
+class TestWorkspaceLinks(unittest.TestCase):
+	"""Branch warehouse profiles must be reachable from the panels that use them."""
+
+	def setUp(self):
+		with open(APP_ROOT / "fixtures" / "workspace.json") as f:
+			self.workspaces = {w["name"]: w for w in json.load(f)}
+
+	def test_production_panel_has_branch_warehouse_shortcut(self):
+		panel = self.workspaces["Production Panel"]
+		self.assertIn("Production Branch Warehouse", [s["link_to"] for s in panel["shortcuts"]])
+		shortcut_blocks = [
+			b["data"]["shortcut_name"] for b in json.loads(panel["content"]) if b["type"] == "shortcut"
+		]
+		self.assertIn("Production Branch Warehouse", shortcut_blocks)
+
+	def test_admin_panel_production_card_links_branch_warehouse(self):
+		links = self.workspaces["Admin Panel"]["links"]
+		card = next(i for i, link in enumerate(links) if link["type"] == "Card Break" and link["label"] == "Production")
+		card_links = links[card + 1 : card + 1 + links[card]["link_count"]]
+		self.assertTrue(all(link["type"] == "Link" for link in card_links))
+		self.assertIn("Production Branch Warehouse", [link["link_to"] for link in card_links])
+
+
 if __name__ == "__main__":
 	unittest.main()
