@@ -51,12 +51,55 @@ def group_warehouse_message(offenders):
 	)
 
 
+def branch_warehouse_offenders(candidates, branch_warehouses):
+	"""Return the (label, warehouse) pairs whose warehouse is outside the branch.
+
+	`branch_warehouses` is the set of warehouse names under the branch's group
+	warehouse. Blanks are skipped and duplicate pairs collapse, as above.
+	"""
+	offenders = []
+	for label, warehouse in candidates:
+		if not warehouse or warehouse in branch_warehouses:
+			continue
+		pair = (label, warehouse)
+		if pair not in offenders:
+			offenders.append(pair)
+
+	if offenders:
+		logger.warning("[warehouse_rules] warehouses outside branch: %s", offenders)
+
+	return offenders
+
+
+def branch_warehouse_message(offenders, branch, parent_warehouse):
+	"""Human-readable instruction for the offenders, or "" when there are none."""
+	if not offenders:
+		return ""
+
+	lines = [f"{label}: {warehouse}" for label, warehouse in offenders]
+	return (
+		f"Branch {branch} only allows warehouses under {parent_warehouse}. "
+		"Pick a warehouse from that branch for:<br><br>" + "<br>".join(lines)
+	)
+
+
+def branch_profile_candidates(profile):
+	"""Label/warehouse pairs held by a Production Branch Warehouse profile."""
+	return [
+		("Source Warehouse", profile.get("source_warehouse")),
+		("Work-in-Progress Warehouse", profile.get("wip_warehouse")),
+		("Finished Goods Warehouse", profile.get("fg_warehouse")),
+		("Wastage Warehouse", profile.get("wastage_warehouse")),
+	]
+
+
 def warehouse_candidates(doc):
 	"""Label/warehouse pairs to check on a Production Plan (or its Template)."""
 	candidates = [
 		("Source Warehouse", doc.get("custom_source_warehouse")),
 		("Work-in-Progress Warehouse", doc.get("custom_wip_warehouse")),
 		("Finished Goods Warehouse", doc.get("custom_finished_goods_warehouse")),
+		("Wastage Warehouse", doc.get("custom_wastage_warehouse")),
 	]
 
 	for row in doc.get("po_items") or []:
