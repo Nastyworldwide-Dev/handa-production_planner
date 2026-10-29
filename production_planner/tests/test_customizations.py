@@ -154,6 +154,30 @@ class TestProductionBranchWarehouseDocType(unittest.TestCase):
 			self.assertEqual(self.fields[fieldname]["options"], "Warehouse", fieldname)
 
 
+class TestProductionPlanItemName(unittest.TestCase):
+	"""ERPNext shows "CODE: Item Name" in a row's Item Code cell only when the row has item_name."""
+
+	def setUp(self):
+		with open(CUSTOM_DIR / "production_plan_item.json") as f:
+			self.data = json.load(f)
+		self.fields = {field["fieldname"]: field for field in self.data["custom_fields"]}
+
+	def test_item_name_is_fetched_from_item_code(self):
+		field = self.fields["item_name"]
+		self.assertEqual(field["fetch_from"], "item_code.item_name")
+		self.assertTrue(field["read_only"])
+
+	def test_item_name_follows_item_code_in_field_order(self):
+		setter = next(p for p in self.data["property_setters"] if p["property"] == "field_order")
+		order = json.loads(setter["value"])
+		self.assertEqual(order[order.index("item_code") + 1], "item_name")
+
+	def test_existing_rows_are_backfilled(self):
+		patches = (APP_ROOT / "patches.txt").read_text()
+		self.assertIn("production_planner.patches.backfill_production_plan_item_name", patches)
+		self.assertTrue((APP_ROOT / "patches" / "backfill_production_plan_item_name.py").is_file())
+
+
 class TestWorkspaceLinks(unittest.TestCase):
 	"""Branch warehouse profiles must be reachable from the panels that use them."""
 

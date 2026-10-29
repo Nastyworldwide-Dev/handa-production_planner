@@ -82,6 +82,10 @@ frappe.ui.form.on("Production Plan", {
 						}
 					}
 				});
+				// Rows added here skip the item_code fetch, so item_name needs setting by hand.
+				frappe.db.get_value("Item", row.item_code, "item_name").then(function (r) {
+					frappe.model.set_value(row.doctype, row.name, "item_name", r.message.item_name);
+				});
 			}
 		});
 	},
