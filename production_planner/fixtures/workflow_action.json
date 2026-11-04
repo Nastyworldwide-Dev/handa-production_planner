@@ -11,7 +11,7 @@
     "parent": "4gun9qv8t8",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -32,7 +32,7 @@
     "parent": "4guoovnq14",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -53,7 +53,7 @@
     "parent": "4guo147lfg",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -74,7 +74,7 @@
     "parent": "4guprp9llp",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -85,7 +85,7 @@
  },
  {
   "completed_by": "munim@invento.com.bd",
-  "completed_by_role": "Chef",
+  "completed_by_role": "Production Coordinator",
   "docstatus": 0,
   "doctype": "Workflow Action",
   "modified": "2026-04-01 11:40:05.820839",
@@ -95,7 +95,7 @@
     "parent": "4guq4j8a39",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -106,7 +106,7 @@
  },
  {
   "completed_by": "munim@invento.com.bd",
-  "completed_by_role": "Chef",
+  "completed_by_role": "Production Coordinator",
   "docstatus": 0,
   "doctype": "Workflow Action",
   "modified": "2026-04-01 11:49:00.303838",
@@ -116,7 +116,7 @@
     "parent": "fm5r04gd0m",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -148,7 +148,7 @@
  },
  {
   "completed_by": "munim@invento.com.bd",
-  "completed_by_role": "Chef",
+  "completed_by_role": "Production Coordinator",
   "docstatus": 0,
   "doctype": "Workflow Action",
   "modified": "2026-04-05 17:33:10.308438",
@@ -158,7 +158,7 @@
     "parent": "9eqv78vs6h",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -179,7 +179,7 @@
     "parent": "9eqva2gvuf",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -190,7 +190,7 @@
  },
  {
   "completed_by": "munim@invento.com.bd",
-  "completed_by_role": "Chef",
+  "completed_by_role": "Production Coordinator",
   "docstatus": 0,
   "doctype": "Workflow Action",
   "modified": "2026-04-05 17:34:20.567163",
@@ -200,7 +200,7 @@
     "parent": "7fgtk1iois",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -242,7 +242,7 @@
     "parent": "7g7deiae5q",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -263,7 +263,7 @@
     "parent": "7g7efo0nno",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -284,7 +284,7 @@
     "parent": "66slp0obap",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -305,7 +305,7 @@
     "parent": "66sllnoab0",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -326,7 +326,7 @@
     "parent": "2d8qa787q0",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -347,7 +347,7 @@
     "parent": "2d8rdb53nb",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -368,7 +368,7 @@
     "parent": "atuocq3jma",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -389,7 +389,7 @@
     "parent": "atuprkj908",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -410,7 +410,7 @@
     "parent": "5vkn2of670",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -431,7 +431,7 @@
     "parent": "5vkorprcdf",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -452,7 +452,7 @@
     "parent": "c08ck0qcnv",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -473,7 +473,7 @@
     "parent": "c08dgcvir3",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -494,7 +494,7 @@
     "parent": "600ui9kk2d",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -515,7 +515,7 @@
     "parent": "600v82dd2u",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -620,7 +620,7 @@
     "parent": "44e8rs8r1h",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -631,7 +631,7 @@
  },
  {
   "completed_by": "munim@invento.com.bd",
-  "completed_by_role": "Chef",
+  "completed_by_role": "Production Coordinator",
   "docstatus": 0,
   "doctype": "Workflow Action",
   "modified": "2025-10-21 14:29:01.642122",
@@ -641,7 +641,7 @@
     "parent": "44e8vh9gu1",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -652,7 +652,7 @@
  },
  {
   "completed_by": "munim@invento.com.bd",
-  "completed_by_role": "Chef",
+  "completed_by_role": "Production Coordinator",
   "docstatus": 0,
   "doctype": "Workflow Action",
   "modified": "2025-10-21 14:31:03.825841",
@@ -662,7 +662,7 @@
     "parent": "e5ke6ka49t",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -704,7 +704,7 @@
     "parent": "67feru9hk6",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -715,7 +715,7 @@
  },
  {
   "completed_by": "munim@invento.com.bd",
-  "completed_by_role": "Chef",
+  "completed_by_role": "Production Coordinator",
   "docstatus": 0,
   "doctype": "Workflow Action",
   "modified": "2025-12-22 12:12:17.831670",
@@ -725,7 +725,7 @@
     "parent": "5cqi96d2ab",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -736,7 +736,7 @@
  },
  {
   "completed_by": "munim@invento.com.bd",
-  "completed_by_role": "Chef",
+  "completed_by_role": "Production Coordinator",
   "docstatus": 0,
   "doctype": "Workflow Action",
   "modified": "2025-12-22 12:12:17.888134",
@@ -746,7 +746,7 @@
     "parent": "5cqicj35tf",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -757,7 +757,7 @@
  },
  {
   "completed_by": "munim@invento.com.bd",
-  "completed_by_role": "Chef",
+  "completed_by_role": "Production Coordinator",
   "docstatus": 0,
   "doctype": "Workflow Action",
   "modified": "2025-12-22 12:15:37.633509",
@@ -767,7 +767,7 @@
     "parent": "3ep0u3ulq3",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -799,7 +799,7 @@
  },
  {
   "completed_by": "munim@invento.com.bd",
-  "completed_by_role": "Chef",
+  "completed_by_role": "Production Coordinator",
   "docstatus": 0,
   "doctype": "Workflow Action",
   "modified": "2025-12-22 12:18:40.582700",
@@ -809,7 +809,7 @@
     "parent": "0gi58uo9f8",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -851,7 +851,7 @@
     "parent": "4gnscrgs3q",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -862,7 +862,7 @@
  },
  {
   "completed_by": "munim@invento.com.bd",
-  "completed_by_role": "Chef",
+  "completed_by_role": "Production Coordinator",
   "docstatus": 0,
   "doctype": "Workflow Action",
   "modified": "2026-01-07 15:08:42.499981",
@@ -872,7 +872,7 @@
     "parent": "3g690f2q29",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -883,7 +883,7 @@
  },
  {
   "completed_by": "munim@invento.com.bd",
-  "completed_by_role": "Chef",
+  "completed_by_role": "Production Coordinator",
   "docstatus": 0,
   "doctype": "Workflow Action",
   "modified": "2026-01-07 15:09:01.235421",
@@ -893,7 +893,7 @@
     "parent": "3gc42u138n",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -925,7 +925,7 @@
  },
  {
   "completed_by": "munim@invento.com.bd",
-  "completed_by_role": "Chef",
+  "completed_by_role": "Production Coordinator",
   "docstatus": 0,
   "doctype": "Workflow Action",
   "modified": "2026-01-07 15:11:02.741152",
@@ -935,7 +935,7 @@
     "parent": "2hi38r7ol6",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -946,7 +946,7 @@
  },
  {
   "completed_by": "munim@invento.com.bd",
-  "completed_by_role": "Chef",
+  "completed_by_role": "Production Coordinator",
   "docstatus": 0,
   "doctype": "Workflow Action",
   "modified": "2026-01-07 15:33:37.023665",
@@ -956,7 +956,7 @@
     "parent": "2upac7omo1",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -998,7 +998,7 @@
     "parent": "8qpvomfrsk",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -1387,7 +1387,7 @@
  },
  {
   "completed_by": "chef@mail.com",
-  "completed_by_role": "Chef",
+  "completed_by_role": "Production Coordinator",
   "docstatus": 0,
   "doctype": "Workflow Action",
   "modified": "2025-10-20 13:47:58.993722",
@@ -1397,7 +1397,7 @@
     "parent": "0kmgb499b0",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -1439,7 +1439,7 @@
     "parent": "91mrvrdsqh",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -1502,7 +1502,7 @@
     "parent": "as8cu5u9m7",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -1513,7 +1513,7 @@
  },
  {
   "completed_by": "Administrator",
-  "completed_by_role": "Chef",
+  "completed_by_role": "Production Coordinator",
   "docstatus": 0,
   "doctype": "Workflow Action",
   "modified": "2025-10-20 14:31:17.649603",
@@ -1523,7 +1523,7 @@
     "parent": "q0o7bfhil4",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -1534,7 +1534,7 @@
  },
  {
   "completed_by": "Administrator",
-  "completed_by_role": "Chef",
+  "completed_by_role": "Production Coordinator",
   "docstatus": 0,
   "doctype": "Workflow Action",
   "modified": "2025-10-20 16:24:25.408695",
@@ -1544,7 +1544,7 @@
     "parent": "s9u5fbdqv8",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -1586,7 +1586,7 @@
     "parent": "gnal1mgjaq",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -1597,7 +1597,7 @@
  },
  {
   "completed_by": "Administrator",
-  "completed_by_role": "Chef",
+  "completed_by_role": "Production Coordinator",
   "docstatus": 0,
   "doctype": "Workflow Action",
   "modified": "2025-10-20 17:42:27.581392",
@@ -1607,7 +1607,7 @@
     "parent": "a13728c2tl",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -1618,7 +1618,7 @@
  },
  {
   "completed_by": "chef@mail.com",
-  "completed_by_role": "Chef",
+  "completed_by_role": "Production Coordinator",
   "docstatus": 0,
   "doctype": "Workflow Action",
   "modified": "2025-10-20 17:42:27.651438",
@@ -1628,7 +1628,7 @@
     "parent": "a14u3p0a8i",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -1639,7 +1639,7 @@
  },
  {
   "completed_by": "chef@mail.com",
-  "completed_by_role": "Chef",
+  "completed_by_role": "Production Coordinator",
   "docstatus": 0,
   "doctype": "Workflow Action",
   "modified": "2025-10-20 17:42:27.705028",
@@ -1649,7 +1649,7 @@
     "parent": "a15uu13ktp",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -1660,7 +1660,7 @@
  },
  {
   "completed_by": "chef@mail.com",
-  "completed_by_role": "Chef",
+  "completed_by_role": "Production Coordinator",
   "docstatus": 0,
   "doctype": "Workflow Action",
   "modified": "2025-10-20 17:55:55.914856",
@@ -1670,7 +1670,7 @@
     "parent": "htnvghsnua",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -1702,7 +1702,7 @@
  },
  {
   "completed_by": "chef@mail.com",
-  "completed_by_role": "Chef",
+  "completed_by_role": "Production Coordinator",
   "docstatus": 0,
   "doctype": "Workflow Action",
   "modified": "2025-10-20 17:56:46.309708",
@@ -1712,7 +1712,7 @@
     "parent": "idfgti0mg4",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -1754,7 +1754,7 @@
     "parent": "m71htjorq2",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -1765,7 +1765,7 @@
  },
  {
   "completed_by": "Administrator",
-  "completed_by_role": "Chef",
+  "completed_by_role": "Production Coordinator",
   "docstatus": 0,
   "doctype": "Workflow Action",
   "modified": "2025-10-20 19:53:03.920547",
@@ -1775,7 +1775,7 @@
     "parent": "mhvko86884",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -1786,7 +1786,7 @@
  },
  {
   "completed_by": "Administrator",
-  "completed_by_role": "Chef",
+  "completed_by_role": "Production Coordinator",
   "docstatus": 0,
   "doctype": "Workflow Action",
   "modified": "2025-10-20 19:53:03.961427",
@@ -1796,7 +1796,7 @@
     "parent": "mhv7hffhfd",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -1807,7 +1807,7 @@
  },
  {
   "completed_by": "Administrator",
-  "completed_by_role": "Chef",
+  "completed_by_role": "Production Coordinator",
   "docstatus": 0,
   "doctype": "Workflow Action",
   "modified": "2025-10-20 19:53:03.984593",
@@ -1817,7 +1817,7 @@
     "parent": "mhv0c121m4",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -1828,7 +1828,7 @@
  },
  {
   "completed_by": "Administrator",
-  "completed_by_role": "Chef",
+  "completed_by_role": "Production Coordinator",
   "docstatus": 0,
   "doctype": "Workflow Action",
   "modified": "2025-10-20 19:53:04.017349",
@@ -1838,7 +1838,7 @@
     "parent": "mi0jiu4ge7",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -1849,7 +1849,7 @@
  },
  {
   "completed_by": "Administrator",
-  "completed_by_role": "Chef",
+  "completed_by_role": "Production Coordinator",
   "docstatus": 0,
   "doctype": "Workflow Action",
   "modified": "2025-10-20 19:53:44.401402",
@@ -1859,7 +1859,7 @@
     "parent": "mukdqj0tnr",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -1891,7 +1891,7 @@
  },
  {
   "completed_by": "Administrator",
-  "completed_by_role": "Chef",
+  "completed_by_role": "Production Coordinator",
   "docstatus": 0,
   "doctype": "Workflow Action",
   "modified": "2025-10-20 19:53:51.191932",
@@ -1901,7 +1901,7 @@
     "parent": "n0ngpn4397",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -1933,7 +1933,7 @@
  },
  {
   "completed_by": "Administrator",
-  "completed_by_role": "Chef",
+  "completed_by_role": "Production Coordinator",
   "docstatus": 0,
   "doctype": "Workflow Action",
   "modified": "2025-10-20 19:54:17.354292",
@@ -1943,7 +1943,7 @@
     "parent": "n8tlndpcvj",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -1964,7 +1964,7 @@
     "parent": "nonop8oaoj",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -1996,7 +1996,7 @@
  },
  {
   "completed_by": "Administrator",
-  "completed_by_role": "Chef",
+  "completed_by_role": "Production Coordinator",
   "docstatus": 0,
   "doctype": "Workflow Action",
   "modified": "2025-10-22 17:29:52.242389",
@@ -2006,7 +2006,7 @@
     "parent": "q5234vjoeg",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -2017,7 +2017,7 @@
  },
  {
   "completed_by": "Administrator",
-  "completed_by_role": "Chef",
+  "completed_by_role": "Production Coordinator",
   "docstatus": 0,
   "doctype": "Workflow Action",
   "modified": "2025-10-22 17:29:53.210705",
@@ -2027,7 +2027,7 @@
     "parent": "q5caqrr34r",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -2080,7 +2080,7 @@
  },
  {
   "completed_by": "Administrator",
-  "completed_by_role": "Chef",
+  "completed_by_role": "Production Coordinator",
   "docstatus": 0,
   "doctype": "Workflow Action",
   "modified": "2025-10-22 19:18:03.944072",
@@ -2090,7 +2090,7 @@
     "parent": "phnrnlvbot",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -2101,7 +2101,7 @@
  },
  {
   "completed_by": "Administrator",
-  "completed_by_role": "Chef",
+  "completed_by_role": "Production Coordinator",
   "docstatus": 0,
   "doctype": "Workflow Action",
   "modified": "2025-10-22 19:18:29.808493",
@@ -2111,7 +2111,7 @@
     "parent": "ppqi9201lo",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -2143,7 +2143,7 @@
  },
  {
   "completed_by": "chef@mail.com",
-  "completed_by_role": "Chef",
+  "completed_by_role": "Production Coordinator",
   "docstatus": 0,
   "doctype": "Workflow Action",
   "modified": "2026-03-12 12:20:19.775620",
@@ -2153,7 +2153,7 @@
     "parent": "2th540ukqe",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -2164,7 +2164,7 @@
  },
  {
   "completed_by": "munim@invento.com.bd",
-  "completed_by_role": "Chef",
+  "completed_by_role": "Production Coordinator",
   "docstatus": 0,
   "doctype": "Workflow Action",
   "modified": "2026-03-12 12:20:19.833274",
@@ -2174,7 +2174,7 @@
     "parent": "2th6ng8tbm",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -2185,7 +2185,7 @@
  },
  {
   "completed_by": "munim@invento.com.bd",
-  "completed_by_role": "Chef",
+  "completed_by_role": "Production Coordinator",
   "docstatus": 0,
   "doctype": "Workflow Action",
   "modified": "2026-03-12 12:21:46.182979",
@@ -2195,7 +2195,7 @@
     "parent": "8uc56g1inu",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -2227,7 +2227,7 @@
  },
  {
   "completed_by": "chef@mail.com",
-  "completed_by_role": "Chef",
+  "completed_by_role": "Production Coordinator",
   "docstatus": 0,
   "doctype": "Workflow Action",
   "modified": "2026-03-12 12:25:33.939518",
@@ -2237,7 +2237,7 @@
     "parent": "80jb4c6k31",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -2279,7 +2279,7 @@
     "parent": "4303ah8blj",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -2290,7 +2290,7 @@
  },
  {
   "completed_by": "chef@mail.com",
-  "completed_by_role": "Chef",
+  "completed_by_role": "Production Coordinator",
   "docstatus": 0,
   "doctype": "Workflow Action",
   "modified": "2026-03-12 12:50:27.157067",
@@ -2300,7 +2300,7 @@
     "parent": "8f5v930fue",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -2311,7 +2311,7 @@
  },
  {
   "completed_by": "chef@mail.com",
-  "completed_by_role": "Chef",
+  "completed_by_role": "Production Coordinator",
   "docstatus": 0,
   "doctype": "Workflow Action",
   "modified": "2026-03-12 12:50:27.223617",
@@ -2321,7 +2321,7 @@
     "parent": "8f60j4l805",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -2332,7 +2332,7 @@
  },
  {
   "completed_by": "syahirah.azman@handa.com",
-  "completed_by_role": "Chef",
+  "completed_by_role": "Production Coordinator",
   "docstatus": 0,
   "doctype": "Workflow Action",
   "modified": "2026-03-12 13:12:54.714381",
@@ -2342,7 +2342,7 @@
     "parent": "asb3c6b2g9",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -2353,7 +2353,7 @@
  },
  {
   "completed_by": "chef@mail.com",
-  "completed_by_role": "Chef",
+  "completed_by_role": "Production Coordinator",
   "docstatus": 0,
   "doctype": "Workflow Action",
   "modified": "2026-03-12 13:12:54.802726",
@@ -2363,7 +2363,7 @@
     "parent": "asb4h4jgde",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -2374,7 +2374,7 @@
  },
  {
   "completed_by": "chef@mail.com",
-  "completed_by_role": "Chef",
+  "completed_by_role": "Production Coordinator",
   "docstatus": 0,
   "doctype": "Workflow Action",
   "modified": "2026-03-12 13:15:31.276236",
@@ -2384,7 +2384,7 @@
     "parent": "7ts0uadkg4",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -2395,7 +2395,7 @@
  },
  {
   "completed_by": "chef@mail.com",
-  "completed_by_role": "Chef",
+  "completed_by_role": "Production Coordinator",
   "docstatus": 0,
   "doctype": "Workflow Action",
   "modified": "2026-03-12 13:15:37.523436",
@@ -2405,7 +2405,7 @@
     "parent": "0ttv0hfln1",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -2447,7 +2447,7 @@
     "parent": "au66btlmbl",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -2489,7 +2489,7 @@
     "parent": "ev2v67mnsl",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -2510,7 +2510,7 @@
     "parent": "6b00t1o5in",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -2531,7 +2531,7 @@
     "parent": "37uf6m30b1",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -2552,7 +2552,7 @@
     "parent": "37ug3m89f7",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -2573,7 +2573,7 @@
     "parent": "37ugnil479",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -2594,7 +2594,7 @@
     "parent": "37uhumgv82",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -2615,7 +2615,7 @@
     "parent": "37uhv6av47",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -2636,7 +2636,7 @@
     "parent": "37uh21qr2b",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -2647,7 +2647,7 @@
  },
  {
   "completed_by": "syahirah.azman@handa.com",
-  "completed_by_role": "Chef",
+  "completed_by_role": "Production Coordinator",
   "docstatus": 0,
   "doctype": "Workflow Action",
   "modified": "2026-03-16 14:58:04.369771",
@@ -2657,7 +2657,7 @@
     "parent": "48urqpo721",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -2699,7 +2699,7 @@
     "parent": "cb4dho2qq6",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",
@@ -2720,7 +2720,7 @@
     "parent": "cb4eer1acv",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ],
   "reference_doctype": "Work Order",

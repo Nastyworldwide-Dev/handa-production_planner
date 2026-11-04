@@ -39,6 +39,9 @@ frappe.ui.form.on("Production Plan", {
 			return;
 		}
 		await frm.set_value("custom__skip_material_transfer_to_wip_warehouse", template_doc.skip_material_transfer_to_wip_warehouse);
+		if (template_doc.custom_process_type) {
+			await frm.set_value("custom_process_type", template_doc.custom_process_type);
+		}
 
 		// The template's branch decides the header warehouses; without one, the template's own do.
 		// Apply explicitly: set_value skips the trigger when the branch is unchanged.

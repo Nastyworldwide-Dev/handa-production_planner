@@ -118,7 +118,9 @@ class TestProductionPlanBranchFields(unittest.TestCase):
 
 	def test_branch_and_wastage_fields_exist(self):
 		self.assertEqual(self.fields["custom_branch"]["options"], "Production Branch Warehouse")
-		self.assertEqual(self.fields["custom_branch_warehouse"]["fetch_from"], "custom_branch.parent_warehouse")
+		self.assertEqual(
+			self.fields["custom_branch_warehouse"]["fetch_from"], "custom_branch.parent_warehouse"
+		)
 		self.assertEqual(self.fields["custom_wastage_warehouse"]["options"], "Warehouse")
 
 	def test_field_order_places_branch_after_company(self):
@@ -187,15 +189,32 @@ class TestWorkspaceLinks(unittest.TestCase):
 
 	def test_production_panel_has_branch_warehouse_shortcut(self):
 		panel = self.workspaces["Production Panel"]
-		self.assertIn("Production Branch Warehouse", [s["link_to"] for s in panel["shortcuts"]])
+		shortcut = next(s for s in panel["shortcuts"] if s["link_to"] == "Production Branch Warehouse")
 		shortcut_blocks = [
 			b["data"]["shortcut_name"] for b in json.loads(panel["content"]) if b["type"] == "shortcut"
 		]
-		self.assertIn("Production Branch Warehouse", shortcut_blocks)
+		# Content blocks reference shortcuts by label, which is "Vendor Warehouse Setup" now.
+		self.assertIn(shortcut["label"], shortcut_blocks)
+
+	def test_every_content_shortcut_has_a_shortcut_row(self):
+		"""Renamed labels must be renamed in the page content too, or the tile vanishes."""
+		for name, ws in self.workspaces.items():
+			labels = {s["label"] for s in ws["shortcuts"]}
+			for block in json.loads(ws["content"]):
+				if block["type"] == "shortcut":
+					self.assertIn(block["data"]["shortcut_name"], labels, name)
+
+	def test_vendor_tracker_on_coordinator_and_production_panels(self):
+		for name in ("Production Tracking", "Production Panel"):
+			self.assertIn("Vendor Tracker", [s["link_to"] for s in self.workspaces[name]["shortcuts"]], name)
 
 	def test_admin_panel_production_card_links_branch_warehouse(self):
 		links = self.workspaces["Admin Panel"]["links"]
-		card = next(i for i, link in enumerate(links) if link["type"] == "Card Break" and link["label"] == "Production")
+		card = next(
+			i
+			for i, link in enumerate(links)
+			if link["type"] == "Card Break" and link["label"] == "Production"
+		)
 		card_links = links[card + 1 : card + 1 + links[card]["link_count"]]
 		self.assertTrue(all(link["type"] == "Link" for link in card_links))
 		self.assertIn("Production Branch Warehouse", [link["link_to"] for link in card_links])
@@ -203,3 +222,20 @@ class TestWorkspaceLinks(unittest.TestCase):
 
 if __name__ == "__main__":
 	unittest.main()
+
+
+class TestVendorRename(unittest.TestCase):
+	"""The restaurant Chef role became Production Coordinator; nothing may point back."""
+
+	def test_no_json_references_chef_role(self):
+		offenders = []
+		for path in APP_ROOT.rglob("*.json"):
+			text = path.read_text()
+			if '"Chef"' in text or "Chef's Panel" in text or "chef's-panel" in text:
+				offenders.append(str(path.relative_to(APP_ROOT)))
+		self.assertEqual(offenders, [])
+
+	def test_rename_patch_registered(self):
+		patches = (APP_ROOT / "patches.txt").read_text()
+		self.assertIn("production_planner.patches.rename_chef_to_production_coordinator", patches)
+		self.assertTrue((APP_ROOT / "patches" / "rename_chef_to_production_coordinator.py").is_file())

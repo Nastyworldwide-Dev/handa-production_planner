@@ -3,14 +3,14 @@
   "docstatus": 0,
   "doctype": "Role Profile",
   "modified": "2025-10-20 13:41:03.102127",
-  "name": "Chef",
-  "role_profile": "Chef",
+  "name": "Production Coordinator",
+  "role_profile": "Production Coordinator",
   "roles": [
    {
-    "parent": "Chef",
+    "parent": "Production Coordinator",
     "parentfield": "roles",
     "parenttype": "Role Profile",
-    "role": "Chef"
+    "role": "Production Coordinator"
    }
   ]
  },

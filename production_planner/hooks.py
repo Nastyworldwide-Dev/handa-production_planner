@@ -248,13 +248,13 @@ doc_events = {
 
 fixtures = [
 	{"dt": "Workspace",
-	 "filters": [["name", "in", ["Chef's Panel", "QC Panel", "Production Panel", "Admin Panel"]]]},
+	 "filters": [["name", "in", ["Production Tracking", "QC Panel", "Production Panel", "Admin Panel"]]]},
 	{"dt": "Workflow"},
 	{"dt": "Workflow State"},
 	{"dt": "Workflow Action"},
-	{"dt": "Role", "filters": [["name", "in", ["Chef", "QC", "Production"]]]},
-	{"dt": "Role Profile", "filters": [["name", "in", ["Chef", "QC", "Production User", "Admin"]]]},
-	{"dt": "Custom DocPerm", "filters": [["role", "in", ["Chef", "QC", "Production"]]]},
+	{"dt": "Role", "filters": [["name", "in", ["Production Coordinator", "QC", "Production"]]]},
+	{"dt": "Role Profile", "filters": [["name", "in", ["Production Coordinator", "QC", "Production User", "Admin"]]]},
+	{"dt": "Custom DocPerm", "filters": [["role", "in", ["Production Coordinator", "QC", "Production"]]]},
 	{"dt": "Custom Role"},
 	{"dt": "Stock Entry Type", "filters": [["name", "=", "Wastage Entry"]]},
 ]

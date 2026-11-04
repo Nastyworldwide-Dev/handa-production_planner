@@ -4,8 +4,10 @@ NA
 
 ### How it works
 
+- [Vendor flow: Production Plan to finished goods](docs/vendor_flow.md): setup and day-to-day
+  steps for maceration and copack with outside vendors, lead-time tracking and forecasting.
 - [Production Planner: how it works](docs/production_overview.md): the whole flow from
-  Production Plan to chef preparation, QC and inter-company transfer.
+  Production Plan to vendor processing, QC and inter-company transfer.
 - [Production Plan: branch warehouse flow](docs/production_plan_flow.md): flowcharts of how
   branch warehouses are picked, limited, checked and passed to Work Orders.
 

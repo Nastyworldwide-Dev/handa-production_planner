@@ -2,6 +2,13 @@
 // For license information, please see license.txt
 
 frappe.query_reports["Production Order"] = {
+	// Vendor-flow buttons and their colours; names must match vendor_flow.py.
+	vendor_action_classes: {
+		"Send to Vendor": "btn-primary",
+		"Returned from Vendor": "btn-info",
+		"Rework Done": "btn-warning"
+	},
+
 	"filters": [
 		{
 			"fieldname": "from_date",
@@ -30,15 +37,27 @@ frappe.query_reports["Production Order"] = {
 			"options": "Item"
 		},
 		{
+			"fieldname": "process_type",
+			"label": __("Process Type"),
+			"fieldtype": "Select",
+			"options": "\nMaceration\nCopack"
+		},
+		{
+			"fieldname": "vendor",
+			"label": __("Vendor Site"),
+			"fieldtype": "Link",
+			"options": "Production Branch Warehouse"
+		},
+		{
 			"fieldname": "status",
 			"label": __("Status"),
 			"fieldtype": "MultiSelectList",
 			"options": [
-				{ value: "Pending", description: "" },
-				{ value: "In Progress", description: "" },
-				{ value: "Ready For QC", description: "" },
-				{ value: "QC Rejected", description: "" },
-				{ value: "Completed", description: "" },
+				{ value: "Planned", description: "" },
+				{ value: "At Vendor", description: "" },
+				{ value: "Awaiting QC", description: "" },
+				{ value: "Rejected", description: "" },
+				{ value: "Received", description: "" },
 			],
 			"default": ""
 		}
@@ -53,6 +72,12 @@ frappe.query_reports["Production Order"] = {
 
 	},
 	formatter: function (value, row, column, data, default_formatter) {
+		if (column.fieldname === "timing" && value) {
+			const colors = { "Overdue": "red", "Received Late": "orange", "Due Soon": "orange",
+				"On Track": "blue", "Received On Time": "green" };
+			const color = colors[value] || "gray";
+			return `<span class="indicator-pill ${color}">${__(value)}</span>`;
+		}
 		if (column.fieldname === "action" && value) {
 			if (value === "Accept / Reject" && frappe.user.has_role("QC")) {
 				return `
@@ -68,12 +93,9 @@ frappe.query_reports["Production Order"] = {
                     data-item="${data.item_code}">
                     Reject
                 </button>`;
-			} else if (["Start", "Prepared", "Reprepared"].includes(value) && frappe.user.has_role("Chef")) {
-				const colorMap = {
-					"Start": "btn-primary",
-					"Prepared": "btn-info",
-					"Reprepared": "btn-warning"
-				};
+			} else if (value in frappe.query_reports["Production Order"].vendor_action_classes
+				&& frappe.user.has_role("Production Coordinator")) {
+				const colorMap = frappe.query_reports["Production Order"].vendor_action_classes;
 
 				let btnClass = colorMap[value] || "btn-secondary";
 
@@ -98,10 +120,10 @@ frappe.query_reports["Production Order"] = {
 					return;
 				}
 
-				// Filter for Completed status
-				const non_completed = selected_rows.filter(row => row.status !== "Completed");
+				// Only goods QC has accepted into stock can move on.
+				const non_completed = selected_rows.filter(row => row.status !== "Received");
 				if (non_completed.length > 0) {
-					frappe.msgprint(__("Only Work Orders with status 'Completed' can be transferred."));
+					frappe.msgprint(__("Only Work Orders with status 'Received' can be transferred."));
 					return;
 				}
 

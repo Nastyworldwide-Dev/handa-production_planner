@@ -30,11 +30,12 @@
   {
    "fieldname": "branch",
    "fieldtype": "Link",
-   "label": "Branch",
+   "label": "Vendor Site",
    "options": "Branch",
    "reqd": 1,
    "in_list_view": 1,
-   "in_standard_filter": 1
+   "in_standard_filter": 1,
+   "description": "Create a Branch per vendor, e.g. 'Macerator A' or 'Co-packer B'."
   },
   {
    "fieldname": "column_break_keys",
@@ -43,12 +44,12 @@
   {
    "fieldname": "parent_warehouse",
    "fieldtype": "Link",
-   "label": "Branch Warehouse",
+   "label": "Vendor Group Warehouse",
    "options": "Warehouse",
    "reqd": 1,
    "in_list_view": 1,
    "link_filters": "[[\"Warehouse\", \"is_group\", \"=\", 1]]",
-   "description": "Group warehouse for this branch. Production Plans for the branch can only use warehouses under it."
+   "description": "Group holding your stores and the 'At <vendor>' WIP warehouse."
   },
   {
    "fieldname": "defaults_section",
@@ -93,7 +94,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-10-28 12:00:00.000000",
+ "modified": "2026-11-04 10:00:00.000000",
  "modified_by": "Administrator",
  "module": "Production Planner",
  "name": "Production Branch Warehouse",

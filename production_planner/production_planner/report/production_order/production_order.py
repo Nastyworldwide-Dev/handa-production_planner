@@ -6,9 +6,22 @@ import json
 import frappe
 from erpnext.manufacturing.doctype.work_order.work_order import make_stock_entry
 from frappe import _, copy_doc
-from frappe.utils import flt, nowdate
+from frappe.utils import flt, getdate, nowdate
 
 from production_planner.hook_functions.production_plan import get_group_warehouses
+from production_planner.vendor_flow import (
+	ACTION_ALIASES,
+	RETURNED,
+	REWORK,
+	SEND,
+	STATUS_LABELS,
+	action_for_status,
+	actual_days,
+	expected_ready_date,
+	normalize_action,
+	status_label,
+	timing_state,
+)
 from production_planner.warehouse_rules import (
 	group_warehouse_message,
 	group_warehouse_offenders,
@@ -66,11 +79,16 @@ def execute(filters=None):
 def get_columns():
 	return [
 		{"label": "Action", "fieldname": "action", "fieldtype": "Data", "width": 160},
+		{"label": "Process", "fieldname": "process_type", "fieldtype": "Data", "width": 100},
+		{"label": "Vendor Site", "fieldname": "vendor", "fieldtype": "Link",
+		 "options": "Production Branch Warehouse", "width": 160},
 		{"label": "Item Code", "fieldname": "item_code", "fieldtype": "Data", "width": 180},
 		{"label": "Item Name", "fieldname": "item_name", "fieldtype": "Data", "width": 210},
 		{"label": "Order Qty", "fieldname": "order_qty", "fieldtype": "Float", "width": 100},
 		{"label": "Produced Qty", "fieldname": "produced_qty", "fieldtype": "Float", "width": 120},
 		{"label": "Status", "fieldname": "status", "fieldtype": "Data", "width": 120},
+		{"label": "Expected Ready", "fieldname": "expected_ready_on", "fieldtype": "Date", "width": 120},
+		{"label": "Timing", "fieldname": "timing", "fieldtype": "Data", "width": 130},
 		{"label": "Work Order", "fieldname": "work_order", "fieldtype": "Link",
 		 "options": "Work Order", "width": 150},
 		{"label": "View Actions", "fieldname": "view_recipe", "fieldtype": "HTML", "width": 160},
@@ -89,7 +107,12 @@ def get_data(filters=None):
 				   wo.status          AS status,
 				   wo.name            AS order_number,
 				   wo.production_item AS production_item,
-				   wo.bom_no AS bom_no
+				   wo.bom_no AS bom_no,
+				   wo.custom_process_type AS process_type,
+				   wo.custom_vendor AS vendor,
+				   wo.custom_sent_on AS sent_on,
+				   wo.custom_expected_ready_on AS expected_ready_on,
+				   wo.custom_received_on AS received_on
 			FROM `tabWork Order` wo
 			WHERE wo.docstatus != 2 \
 			"""
@@ -100,6 +123,7 @@ def get_data(filters=None):
 	query += " ORDER BY wo.creation DESC"
 
 	work_order_data = frappe.db.sql(query, filters, as_dict=1)
+	today = getdate(nowdate())
 
 	for row in work_order_data:
 		custom_status = "Pending"
@@ -148,8 +172,10 @@ def get_data(filters=None):
 				else:
 					custom_status = "Ready For QC"
 
-		row["status"] = custom_status
-		row["action"] = get_action_button(row["status"])
+		row["internal_status"] = custom_status
+		row["status"] = status_label(custom_status)
+		row["action"] = action_for_status(custom_status)
+		row["timing"] = timing_state(row.sent_on, row.expected_ready_on, row.received_on, today)
 		bom_no = row.get("bom_no")
 		work_order = row.get("work_order")
 
@@ -158,7 +184,7 @@ def get_data(filters=None):
 			work_order_url = f"/printview?doctype=Work Order&name={work_order}&trigger_print=0"
 			row["view_recipe"] = f'''
 		        <div style="display: flex; gap: 5px;">
-		            <a class="btn btn-xs btn-success" href="{bom_url}" target="_blank">Recipe</a>
+		            <a class="btn btn-xs btn-success" href="{bom_url}" target="_blank">BOM</a>
 		            <a class="btn btn-xs btn-warning" href="{work_order_url}" target="_blank">Materials</a>
 		        </div>
 		    '''
@@ -166,8 +192,9 @@ def get_data(filters=None):
 			row["view_recipe"] = ""
 
 	if filters and filters.get("status"):
-		filtered_data = [row for row in work_order_data if row["status"] in filters.get("status")]
-		return filtered_data
+		# Saved filters may still hold the old internal names ("Pending", "Completed"...).
+		wanted = set(filters.get("status"))
+		return [row for row in work_order_data if {row["status"], row["internal_status"]} & wanted]
 
 	return work_order_data
 
@@ -190,19 +217,13 @@ def get_conditions(filters):
 	if filters and filters.get("company"):
 		conditions.append("wo.company = %(company)s")
 
+	if filters and filters.get("process_type"):
+		conditions.append("wo.custom_process_type = %(process_type)s")
+
+	if filters and filters.get("vendor"):
+		conditions.append("wo.custom_vendor = %(vendor)s")
+
 	return " AND ".join(conditions) if conditions else ""
-
-
-def get_action_button(status):
-	"""Determine what action button to show based on work order status"""
-	action_mapping = {
-		"Pending": "Start",
-		"In Progress": "Prepared",
-		"Ready For QC": "Accept / Reject",
-		"QC Rejected": "Reprepared"
-	}
-
-	return action_mapping.get(status, "")
 
 
 def get_report_summary(filters, data):
@@ -265,11 +286,11 @@ def get_report_summary(filters, data):
 def get_status_indicator(status):
 	"""Get indicator color based on status"""
 	color_map = {
-		"Completed": "Green",
-		"In Progress": "Blue",
-		"Ready For QC": "Orange",
-		"QC Rejected": "Red",
-		"Pending": "Gray"
+		STATUS_LABELS["Completed"]: "Green",
+		STATUS_LABELS["In Progress"]: "Blue",
+		STATUS_LABELS["Ready For QC"]: "Orange",
+		STATUS_LABELS["QC Rejected"]: "Red",
+		STATUS_LABELS["Pending"]: "Gray",
 	}
 	return color_map.get(status, "Gray")
 
@@ -336,18 +357,27 @@ def get_monthly_trend_data(filters):
 
 @frappe.whitelist()
 def handle_action(action, order_no):
-	if action == "Start":
-		response = start_order(order_no)
-	elif action == "Prepared":
-		response = prepare_order(order_no)
-	elif action == "Reprepared":
-		response = reprepare_oder(order_no)
-	return response
+	try:
+		action = normalize_action(action)
+	except ValueError:
+		frappe.throw(_("Unknown action {0}. Expected one of {1}.").format(
+			action, ", ".join([SEND, RETURNED, REWORK, *ACTION_ALIASES])))
+
+	frappe.logger("production_planner").info("[production_order] %s on %s", action, order_no)
+	if action == SEND:
+		return start_order(order_no)
+	if action == RETURNED:
+		return prepare_order(order_no)
+	return reprepare_oder(order_no)
 
 
 def start_order(order_no):
+	"""Send to Vendor: materials leave the source store for the vendor's WIP warehouse."""
 	wo_doc = frappe.get_doc("Work Order", order_no)
 	wo_doc.workflow_state = "In Progress"
+	sent_on = getdate(nowdate())
+	wo_doc.custom_sent_on = sent_on
+	wo_doc.custom_expected_ready_on = expected_ready_date(sent_on, wo_doc.get("custom_lead_time_days"))
 	wo_doc.save(ignore_permissions=True)
 	wo_doc.submit()
 
@@ -365,7 +395,7 @@ def start_order(order_no):
 		se_doc.submit()
 
 	return {
-		"message": "Order Started",
+		"message": _("Sent to vendor. Expected ready {0}.").format(wo_doc.custom_expected_ready_on or _("(no lead time on BOM)")),
 		"data": {
 			'order_no': wo_doc.name,
 			'skip_transfer': wo_doc.skip_transfer,
@@ -375,6 +405,7 @@ def start_order(order_no):
 
 
 def prepare_order(order_no):
+	"""Returned from Vendor: draft the receipt (WIP -> finished goods); QC posts it."""
 	wo_doc = frappe.get_doc("Work Order", order_no)
 	wo_doc.workflow_state = "Ready For QC"
 	wo_doc.save(ignore_permissions=True)
@@ -388,7 +419,7 @@ def prepare_order(order_no):
 	se_doc.insert(ignore_permissions=True)
 
 	return {
-		"message": "Food Prepared Ready For QC",
+		"message": _("Returned from vendor, ready for QC."),
 		"data": {
 			'order_no': wo_doc.name,
 			'qty': wo_doc.qty,
@@ -461,6 +492,15 @@ def create_quality_inspection(order_no, data):
 		se_doc.submit()
 		wo_doc = frappe.get_doc("Work Order", order_no)
 		wo_doc.workflow_state = "Completed"
+		received_on = getdate(data.get("report_date") or nowdate())
+		wo_doc.custom_received_on = received_on
+		wo_doc.custom_actual_days = actual_days(
+			getdate(wo_doc.custom_sent_on) if wo_doc.get("custom_sent_on") else None, received_on
+		)
+		frappe.logger("production_planner").info(
+			"[production_order] %s received after %s days (lead time %s)",
+			order_no, wo_doc.custom_actual_days, wo_doc.get("custom_lead_time_days"),
+		)
 	else:
 		wo_doc = frappe.get_doc("Work Order", order_no)
 		wo_doc.workflow_state = "QC Rejected"
@@ -501,7 +541,7 @@ def reprepare_oder(order_no):
 	se_doc.save(ignore_permissions=True)
 
 	return {
-		'message': "Order Reprepared",
+		'message': _("Rework done, back to QC."),
 	}
 
 
