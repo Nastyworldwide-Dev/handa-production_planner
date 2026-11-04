@@ -60,13 +60,3 @@ def get_branch_warehouses(parent_warehouse):
 		"[production_branch_warehouse] %s has %s leaf warehouses", parent_warehouse, len(warehouses)
 	)
 	return set(warehouses)
-
-
-def get_branch_profile(company, branch):
-	"""The Production Branch Warehouse for company + branch, or None."""
-	return frappe.db.get_value(
-		"Production Branch Warehouse",
-		{"company": company, "branch": branch},
-		["name", "parent_warehouse"],
-		as_dict=True,
-	)

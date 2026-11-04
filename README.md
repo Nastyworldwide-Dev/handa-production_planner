@@ -2,6 +2,13 @@
 
 NA
 
+### How it works
+
+- [Production Planner: how it works](docs/production_overview.md): the whole flow from
+  Production Plan to chef preparation, QC and inter-company transfer.
+- [Production Plan: branch warehouse flow](docs/production_plan_flow.md): flowcharts of how
+  branch warehouses are picked, limited, checked and passed to Work Orders.
+
 ### Installation
 
 You can install this app using the [bench](https://github.com/frappe/bench) CLI:
