@@ -72,7 +72,8 @@ def get_data(filters):
 		if filters.get(key):
 			conditions[field] = filters.get(key)
 
-	rows = frappe.get_all(
+	# get_list applies the user's permissions (e.g. restricted to one company).
+	rows = frappe.get_list(
 		"Work Order",
 		filters=conditions,
 		fields=[

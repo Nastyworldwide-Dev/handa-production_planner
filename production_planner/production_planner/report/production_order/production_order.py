@@ -6,7 +6,7 @@ import json
 import frappe
 from erpnext.manufacturing.doctype.work_order.work_order import make_stock_entry
 from frappe import _, copy_doc
-from frappe.utils import flt, getdate, nowdate
+from frappe.utils import escape_html, flt, getdate, nowdate
 
 from production_planner.hook_functions.production_plan import get_group_warehouses
 from production_planner.vendor_flow import (
@@ -357,11 +357,13 @@ def get_monthly_trend_data(filters):
 
 @frappe.whitelist()
 def handle_action(action, order_no):
+	# Whitelisted and acts with ignore_permissions below, so check the caller first.
+	frappe.has_permission("Work Order", "write", order_no, throw=True)
 	try:
 		action = normalize_action(action)
 	except ValueError:
 		frappe.throw(_("Unknown action {0}. Expected one of {1}.").format(
-			action, ", ".join([SEND, RETURNED, REWORK, *ACTION_ALIASES])))
+			escape_html(action), ", ".join([SEND, RETURNED, REWORK, *ACTION_ALIASES])))
 
 	frappe.logger("production_planner").info("[production_order] %s on %s", action, order_no)
 	if action == SEND:
@@ -429,6 +431,9 @@ def prepare_order(order_no):
 
 @frappe.whitelist()
 def create_quality_inspection(order_no, data):
+	# QC submits stock with ignore_permissions below, so check the caller first.
+	frappe.has_permission("Work Order", "read", order_no, throw=True)
+	frappe.has_permission("Quality Inspection", "create", throw=True)
 	if isinstance(data, str):
 		data = json.loads(data)
 

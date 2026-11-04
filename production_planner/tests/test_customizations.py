@@ -239,3 +239,34 @@ class TestVendorRename(unittest.TestCase):
 		patches = (APP_ROOT / "patches.txt").read_text()
 		self.assertIn("production_planner.patches.rename_chef_to_production_coordinator", patches)
 		self.assertTrue((APP_ROOT / "patches" / "rename_chef_to_production_coordinator.py").is_file())
+
+
+class TestWhitelistedEndpoints(unittest.TestCase):
+	"""Report buttons call whitelisted methods that move stock with ignore_permissions.
+
+	Any logged-in user can call a whitelisted method directly, so each one that
+	acts on a Work Order must check the caller's permission on it first.
+	"""
+
+	REPORT = APP_ROOT / "production_planner" / "report" / "production_order" / "production_order.py"
+	GUARDED = frozenset({"handle_action", "create_quality_inspection"})
+
+	def test_stock_moving_endpoints_check_permission(self):
+		import ast
+
+		tree = ast.parse(self.REPORT.read_text())
+		found = {}
+		for node in tree.body:
+			if isinstance(node, ast.FunctionDef) and node.name in self.GUARDED:
+				calls = {
+					ast.unparse(n.func) for n in ast.walk(node) if isinstance(n, ast.Call)
+				}
+				found[node.name] = "frappe.has_permission" in calls
+		self.assertEqual(found, {name: True for name in self.GUARDED})
+
+	def test_vendor_tracker_respects_user_permissions(self):
+		source = (
+			APP_ROOT / "production_planner" / "report" / "vendor_tracker" / "vendor_tracker.py"
+		).read_text()
+		# The listed jobs must go through get_list (user permissions); get_all only for history.
+		self.assertIn('frappe.get_list(\n\t\t"Work Order"', source)
