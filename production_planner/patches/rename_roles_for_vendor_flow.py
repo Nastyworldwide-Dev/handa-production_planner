@@ -1,8 +1,9 @@
 """Standardise roles for the vendor flow under one "Production ..." prefix.
 
 Chef becomes Production Coordinator (with its role profile and workspace),
-QC becomes Production QC, and Production becomes Production Admin. Other role
-profiles and workspaces keep their names; only the roles inside them change.
+QC becomes Production QC, and Production becomes Production Admin. The Chef
+role profile and Chef's Panel workspace were renamed with the Chef role; every
+other role profile and workspace keeps its name, only the roles inside change.
 
 Runs in [pre_model_sync]: DocType sync creates any missing role named in a
 DocType's permissions (make_module_and_roles), which would make the new name
@@ -28,12 +29,16 @@ def execute():
 		if not frappe.db.exists(doctype, old):
 			log.info("[patch] %s %r not found, nothing to rename", doctype, old)
 			continue
-		if frappe.db.exists(doctype, new):
+		merge = bool(frappe.db.exists(doctype, new))
+		if merge and doctype != "Role":
 			log.warning("[patch] %s %r already exists, leaving %r in place", doctype, new, old)
 			continue
 
-		frappe.rename_doc(doctype, old, new, force=True, show_alert=False)
-		log.info("[patch] renamed %s %r -> %r", doctype, old, new)
+		# These roles belong to this app. If the new one already exists (created by
+		# hand or an earlier build), merge so users and permissions move across
+		# instead of silently staying on the old role.
+		frappe.rename_doc(doctype, old, new, force=True, merge=merge, show_alert=False)
+		log.info("[patch] %s %s %r -> %r", "merged" if merge else "renamed", doctype, old, new)
 
 	# Role and Role Profile keep their own title fields; rename_doc only changes the name.
 	for role in ("Production Coordinator", "Production QC", "Production Admin"):

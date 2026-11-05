@@ -327,3 +327,8 @@ class TestWhitelistedEndpoints(unittest.TestCase):
 		pre, _sep, post = patches.partition("[post_model_sync]")
 		self.assertIn("production_planner.patches.rename_roles_for_vendor_flow", pre)
 		self.assertNotIn("production_planner.patches.rename_roles_for_vendor_flow", post)
+
+	def test_patch_merges_roles_when_new_name_exists(self):
+		"""A pre-existing "Production Admin" must absorb "Production", not strand its users."""
+		patch = (APP_ROOT / "patches" / "rename_roles_for_vendor_flow.py").read_text()
+		self.assertIn("merge=", patch)
