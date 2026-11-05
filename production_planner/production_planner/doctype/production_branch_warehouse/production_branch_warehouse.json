@@ -135,7 +135,7 @@
    "print": 1,
    "read": 1,
    "report": 1,
-   "role": "Production"
+   "role": "Production Admin"
   }
  ],
  "row_format": "Dynamic",

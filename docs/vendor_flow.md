@@ -25,12 +25,13 @@ flowchart LR
 
 | Role | Workspace | Does |
 |---|---|---|
-| Production | Production Panel | Sets up vendors, items and BOMs; creates and submits Production Plans |
+| Production Admin | Production Panel | Sets up vendors, items and BOMs; creates and submits Production Plans |
 | Production Coordinator | Production Tracking | Clicks **Send to Vendor**, **Returned from Vendor** and **Rework Done**; watches the Vendor Tracker |
-| QC | QC Panel | **Accepts** or **rejects** what the vendor returns |
+| Production QC | QC Panel | **Accepts** or **rejects** what the vendor returns |
 
-The Production Coordinator was called *Chef* before. Existing users keep their access, because a
-patch renames the role on `bench migrate`.
+All three roles share the **Production** prefix. They used to be *Production*, *Chef* and *QC*.
+Existing users keep their access, because a patch renames the roles during migration. Workspace
+and role-profile names are unchanged.
 
 ## 1. One-time setup
 
@@ -215,7 +216,9 @@ Use **Stock Balance** filtered by the "At …" warehouses to see everything curr
 
 | Before | Now |
 |---|---|
+| Production (role) | Production Admin |
 | Chef (role) / Chef's Panel | Production Coordinator / Production Tracking |
+| QC (role) | Production QC |
 | Branch | Vendor Site |
 | Production Branch Warehouse | Vendor Warehouse Setup (same DocType, relabelled) |
 | Recipe / Recipe Search | BOM / BOM Search |
@@ -234,4 +237,4 @@ records are shared with other ERPNext workflows, so only the labels you see chan
 | *Group node warehouse is not allowed* | Pick a child warehouse, not the group |
 | Materials table is empty | The item row has no BOM, or the BOM has no components. Check the BOM and save again |
 | Expected Ready is blank | The BOM has no Lead Time. Set it on the BOM; for jobs already sent, type the date on the Work Order |
-| Buttons missing on Production Order | The user needs the **Production Coordinator** role (Send/Returned/Rework) or **QC** (Accept/Reject) |
+| Buttons missing on Production Order | The user needs **Production Coordinator** (Send/Returned/Rework), **Production QC** (Accept/Reject) or **Production Admin** (Inter Company Transfer) |

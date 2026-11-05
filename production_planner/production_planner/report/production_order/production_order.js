@@ -79,7 +79,7 @@ frappe.query_reports["Production Order"] = {
 			return `<span class="indicator-pill ${color}">${__(value)}</span>`;
 		}
 		if (column.fieldname === "action" && value) {
-			if (value === "Accept / Reject" && frappe.user.has_role("QC")) {
+			if (value === "Accept / Reject" && frappe.user.has_role("Production QC")) {
 				return `
                 <button class="btn btn-xs btn-success action-btn"
                     data-action="Accept"
@@ -112,7 +112,7 @@ frappe.query_reports["Production Order"] = {
 	},
 
 	onload: function (report) {
-		if (frappe.user.has_role("Production")) {
+		if (frappe.user.has_role("Production Admin")) {
 			report.page.add_inner_button(__("Inter Company Transfer"), function () {
 				const selected_rows = report.get_checked_items();
 				if (selected_rows.length === 0) {

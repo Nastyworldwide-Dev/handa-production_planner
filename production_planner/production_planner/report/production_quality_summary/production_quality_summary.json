@@ -32,10 +32,10 @@
    "role": "Stock Manager"
   },
   {
-   "role": "QC"
+   "role": "Production QC"
   },
   {
-   "role": "Production"
+   "role": "Production Admin"
   }
  ],
  "timeout": 0

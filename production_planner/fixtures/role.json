@@ -20,9 +20,9 @@
   "home_page": "/app/production-panel",
   "is_custom": 0,
   "modified": "2025-10-20 13:37:54.343029",
-  "name": "Production",
+  "name": "Production Admin",
   "restrict_to_domain": null,
-  "role_name": "Production",
+  "role_name": "Production Admin",
   "two_factor_auth": 0
  },
  {
@@ -33,9 +33,9 @@
   "home_page": "/app/qc-panel",
   "is_custom": 0,
   "modified": "2025-10-20 13:52:53.865602",
-  "name": "QC",
+  "name": "Production QC",
   "restrict_to_domain": null,
-  "role_name": "QC",
+  "role_name": "Production QC",
   "two_factor_auth": 0
  }
 ]

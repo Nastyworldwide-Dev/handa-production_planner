@@ -1,8 +1,9 @@
 [pre_model_sync]
 # Patches added in this section will be executed before doctypes are migrated
+# Role renames must run here: DocType sync auto-creates roles named in permissions.
+production_planner.patches.rename_roles_for_vendor_flow
 # Read docs to understand patches: https://frappeframework.com/docs/v14/user/en/database-migrations
 
 [post_model_sync]
 # Patches added in this section will be executed after doctypes are migrated
 production_planner.patches.backfill_production_plan_item_name
-production_planner.patches.rename_chef_to_production_coordinator

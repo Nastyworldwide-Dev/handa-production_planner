@@ -252,9 +252,9 @@ fixtures = [
 	{"dt": "Workflow"},
 	{"dt": "Workflow State"},
 	{"dt": "Workflow Action"},
-	{"dt": "Role", "filters": [["name", "in", ["Production Coordinator", "QC", "Production"]]]},
+	{"dt": "Role", "filters": [["name", "in", ["Production Coordinator", "Production QC", "Production Admin"]]]},
 	{"dt": "Role Profile", "filters": [["name", "in", ["Production Coordinator", "QC", "Production User", "Admin"]]]},
-	{"dt": "Custom DocPerm", "filters": [["role", "in", ["Production Coordinator", "QC", "Production"]]]},
+	{"dt": "Custom DocPerm", "filters": [["role", "in", ["Production Coordinator", "Production QC", "Production Admin"]]]},
 	{"dt": "Custom Role"},
 	{"dt": "Stock Entry Type", "filters": [["name", "=", "Wastage Entry"]]},
 ]

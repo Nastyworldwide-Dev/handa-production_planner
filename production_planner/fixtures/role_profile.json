@@ -136,7 +136,7 @@
     "parent": "QC",
     "parentfield": "roles",
     "parenttype": "Role Profile",
-    "role": "QC"
+    "role": "Production QC"
    }
   ]
  },
@@ -151,7 +151,7 @@
     "parent": "Production User",
     "parentfield": "roles",
     "parenttype": "Role Profile",
-    "role": "Production"
+    "role": "Production Admin"
    },
    {
     "parent": "Production User",

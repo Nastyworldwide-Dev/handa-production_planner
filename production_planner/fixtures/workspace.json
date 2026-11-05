@@ -255,7 +255,7 @@
     "parent": "QC Panel",
     "parentfield": "roles",
     "parenttype": "Workspace",
-    "role": "QC"
+    "role": "Production QC"
    }
   ],
   "sequence_id": 4.0,
@@ -411,7 +411,7 @@
     "parent": "Production Panel",
     "parentfield": "roles",
     "parenttype": "Workspace",
-    "role": "Production"
+    "role": "Production Admin"
    }
   ],
   "sequence_id": 2.0,

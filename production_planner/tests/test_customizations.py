@@ -224,8 +224,54 @@ if __name__ == "__main__":
 	unittest.main()
 
 
+ROLE_KEYS = frozenset({"role", "allowed", "allow_edit", "completed_by_role", "role_name"})
+OLD_ROLES = {"Chef": "Production Coordinator", "QC": "Production QC", "Production": "Production Admin"}
+
+
+def role_values(obj, doctype=None):
+	"""Every role name a JSON export refers to, including Role records' own names."""
+	if isinstance(obj, list):
+		for item in obj:
+			yield from role_values(item, doctype)
+		return
+	if not isinstance(obj, dict):
+		return
+	doctype = obj.get("doctype") or doctype
+	for key, value in obj.items():
+		if isinstance(value, (dict, list)):
+			yield from role_values(value, doctype)
+		elif key in ROLE_KEYS or (key == "name" and doctype == "Role"):
+			yield value
+
+
 class TestVendorRename(unittest.TestCase):
-	"""The restaurant Chef role became Production Coordinator; nothing may point back."""
+	"""Roles share one prefix: Production Admin / Coordinator / QC. Nothing may point back."""
+
+	def test_no_json_uses_old_role_names(self):
+		offenders = set()
+		for path in APP_ROOT.rglob("*.json"):
+			with open(path) as f:
+				for value in role_values(json.load(f)):
+					if value in OLD_ROLES:
+						offenders.add((str(path.relative_to(APP_ROOT)), value))
+		self.assertEqual(sorted(offenders), [])
+
+	def test_role_fixture_filters_use_new_names(self):
+		hooks = (APP_ROOT / "hooks.py").read_text()
+		for old, new in OLD_ROLES.items():
+			self.assertIn(f'"{new}"', hooks)
+			self.assertNotIn(f'"in", ["{old}"', hooks)
+
+	def test_js_role_checks_use_new_names(self):
+		for path in APP_ROOT.rglob("*.js"):
+			text = path.read_text()
+			for old in OLD_ROLES:
+				self.assertNotIn(f'has_role("{old}")', text, str(path))
+
+	def test_patch_renames_every_old_role(self):
+		patch = (APP_ROOT / "patches" / "rename_roles_for_vendor_flow.py").read_text()
+		for old, new in OLD_ROLES.items():
+			self.assertIn(f'("Role", "{old}", "{new}")', patch)
 
 	def test_no_json_references_chef_role(self):
 		offenders = []
@@ -237,8 +283,8 @@ class TestVendorRename(unittest.TestCase):
 
 	def test_rename_patch_registered(self):
 		patches = (APP_ROOT / "patches.txt").read_text()
-		self.assertIn("production_planner.patches.rename_chef_to_production_coordinator", patches)
-		self.assertTrue((APP_ROOT / "patches" / "rename_chef_to_production_coordinator.py").is_file())
+		self.assertIn("production_planner.patches.rename_roles_for_vendor_flow", patches)
+		self.assertNotIn("rename_chef_to_production_coordinator", patches)
 
 
 class TestWhitelistedEndpoints(unittest.TestCase):
@@ -270,3 +316,14 @@ class TestWhitelistedEndpoints(unittest.TestCase):
 		).read_text()
 		# The listed jobs must go through get_list (user permissions); get_all only for history.
 		self.assertIn('frappe.get_list(\n\t\t"Work Order"', source)
+
+	def test_patch_runs_before_model_sync(self):
+		"""DocType sync auto-creates any role named in its permissions (make_module_and_roles).
+
+		If the rename ran after model sync, "Production Admin" would already exist,
+		the patch would skip, and existing users would be stranded on "Production".
+		"""
+		patches = (APP_ROOT / "patches.txt").read_text()
+		pre, _sep, post = patches.partition("[post_model_sync]")
+		self.assertIn("production_planner.patches.rename_roles_for_vendor_flow", pre)
+		self.assertNotIn("production_planner.patches.rename_roles_for_vendor_flow", post)

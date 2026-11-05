@@ -127,7 +127,7 @@
  },
  {
   "completed_by": "munim@invento.com.bd",
-  "completed_by_role": "QC",
+  "completed_by_role": "Production QC",
   "docstatus": 0,
   "doctype": "Workflow Action",
   "modified": "2026-04-01 11:49:22.517581",
@@ -137,7 +137,7 @@
     "parent": "amcpjp39ks",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "QC"
+    "role": "Production QC"
    }
   ],
   "reference_doctype": "Work Order",
@@ -211,7 +211,7 @@
  },
  {
   "completed_by": "munim@invento.com.bd",
-  "completed_by_role": "QC",
+  "completed_by_role": "Production QC",
   "docstatus": 0,
   "doctype": "Workflow Action",
   "modified": "2026-04-05 17:34:24.174013",
@@ -221,7 +221,7 @@
     "parent": "9fi1kcju9n",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "QC"
+    "role": "Production QC"
    }
   ],
   "reference_doctype": "Work Order",
@@ -673,7 +673,7 @@
  },
  {
   "completed_by": "munim@invento.com.bd",
-  "completed_by_role": "QC",
+  "completed_by_role": "Production QC",
   "docstatus": 0,
   "doctype": "Workflow Action",
   "modified": "2025-10-21 14:31:28.042246",
@@ -683,7 +683,7 @@
     "parent": "15s0jekqji",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "QC"
+    "role": "Production QC"
    }
   ],
   "reference_doctype": "Work Order",
@@ -778,7 +778,7 @@
  },
  {
   "completed_by": "munim@invento.com.bd",
-  "completed_by_role": "QC",
+  "completed_by_role": "Production QC",
   "docstatus": 0,
   "doctype": "Workflow Action",
   "modified": "2025-12-22 12:17:33.206359",
@@ -788,7 +788,7 @@
     "parent": "fft4r4fpl3",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "QC"
+    "role": "Production QC"
    }
   ],
   "reference_doctype": "Work Order",
@@ -820,7 +820,7 @@
  },
  {
   "completed_by": "munim@invento.com.bd",
-  "completed_by_role": "QC",
+  "completed_by_role": "Production QC",
   "docstatus": 0,
   "doctype": "Workflow Action",
   "modified": "2025-12-22 12:18:43.704591",
@@ -830,7 +830,7 @@
     "parent": "fgj5a7s6qd",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "QC"
+    "role": "Production QC"
    }
   ],
   "reference_doctype": "Work Order",
@@ -904,7 +904,7 @@
  },
  {
   "completed_by": "munim@invento.com.bd",
-  "completed_by_role": "QC",
+  "completed_by_role": "Production QC",
   "docstatus": 0,
   "doctype": "Workflow Action",
   "modified": "2026-01-07 15:09:10.667257",
@@ -914,7 +914,7 @@
     "parent": "agf23cm08f",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "QC"
+    "role": "Production QC"
    }
   ],
   "reference_doctype": "Work Order",
@@ -967,7 +967,7 @@
  },
  {
   "completed_by": "munim@invento.com.bd",
-  "completed_by_role": "QC",
+  "completed_by_role": "Production QC",
   "docstatus": 0,
   "doctype": "Workflow Action",
   "modified": "2026-01-07 15:33:41.424949",
@@ -977,7 +977,7 @@
     "parent": "euqml64tgc",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "QC"
+    "role": "Production QC"
    }
   ],
   "reference_doctype": "Work Order",
@@ -1450,7 +1450,7 @@
  },
  {
   "completed_by": "qc@mail.com",
-  "completed_by_role": "QC",
+  "completed_by_role": "Production QC",
   "docstatus": 0,
   "doctype": "Workflow Action",
   "modified": "2025-10-20 14:04:48.778775",
@@ -1460,7 +1460,7 @@
     "parent": "ag7k2agleu",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "QC"
+    "role": "Production QC"
    }
   ],
   "reference_doctype": "Work Order",
@@ -1471,7 +1471,7 @@
  },
  {
   "completed_by": "Administrator",
-  "completed_by_role": "QC",
+  "completed_by_role": "Production QC",
   "docstatus": 0,
   "doctype": "Workflow Action",
   "modified": "2025-10-20 14:05:03.979456",
@@ -1481,7 +1481,7 @@
     "parent": "akv9tih4o8",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "QC"
+    "role": "Production QC"
    }
   ],
   "reference_doctype": "Work Order",
@@ -1555,7 +1555,7 @@
  },
  {
   "completed_by": "qc@mail.com",
-  "completed_by_role": "QC",
+  "completed_by_role": "Production QC",
   "docstatus": 0,
   "doctype": "Workflow Action",
   "modified": "2025-10-20 16:24:29.385728",
@@ -1565,7 +1565,7 @@
     "parent": "sb5gge6d1a",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "QC"
+    "role": "Production QC"
    }
   ],
   "reference_doctype": "Work Order",
@@ -1681,7 +1681,7 @@
  },
  {
   "completed_by": "qc@mail.com",
-  "completed_by_role": "QC",
+  "completed_by_role": "Production QC",
   "docstatus": 0,
   "doctype": "Workflow Action",
   "modified": "2025-10-20 17:56:07.981508",
@@ -1691,7 +1691,7 @@
     "parent": "i1fq6ef5oc",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "QC"
+    "role": "Production QC"
    }
   ],
   "reference_doctype": "Work Order",
@@ -1723,7 +1723,7 @@
  },
  {
   "completed_by": "qc@mail.com",
-  "completed_by_role": "QC",
+  "completed_by_role": "Production QC",
   "docstatus": 0,
   "doctype": "Workflow Action",
   "modified": "2025-10-20 17:56:50.611618",
@@ -1733,7 +1733,7 @@
     "parent": "ieqnc2id7h",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "QC"
+    "role": "Production QC"
    }
   ],
   "reference_doctype": "Work Order",
@@ -1870,7 +1870,7 @@
  },
  {
   "completed_by": "Administrator",
-  "completed_by_role": "QC",
+  "completed_by_role": "Production QC",
   "docstatus": 0,
   "doctype": "Workflow Action",
   "modified": "2025-10-20 19:53:49.174142",
@@ -1880,7 +1880,7 @@
     "parent": "n0397p1ite",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "QC"
+    "role": "Production QC"
    }
   ],
   "reference_doctype": "Work Order",
@@ -1912,7 +1912,7 @@
  },
  {
   "completed_by": "Administrator",
-  "completed_by_role": "QC",
+  "completed_by_role": "Production QC",
   "docstatus": 0,
   "doctype": "Workflow Action",
   "modified": "2025-10-20 19:53:52.322729",
@@ -1922,7 +1922,7 @@
     "parent": "n13ehdc1mf",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "QC"
+    "role": "Production QC"
    }
   ],
   "reference_doctype": "Work Order",
@@ -1975,7 +1975,7 @@
  },
  {
   "completed_by": "Administrator",
-  "completed_by_role": "QC",
+  "completed_by_role": "Production QC",
   "docstatus": 0,
   "doctype": "Workflow Action",
   "modified": "2025-10-22 17:29:50.287005",
@@ -1985,7 +1985,7 @@
     "parent": "q4eoq2u88j",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "QC"
+    "role": "Production QC"
    }
   ],
   "reference_doctype": "Work Order",
@@ -2038,7 +2038,7 @@
  },
  {
   "completed_by": "Administrator",
-  "completed_by_role": "QC",
+  "completed_by_role": "Production QC",
   "docstatus": 0,
   "doctype": "Workflow Action",
   "modified": "2025-10-22 17:29:54.199936",
@@ -2048,7 +2048,7 @@
     "parent": "q5m7l2bfke",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "QC"
+    "role": "Production QC"
    }
   ],
   "reference_doctype": "Work Order",
@@ -2059,7 +2059,7 @@
  },
  {
   "completed_by": "Administrator",
-  "completed_by_role": "QC",
+  "completed_by_role": "Production QC",
   "docstatus": 0,
   "doctype": "Workflow Action",
   "modified": "2025-10-22 17:29:57.271513",
@@ -2069,7 +2069,7 @@
     "parent": "q6kgprh6g5",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "QC"
+    "role": "Production QC"
    }
   ],
   "reference_doctype": "Work Order",
@@ -2122,7 +2122,7 @@
  },
  {
   "completed_by": "Administrator",
-  "completed_by_role": "QC",
+  "completed_by_role": "Production QC",
   "docstatus": 0,
   "doctype": "Workflow Action",
   "modified": "2025-10-22 19:18:32.378978",
@@ -2132,7 +2132,7 @@
     "parent": "pqjehr2j6l",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "QC"
+    "role": "Production QC"
    }
   ],
   "reference_doctype": "Work Order",
@@ -2206,7 +2206,7 @@
  },
  {
   "completed_by": "qc@mail.com",
-  "completed_by_role": "QC",
+  "completed_by_role": "Production QC",
   "docstatus": 0,
   "doctype": "Workflow Action",
   "modified": "2026-03-12 12:21:54.514240",
@@ -2216,7 +2216,7 @@
     "parent": "auepc7ut7g",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "QC"
+    "role": "Production QC"
    }
   ],
   "reference_doctype": "Work Order",
@@ -2248,7 +2248,7 @@
  },
  {
   "completed_by": "qc@mail.com",
-  "completed_by_role": "QC",
+  "completed_by_role": "Production QC",
   "docstatus": 0,
   "doctype": "Workflow Action",
   "modified": "2026-03-12 12:25:36.837707",
@@ -2258,7 +2258,7 @@
     "parent": "40k8nujoan",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "QC"
+    "role": "Production QC"
    }
   ],
   "reference_doctype": "Work Order",
@@ -2416,7 +2416,7 @@
  },
  {
   "completed_by": "qc@mail.com",
-  "completed_by_role": "QC",
+  "completed_by_role": "Production QC",
   "docstatus": 0,
   "doctype": "Workflow Action",
   "modified": "2026-03-12 13:15:47.163680",
@@ -2426,7 +2426,7 @@
     "parent": "9u0v08g7f7",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "QC"
+    "role": "Production QC"
    }
   ],
   "reference_doctype": "Work Order",
@@ -2458,7 +2458,7 @@
  },
  {
   "completed_by": "qc@mail.com",
-  "completed_by_role": "QC",
+  "completed_by_role": "Production QC",
   "docstatus": 0,
   "doctype": "Workflow Action",
   "modified": "2026-03-12 13:16:05.555358",
@@ -2468,7 +2468,7 @@
     "parent": "eu6n2p64op",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "QC"
+    "role": "Production QC"
    }
   ],
   "reference_doctype": "Work Order",
@@ -2668,7 +2668,7 @@
  },
  {
   "completed_by": "syahirah.azman@handa.com",
-  "completed_by_role": "QC",
+  "completed_by_role": "Production QC",
   "docstatus": 0,
   "doctype": "Workflow Action",
   "modified": "2026-03-16 14:58:29.312730",
@@ -2678,7 +2678,7 @@
     "parent": "296lo5ira5",
     "parentfield": "permitted_roles",
     "parenttype": "Workflow Action",
-    "role": "QC"
+    "role": "Production QC"
    }
   ],
   "reference_doctype": "Work Order",

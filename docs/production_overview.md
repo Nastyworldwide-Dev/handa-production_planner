@@ -5,10 +5,10 @@ For the step-by-step maceration and copack guide, see [Vendor flow](vendor_flow.
 
 ## In one paragraph
 
-The **Production** team builds a **Production Plan**, usually from a template, for a branch.
+The **Production Admin** builds a **Production Plan**, usually from a template, for a branch.
 Submitting it creates one **Work Order** per item. The **Production Coordinator** works those orders from the
 **Production Order** report: **Send to Vendor** moves materials to the vendor's WIP, and **Returned from Vendor** books the
-finished goods as a draft Manufacture entry. **QC** then accepts or rejects each order. Accept
+finished goods as a draft Manufacture entry. **Production QC** then accepts or rejects each order. Accept
 posts the stock and completes the order. Reject sends it back to the vendor for rework.
 Completed orders can be sent to another company with an **Inter Company Transfer**.
 
@@ -16,9 +16,9 @@ Completed orders can be sent to another company with an **Inter Company Transfer
 
 | Role | Workspace | Main screens |
 |---|---|---|
-| Production | Production Panel | Production Plan, Production Plan Template, Production Branch Warehouse, Stock Entry, BOM, Item, reports |
+| Production Admin | Production Panel | Production Plan, Production Plan Template, Production Branch Warehouse, Stock Entry, BOM, Item, reports |
 | Production Coordinator | Production Tracking | Production Order report, Vendor Tracker, BOM and BOM Search, Production Summary / Overview |
-| QC | QC Panel | Production Order report, Quality Inspection (accepted / rejected), Production Quality Summary |
+| Production QC | QC Panel | Production Order report, Quality Inspection (accepted / rejected), Production Quality Summary |
 
 ## End-to-end flow
 
@@ -38,7 +38,7 @@ flowchart TD
     C3 --> C4(["Awaiting QC"])
   end
 
-  subgraph Q["QC: Production Order report"]
+  subgraph Q["Production QC: Production Order report"]
     Q1["Accept / Reject dialog<br/>date, status, sample size, inspector, remarks"] --> Q2["Quality Inspection created + submitted"]
     Q2 --> Q3{"Status"}
     Q3 -- Accepted --> Q4["Manufacture Stock Entry submitted<br/>finished goods now in stock"]
@@ -46,7 +46,7 @@ flowchart TD
     Q3 -- Rejected --> Q6(["Rejected"])
   end
 
-  subgraph T["After QC (Production role)"]
+  subgraph T["After QC (Production Admin)"]
     T1["Inter Company Transfer<br/>(Completed orders only)"] --> T2["Delivery Note + Sales Invoice submitted<br/>Purchase Receipt + Purchase Invoice<br/>created as drafts in the target company"]
   end
 
@@ -62,9 +62,9 @@ flowchart TD
 |---|---|---|---|
 | Planned (Pending) | Production Coordinator | Send to Vendor | Materials move Source → vendor WIP (unless skip transfer); Sent On and Expected Ready set |
 | At Vendor (In Progress) | Production Coordinator | Returned from Vendor | Draft Manufacture entry created, not yet posted |
-| Awaiting QC (Ready For QC) | QC | Accept / Reject | Accept: Manufacture entry posted, Received On and Actual Days set. Reject: nothing posted |
+| Awaiting QC (Ready For QC) | Production QC | Accept / Reject | Accept: Manufacture entry posted, Received On and Actual Days set. Reject: nothing posted |
 | Rejected (QC Rejected) | Production Coordinator | Rework Done | Back to Awaiting QC on the same draft entry |
-| Received (Completed) | Production | Inter Company Transfer | Goods leave the finished goods warehouse on the Delivery Note |
+| Received (Completed) | Production Admin | Inter Company Transfer | Goods leave the finished goods warehouse on the Delivery Note |
 
 Labels show first; the workflow state name is in brackets. These states come from the **Work Order Flow** workflow (`fixtures/workflow.json`). The
 buttons call `handle_action` and `create_quality_inspection` in

@@ -42,7 +42,7 @@
     "workflow_builder_id": null
    },
    {
-    "allow_edit": "QC",
+    "allow_edit": "Production QC",
     "avoid_status_override": 0,
     "doc_status": "1",
     "is_optional_state": 0,
@@ -120,7 +120,7 @@
    {
     "action": "Approve",
     "allow_self_approval": 1,
-    "allowed": "QC",
+    "allowed": "Production QC",
     "condition": null,
     "next_state": "Completed",
     "parent": "Work Order Flow",
@@ -133,7 +133,7 @@
    {
     "action": "Reject",
     "allow_self_approval": 1,
-    "allowed": "QC",
+    "allowed": "Production QC",
     "condition": null,
     "next_state": "QC Rejected",
     "parent": "Work Order Flow",
